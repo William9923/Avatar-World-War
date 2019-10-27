@@ -22,7 +22,7 @@ void MakeBangunan(Bangunan * bangunan, char type, POINT point) {
 		Type(*(bangunan)) = 'C';
 		A(*bangunan) = 10;
 		M(*bangunan) = 40;
-		U(*bangunan) = 40;
+		U(*bangunan) = 40; // INI U BANGUNAN NYA DI TYPE BENTUKAN BLM ADA
 		Pasukan(*bangunan) = U(*bangunan);
 		Pertahanan(*bangunan) = false;
 	}
