@@ -5,21 +5,19 @@
 
 /* Ukuran minimum dan maksimum baris dan kolom */
 #define BrsMin 1
-#define BrsMax ?
+#define BrsMax 30
 #define KolMin 1
-#define KolMax ?
+#define KolMax 20
 
 typedef int indeks; /* indeks baris, kolom */
-typedef ... ElType; // char (?)
+typedef char ElType; 
 typedef struct {
     ElType Mem[BrsMax+1][KolMax+1];
     int NBrsEff; /* ukuran baris yg terdefinisi */
     int NKolEff; /* ukuran kolom yg terdefinisi */
 } PETA;
 
-/* NBrsEff <= 1 dan NKolEff <= 1 */ -- salah
 /* Indeks peta yang digunakan: [BrsMin..BrsMax][KolMin..KolMax] */
-/* Memori peta yang dipakai selalu di "ujung kiri atas" */
 
 /* *** Selektor *** */
 #define NBrsEff(P) (P).NBrsEff
@@ -28,8 +26,8 @@ typedef struct {
 
 /* ********** DEFINISI PROTOTIPE PRIMITIF ********** */
 /* *** Konstruktor membentuk PETA *** */
-void MakePeta (int NB, int NK, PETA * P);
-/* Membentuk sebuah PETA "kosong" yang siap diisi berukuran NB x NK di "ujung kiri" memori */
+void MakePeta (int NB, int NK, PETA * P); 
+/* Membentuk sebuah PETA "kosong" yang siap diisi berukuran NB x NK */
 /* I.S. NB dan NK adalah valid untuk memori peta yang dibuat */
 /* F.S. Peta P sesuai dengan definisi di atas terbentuk */
 
@@ -43,12 +41,8 @@ indeks GetLastIdxBrs (PETA P);
 indeks GetLastIdxKol (PETA P);
 /* Mengirimkan indeks kolom terbesar P */
 
-/* ********** Operasi lain ********** */
-int NBElmt (PETA P);
-/* Mengirimkan banyaknya elemen P */
-
+// PAKE MODUL WARNA 
 /* ********** BACA/TULIS ********** */
-
 void CetakPeta (PETA P);
 /* I.S. P terdefinisi */
 /* F.S. Elemen P dicetak ke layar per baris per kolom */
