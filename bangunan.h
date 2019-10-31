@@ -76,8 +76,6 @@ void Serang(Bangunan * bserang, Bangunan * bdiserang, int jPSerang);
 /* Fungsi - fungsi lainnya*/
 boolean IsPindahPemilik(Bangunan bBertahan, int jumlahPenyerang);
 
-
-
 boolean IsSudahSerang(Bangunan bangunan);
 
 void TambahPasukan(Bangunan bangunan);

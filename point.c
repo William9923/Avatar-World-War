@@ -9,8 +9,6 @@
 #include "boolean.h"
 #include "point.h"
 
-#define PI 3.141592653589793
-
 /* *** DEFINISI PROTOTIPE PRIMITIF *** */
 /* *** Konstruktor membentuk POINT *** */
 POINT MakePOINT (int X, int Y){
