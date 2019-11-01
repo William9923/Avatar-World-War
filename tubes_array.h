@@ -39,7 +39,7 @@ typedef struct
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create tabel kosong  */
-void MakeEmpty(TabBangunan *T, int maxel);
+void CreateEmptyArray(TabBangunan *T, int maxel);
 /* I.S. T sembarang, maxel > 0 */
 /* F.S. Terbentuk tabel T kosong dengan kapasitas maxel + 1 */
 

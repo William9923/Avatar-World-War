@@ -4,7 +4,7 @@
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : membuat tabel kosong */
-void MakeEmpty(TabBangunan *T, int maxel)
+void CreateEmptyArray(TabBangunan *T, int maxel)
 /* I.S. T sembarang, maxel > 0 */
 /* F.S. Terbentuk tabel T kosong dengan kapasitas maxel + 1 */
 {
@@ -160,6 +160,12 @@ void CetakBangunanDimiliki (TabBangunan T)
 	// ALGORITMA
 	for (i=GetFirstIdx(T);i<=GetLastIdx(T);i++)
 	{
-
+		printf("%d. ",i);
+		PrintInfoBangunan(Elmt(T,i));
+		printf(" ");
+		TulisPOINT(Letak(Elmt(T,i)));
+		printf(" %d ",Pasukan(Elmt(T,i)));
+		printf("lv. %d\n",Level(Elmt(T,i)));
+		
 	}
 }
