@@ -179,7 +179,7 @@ void NaikLevel(Bangunan * bangunan) {
 }
 
 /* Fungsi - fungsi primitif untuk Penyerangan*/
-void Serang(Bangunan * bserang, Bangunan * bdiserang, int jPSerang);
+//void Serang(Bangunan * bserang, Bangunan * bdiserang, int jPSerang);
 /*
 	I.S. Bangunan belum diserang
 	F.S. Bangunan telah diserang

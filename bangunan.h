@@ -17,7 +17,7 @@ typedef struct {
 	int M; // maksimum penambahan pasukan
 	boolean P; // true -> ada pertahanan, dan sebaliknya
 	int pasukan; // pasukan awal
-	POINT point;
+	Point Point;
 	boolean serang; // apakah suatu bangunan telah menyerang di turn tersebut atau tidak
 } Bangunan;
 
@@ -30,15 +30,15 @@ typedef struct {
 #define Maksimum(B) (B).M
 #define Pertahanan(B) (B).P 
 #define Pasukan(B) (B).pasukan
-#define Letak(B) (B).point
+#define Letak(B) (B).Point
 #define Serang(B) (B).serang
 
 
 /* *** DEFINISI PROTOTIPE PRIMITIF *** */
 /* *** Konstruktor membentuk Bangunan *** */
-void MakeBangunan(Bangunan * bangunan, char type, Point point);
+void MakeBangunan(Bangunan * bangunan, char type, Point Point);
 	/*
-void MakeBangunan(Bangunan * bangunan, char type, int pemilik, Point point)
+void MakeBangunan(Bangunan * bangunan, char type, int pemilik, Point Point)
 	I.S. : Bangunan sembarang
 	F.S  : Bangunan terdefinisi
 	*/
@@ -66,12 +66,12 @@ void NaikLevel(Bangunan * bangunan);
 */
 
 /* Fungsi - fungsi primitif untuk Penyerangan*/
-void Serang(Bangunan * bserang, Bangunan * bdiserang, int jPSerang);
-/*
-	I.S. Bangunan belum diserang
-	F.S. Bangunan telah diserang
-	Apabila Bangunan beralih kepemilikan, maka bangunan diserang akan berubah tempat listnya
-*/
+// void Serang(Bangunan * bserang, Bangunan * bdiserang, int jPSerang);
+
+// 	I.S. Bangunan belum diserang
+// 	F.S. Bangunan telah diserang
+// 	Apabila Bangunan beralih kepemilikan, maka bangunan diserang akan berubah tempat listnya
+
 
 /* Fungsi - fungsi lainnya*/
 boolean IsPindahPemilik(Bangunan bBertahan, int jumlahPenyerang);
