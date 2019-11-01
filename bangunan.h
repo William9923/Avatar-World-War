@@ -9,6 +9,7 @@ Topik : Tugas Besar Alstrukdat 1
 
 #include "boolean.h"
 #include "point.h"
+#include "boolean.h"
 
 typedef struct {
 	char type; // T : Tower, C : Castle, F : Fort, V : Village
@@ -17,7 +18,7 @@ typedef struct {
 	int M; // maksimum penambahan pasukan
 	boolean P; // true -> ada pertahanan, dan sebaliknya
 	int pasukan; // pasukan awal
-	Point Point;
+	Point letak;
 	boolean serang; // apakah suatu bangunan telah menyerang di turn tersebut atau tidak
 } Bangunan;
 
@@ -30,13 +31,13 @@ typedef struct {
 #define Maksimum(B) (B).M
 #define Pertahanan(B) (B).P 
 #define Pasukan(B) (B).pasukan
-#define Letak(B) (B).Point
+#define Letak(B) (B).letak
 #define Serang(B) (B).serang
 
 
 /* *** DEFINISI PROTOTIPE PRIMITIF *** */
 /* *** Konstruktor membentuk Bangunan *** */
-void MakeBangunan(Bangunan * bangunan, char type, Point Point);
+void MakeBangunan(Bangunan * bangunan, char type, Point letak);
 	/*
 void MakeBangunan(Bangunan * bangunan, char type, int pemilik, Point Point)
 	I.S. : Bangunan sembarang
@@ -51,6 +52,13 @@ boolean IsAbleNaikLevel(Bangunan bangunan);
 
 
 /* Fungsi - fungsi primitif terhadap naik level bangunan*/
+/*
+	Kenaikan level tiap bangunan berbeda sesuai dengan jenisnya :
+		1. Fort 
+		2. Tower
+		3. Castle
+		4. Village
+*/
 Bangunan NaikLevelFort(Bangunan bangunan);
 
 Bangunan NaikLevelTower(Bangunan bangunan);
@@ -65,6 +73,8 @@ void NaikLevel(Bangunan * bangunan);
 	F.S. Bangunan naik levelnya apabila "valid" untuk naik level
 */
 
+
+
 /* Fungsi - fungsi primitif untuk Penyerangan*/
 // void Serang(Bangunan * bserang, Bangunan * bdiserang, int jPSerang);
 
@@ -73,22 +83,49 @@ void NaikLevel(Bangunan * bangunan);
 // 	Apabila Bangunan beralih kepemilikan, maka bangunan diserang akan berubah tempat listnya
 
 
-/* Fungsi - fungsi lainnya*/
+
+
+/* Fungsi - fungsi primitif lainnya*/
 boolean IsPindahPemilik(Bangunan bBertahan, int jumlahPenyerang);
+/*
+	Fungsi yang melakukan pengecekan apakah suatu bangunan akan berpindah
+	kepemilikan ketika suatu bangunan telah diserang
+*/
+
 
 boolean IsSudahSerang(Bangunan bangunan);
+/*
+	Dikarenakan setiap bangunan hanya boleh menyerang sekali, maka 
+	dibentuk fungsi penanda apakah sudah serang di turn itu atau belum
+*/
 
-void TambahPasukan(Bangunan bangunan);
+Point letakBangunan(Bangunan bangunan);
+/*
+	Fungsi yang mengembalikan nilai Point letak dari 
+*/
+
+void PlusPasukan(Bangunan * bangunan);
 /*
 	I.S. : Jumlah Pasukan belum ditambahkan
 	F.S. : Jumlah Pasukan telah bertambah
 */
 
+void NextTurnBangunan(Bangunan * bangunan);
+/*
+	I.S. : Kondisi bangunan sebelum next turn
+	F.S. : Kondisi bangunan setelah next turn
+
+	Hanya digunakan untuk bangunan pemain tersebut saat baru memulai turnnya
+
+	Kondisi bangunan setelah next turn sedikit berubah, seperti adanya pertambahan pasukan selama 
+	belum melebihi batas atas jumlah maksimum pasukan, serta boolean boleh menyerangnya.
+*/
 /* Cetak Info Bangunan*/
 void PrintInfoBangunan(Bangunan bangunan);
 /*
 	Melakukan pencetakan terhadap info bangunan dengan format
 	<jenis_bangunan> <letak_bangunan> <jumlah_pasukan> lv. <level_bangunan>
 */
+#endif
 
 

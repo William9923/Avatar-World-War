@@ -11,13 +11,13 @@ Topik : Tugas Besar Alstrukdat 1
 
 /* *** DEFINISI PROTOTIPE PRIMITIF *** */
 /* *** Konstruktor membentuk Bangunan *** */
-void MakeBangunan(Bangunan * bangunan, char type, POINT point) {
+void MakeBangunan(Bangunan * bangunan, char type, POINT letak) {
 	/*
 	I.S. : Bangunan sembarang
 	F.S  : Bangunan terdefinisi
 	*/
 	Level(*bangunan) = 1;
-	Letak(*bangunan) = point;
+	Letak(*bangunan) = letak;
 	if (type == 'C') {
 		Type(*(bangunan)) = 'C';
 		A(*bangunan) = 10;
@@ -186,6 +186,7 @@ void NaikLevel(Bangunan * bangunan) {
 	Apabila Bangunan beralih kepemilikan, maka bangunan diserang akan berubah tempat listnya
 */
 
+
 /* Fungsi - fungsi lainnya*/
 boolean IsPindahPemilik(Bangunan bBertahan, int jumlahPenyerang) {
 	float jumlahPenyerangDesimal;
@@ -201,7 +202,12 @@ boolean IsSudahSerang(Bangunan bangunan){
 	return Serang(bangunan);
 }
 
-void TambahPasukan(Bangunan * bangunan) {
+Point letakBangunan(Bangunan bangunan){
+	/* Mengembalikan letak point dari suatu bangunan */
+	return Letak(bangunan);
+}
+
+void PlusPasukan(Bangunan * bangunan) {
 	/*
 		I.S. : Jumlah Pasukan belum ditambahkan
 		F.S. : Jumlah Pasukan telah bertambah
@@ -210,6 +216,22 @@ void TambahPasukan(Bangunan * bangunan) {
 		Pasukan(*bangunan) += A(*bangunan);
 	}
 }
+
+void NextTurnBangunan(Bangunan * bangunan){
+/*
+	I.S. : Kondisi bangunan sebelum next turn
+	F.S. : Kondisi bangunan setelah next turn
+*/
+
+	// Pertama tambah pasukan
+	PlusPasukan(bangunan);
+
+	// Kedua perbolehkan menyerang
+	Serang(*bangunan) = true;
+}
+
+
+
 /* Cetak Info Bangunan*/
 void PrintInfoBangunan(Bangunan bangunan) {
 	/*

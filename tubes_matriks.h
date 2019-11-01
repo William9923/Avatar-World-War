@@ -47,3 +47,5 @@ void CetakPeta (PETA P);
 /* I.S. P terdefinisi */
 /* F.S. Elemen P dicetak ke layar per baris per kolom */
 /* Proses: Mencetak nilai setiap elemen P ke layar dengan traversal per baris dan per kolom */
+
+#endif
