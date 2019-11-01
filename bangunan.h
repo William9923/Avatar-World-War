@@ -20,6 +20,7 @@ typedef struct {
 	int pasukan; // pasukan awal
 	Point letak;
 	boolean serang; // apakah suatu bangunan telah menyerang di turn tersebut atau tidak
+					// true -> uda serang, false -> belum serang
 } Bangunan;
 
 /* Notasi Akses : Selektor Bangunan*/

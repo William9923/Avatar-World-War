@@ -11,7 +11,7 @@ Topik : Tugas Besar Alstrukdat 1
 
 /* *** DEFINISI PROTOTIPE PRIMITIF *** */
 /* *** Konstruktor membentuk Bangunan *** */
-void MakeBangunan(Bangunan * bangunan, char type, POINT letak) {
+void MakeBangunan(Bangunan * bangunan, char type, Point letak) {
 	/*
 	I.S. : Bangunan sembarang
 	F.S  : Bangunan terdefinisi
@@ -22,32 +22,28 @@ void MakeBangunan(Bangunan * bangunan, char type, POINT letak) {
 		Type(*(bangunan)) = 'C';
 		A(*bangunan) = 10;
 		M(*bangunan) = 40;
-		U(*bangunan) = 40; // INI U BANGUNAN NYA DI TYPE BENTUKAN BLM ADA
-		Pasukan(*bangunan) = U(*bangunan);
+		Pasukan(*bangunan) = 40; // INI U BANGUNAN NYA DI TYPE BENTUKAN BLM ADA
 		Pertahanan(*bangunan) = false;
 	}
 	else if (type == 'T') {
 		Type(*(bangunan)) = 'T';
 		A(*bangunan) = 5;
 		M(*bangunan) = 20;
-		U(*bangunan) = 30;
-		Pasukan(*bangunan) = U(*bangunan);
+		Pasukan(*bangunan) = 30;
 		Pertahanan(*bangunan) = true;
 	}
 	else if (type == 'F') {
 		Type(*(bangunan)) = 'F';
 		A(*bangunan) = 10;
 		M(*bangunan) = 20;
-		U(*bangunan) = 80;
-		Pasukan(*bangunan) = U(*bangunan);
+		Pasukan(*bangunan) = 80;
 		Pertahanan(*bangunan) = false;
 	}
 	else if (type == 'V') {
 		Type(*(bangunan)) = 'V';
 		A(*bangunan) = 5;
 		M(*bangunan) = 20;
-		U(*bangunan) = 20;
-		Pasukan(*bangunan) = U(*bangunan);
+		Pasukan(*bangunan) = 20;
 		Pertahanan(*bangunan) = false;
 	}
 	Serang(*bangunan) = false;
@@ -61,8 +57,8 @@ boolean IsAbleNaikLevel(Bangunan bangunan) {
 // memberikan informasi apakah suatu bangunan dapat naik level atau tidak
 // asumsi boleh nol
 	if (Level(bangunan) < 4) return (Pasukan(bangunan) >= M(bangunan) / 2);
-	else return false
-	}
+	else return false;
+}
 
 /* Fungsi - fungsi primitif terhadap naik level bangunan*/
 Bangunan NaikLevelFort(Bangunan bangunan) {
@@ -73,7 +69,6 @@ Bangunan NaikLevelFort(Bangunan bangunan) {
 			Pasukan(newBangunan) -= M(newBangunan) / 2;
 			M(newBangunan) = 40;
 			A(newBangunan) = 20;
-			U(newBangunan) = -1;
 		} else if (Level(newBangunan) == 2) {
 			Pasukan(newBangunan) -= M(newBangunan) / 2;
 			M(newBangunan) = 60;
@@ -97,7 +92,6 @@ Bangunan NaikLevelTower(Bangunan bangunan) {
 			Pasukan(newBangunan) -= M(newBangunan) / 2;
 			M(newBangunan) = 30;
 			A(newBangunan) = 10;
-			U(newBangunan) = -1;
 		} else if (Level(newBangunan) == 2) {
 			Pasukan(newBangunan) -= M(newBangunan) / 2;
 			M(newBangunan) = 40;
@@ -121,7 +115,6 @@ Bangunan NaikLevelCastle(Bangunan bangunan) {
 			Pasukan(newBangunan) -= M(newBangunan) / 2;
 			M(newBangunan) = 60;
 			A(newBangunan) = 15;
-			U(newBangunan) = -1;
 		} else if (Level(newBangunan) == 2) {
 			Pasukan(newBangunan) -= M(newBangunan) / 2;
 			M(newBangunan) = 80;
@@ -145,7 +138,6 @@ Bangunan NaikLevelVillage(Bangunan bangunan) {
 			Pasukan(newBangunan) -= M(newBangunan) / 2;
 			M(newBangunan) = 30;
 			A(newBangunan) = 10;
-			U(newBangunan) = -1;
 		} else if (Level(newBangunan) == 2) {
 			Pasukan(newBangunan) -= M(newBangunan) / 2;
 			M(newBangunan) = 40;
@@ -227,7 +219,7 @@ void NextTurnBangunan(Bangunan * bangunan){
 	PlusPasukan(bangunan);
 
 	// Kedua perbolehkan menyerang
-	Serang(*bangunan) = true;
+	Serang(*bangunan) = false;
 }
 
 
@@ -248,7 +240,7 @@ void PrintInfoBangunan(Bangunan bangunan) {
 		printf("%s ", "Village");
 	} 
 
-	TulisPOINT(Letak(bangunan));
+	TulisPoint(Letak(bangunan));
 	printf(" ");
 
 	printf("%d", Pasukan(bangunan));
