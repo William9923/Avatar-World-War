@@ -84,11 +84,11 @@ IdxTypeArray SearchIdxBangunan (TabBangunan T, ElTypeArray X)
 	IdxTypeArray i;
 	// ALGORITMA 
 	i = IdxMinArray;
-	while ((NeffArray(T)!=0) && (i<=NeffArray(T)) && (ElmtArray(T,i) != X)) // masalah disini kan bukan angka gabisa langsung di compare
+	while ((NeffArray(T)!=0) && (i<=NeffArray(T)) && (Absis(Letak(ElmtArray(T,i))) != Absis(Letak(X))) && (Ordinat(Letak(ElmtArray(T,i))) != Ordinat(Letak(X)))) 
 	{
 		i += 1;
 	}
-	if (ElmtArray(T,i) == X) // masalah disini kan bukan angka gabisa langsung di compare
+	if ((Absis(Letak(ElmtArray(T,i))) != Absis(Letak(X))) && (Ordinat(Letak(ElmtArray(T,i))) != Ordinat(Letak(X))))
 		{return i;}
 	else 
 		{return IdxUndefArray;}
@@ -108,7 +108,7 @@ boolean SearchBangunan (TabBangunan T, ElTypeArray X)
 	i = IdxMinArray;
 	while ((NeffArray(T)!=0) && (i<=NeffArray(T)) && !(Found))
 	{
-		if (ElmtArray(T,i) == X) // masalah disini kan bukan angka gabisa langsung di compare
+		if ((Absis(Letak(ElmtArray(T,i))) != Absis(Letak(X))) && (Ordinat(Letak(ElmtArray(T,i))) != Ordinat(Letak(X))))
 			{Found = true;}
 		else 
 			{ i += 1;}
@@ -166,7 +166,7 @@ void CetakBangunanDimiliki (TabBangunan T)
 		printf("%d. ",i);
 		PrintInfoBangunan(ElmtArray(T,i));
 		printf(" ");
-		TulisPOINT(Letak(ElmtArray(T,i)));
+		TulisPoint(Letak(ElmtArray(T,i)));
 		printf(" %d ",Pasukan(ElmtArray(T,i)));
 		printf("lv. %d\n",Level(ElmtArray(T,i)));
 		
