@@ -249,3 +249,10 @@ void PrintInfoBangunan(Bangunan bangunan) {
 
 	printf("lv. %d\n", Level(bangunan)); 
 }
+
+boolean EQBangunan(Bangunan b1, Bangunan b2){
+	if(Type(b1) == Type(b2) && Level(b1) == Level(b2) && A(b1) == A(b2) && TambahPasukan(b1) == TambahPasukan(b2) && M(b1) == M(b2) && Maksimum(b1) == Maksimum(b2) && Pertahanan(b1) == Pertahanan(b2) && EQ(Letak(b1), Letak(b2))){
+		return true;
+	}
+	return false;
+}

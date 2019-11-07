@@ -127,6 +127,10 @@ void PrintInfoBangunan(Bangunan bangunan);
 	Melakukan pencetakan terhadap info bangunan dengan format
 	<jenis_bangunan> <letak_bangunan> <jumlah_pasukan> lv. <level_bangunan>
 */
+
+boolean EQBangunan(Bangunan b1, Bangunan b2);
+/* Cek apakah kedua bangunan sama atau tidak */
+
 #endif
 
 
