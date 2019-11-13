@@ -11,7 +11,8 @@
 #include "mesinkar.h"
 #include "mesinkata.h"
 #include "readkonfigurasi.h"
-//#include "skill.h"
+#include "skill.h"
+#include"pemain.h"
 
 #include"bangunan.c"
 #include"point.c"
@@ -24,8 +25,8 @@
 #include "mesinkar.c"
 #include "mesinkata.c"
 #include "readkonfigurasi.c"
-//#include "skill.c"
-
+#include "skill.c"
+#include"pemain.c"
 int main() {
 	printf("%s\n", "Tolong jangan conflict plis");
 	return 0;
