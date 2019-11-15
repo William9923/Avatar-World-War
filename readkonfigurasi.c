@@ -1,15 +1,15 @@
-#include "readkonfigurasi.h"
+#include "mesinkata.h"
 #include <stdio.h>
+#include "array.h"
+#include "graph.h"
 
-void readkonfig() {
+void readkonfig(int *PPeta, int *LPeta, int  *NBangunan, TabBangunan *ArrayBangunan, Graph *Graph) {
     int i,n;
     int banyakb;
 
     STARTKATA();
-    for (i=1; i <= CKata.Length; i++) {
-        printf("%c", CKata.TabKata[i]);
-    }
-    printf(" ");
+    *PPeta = (CKata.TabKata[1] - '0') * 10 + (CKata.TabKata[2] - '0');
+    printf("%d\n", *PPeta);
 
     ADVKATA();
     for (i=1; i <= CKata.Length; i++) {
