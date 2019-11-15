@@ -11,7 +11,7 @@
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 
 /* Definisi elemen dan address */
-typedef char infotype;
+typedef int infotype;
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Queue : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
@@ -55,7 +55,11 @@ void DeAlokasiQueue(Queue * Q);
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
 
 /* *** Primitif Add/Delete *** */
-void AddSkillQueue (Queue * Q, infotype X);
+infotype SkillChecker(char X[25]);
+
+char readSkill(Queue *Q);
+
+void AddSkillQueue (Queue * Q, char Y);
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q tidak kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */

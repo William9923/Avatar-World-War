@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "boolean.h"
 #include "skill.h"
+#include <stdlib.h>
 
 boolean IsEmptyQueue (Queue Q){
     return ((Head(Q)==0) && (Tail(Q)==0));
@@ -12,7 +13,7 @@ boolean IsFullQueue (Queue Q){
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
 int NBElmtQueue (Queue Q){
-    if (!IsEmpty(Q)){
+    if (!IsEmptyQueue(Q)){
         return (((Tail(Q) - Head(Q) + MaxEl(Q))% MaxEl(Q)) +1);
     }
     else{
@@ -23,7 +24,7 @@ int NBElmtQueue (Queue Q){
 
 /* *** Kreator *** */
 void CreateEmptyQueue (Queue * Q, int Max){
-    (*Q).T = (infotype *) malloc ((Max+1) * sizeof(infotype));
+    (*Q).T = (infotype *) malloc ((Max+1) * sizeof(infotype *));
     if ((*Q).T != NULL) {
         MaxEl(*Q) = Max;
         Head(*Q) = 0;
@@ -49,25 +50,89 @@ void DeAlokasiQueue(Queue * Q){
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
 
 /* *** Primitif Add/Delete *** */
-void AddSkillQueue(Queue * Q, infotype X){
+infotype SkillChecker(char X[25]){
+    infotype y;
+    
+    if (X == "InstantUpgrade"){
+        y = 1;
+    }
+    else if (X == "Shield"){
+        y = 2;
+    }
+    else if (X == "ExtraTurn"){
+        y = 3;
+    }
+    else if (X == "AttackUp"){
+        y = 4;
+    }
+    else if (X == "CriticalHit"){
+        y = 5;
+    }
+    else if (X == "InstantReinforcement"){
+        y = 6;
+    }
+    else if (X == "Barrage"){
+        y = 7;
+    }
+    return y;
+}
+
+char readSkill (Queue *Q){
+    char *X[25];
+    if (InfoHead(*Q) == 1){
+        X[25] = "InstantUpgrade";
+    }
+    else if (InfoHead(*Q) == 2){
+        X[25] = "Shield";
+    }
+    else if (InfoHead(*Q) == 3){
+        X[25] = "ExtraTurn";
+    }
+    else if (InfoHead(*Q) == 4){
+        X[25] = "AttackUp";
+    }
+    else if (InfoHead(*Q) == 5){
+        X[25] = "CriticalHit";
+    }
+    else if (InfoHead(*Q) == 6){
+       X[25] = "InstantReinforcement";
+    }
+    else if (InfoHead(*Q) == 7){
+        X[25] = "Barrage";
+    }
+    return *X[25];
+}
+void AddSkillQueue(Queue * Q, char Y){
     address i,j;
     boolean valid;
     valid = false;
-
+    int *X;
+    
+    *X = SkillChecker(&Y);
     while (!valid){
-        if (X == "Instant Upgrade" || X != "Shield" || X != "Extra Turn" || X != "Attack Up" || X != "Critical Hit" || X != "Instant Reinforcement" || X != "Barrage") {
+        if (*X == 1|| *X != 2 || *X != 3 || *X != 4 || *X != 5 || *X != 6 || *X != 7) {
+            // 1 == > Instant Upgrade
+            // 2 == > Shield
+            // 3 == > Extra Turn 
+            // 4 == > Attack Up
+            // 5 == > Critical Hit
+            // 6 == > Instant Reinforcement
+            // 7 == > Barrage
             printf("Maaf, skill yang ingin ditambahkan tidak boleh dimasukkan.");
-            scanf(" %c",&X);
+            scanf("%p",&X);
         }
         else /* Q tidak kosong */ {
-            if (Tail(*Q) == MaxEl(*Q)) { /* Geser elemen smp Head(Q)=1 */
+            if (Tail(*Q) == MaxEl(*Q) && NBElmtQueue(*Q) != MaxEl(*Q)) { /* Geser elemen smp Head(Q)=1 */
                 Tail(*Q) = 1;
-                InfoTail(*Q) = X;
+                InfoTail(*Q) = *X;
+                valid = true;
+            }
+            else if (Tail(*Q) != MaxEl(*Q)){
+                Tail(*Q)++;
+                InfoTail(*Q)= *X;
                 valid = true;
             }
             else{
-                Tail(*Q)++;
-                InfoTail(*Q)=X;
                 valid = true;
             }
         }
@@ -99,8 +164,8 @@ void DelSkillQueue(Queue * Q, infotype * X){
 /* F.S. X = 0ai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
         Q mungkin kosong */
 void startSkillQueue(Queue *Q){
-    CreateEmpty(&Q,10);
-    InfoHead(*Q) = "Instant Upgrade"; 
+    CreateEmptyQueue(Q,10);
+    InfoHead(*Q) = 1; //1 ==> InstantUpgrade
 }
 
 

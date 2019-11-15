@@ -11,7 +11,7 @@ void CreateNewPlayer(Pemain *P,char Q){
 /* Fungsinya untuk membuat player baru di game, dengan ketentuan:
 Warna(*P) = R atau B,ListBangunan kosong */
     CreateEmptyListB(&((*P).b)); 
-    SetWarna(P,Q);
+    // SetWarna(P,Q);
 }
 
 void ChangeOwner(Pemain *P, Bangunan a,Pemain *NewOwner){
@@ -22,5 +22,5 @@ void ChangeOwner(Pemain *P, Bangunan a,Pemain *NewOwner){
 
 
 boolean haveBuildingB(Pemain P,Bangunan a){
-    return SearchListB(P.b,a);
+    return (SearchListB(P.b,a) != NULL);
 }
