@@ -114,3 +114,47 @@ void SerangB(Bangunan * bangunanPe, Bangunan * bangunanDe, int n, Pemain * P1, P
 	}
 }
 
+void NextTurnPemain(Pemain * P){
+	/*
+	I.S. Pemain terdefinisi,
+		 Seluruh bangunan yang dimiliki pemain dalam keadaan turn sebelumnya
+	F.S. Seluruh bangunan milik pemain memiliki kondisi yang terubah sesuai dengan 
+		 ketentuan bangunan
+	btw, buat perubahan yang terjadi taro disini aja
+	*/
+	ListB listB;
+
+	listB = (*P).b;
+
+	NextTurnLBangunan(&listB);
+
+	// ketentuan perubahan status pada turn berikutnya
+}
+
+void NextTurnLBangunan(ListB * L){
+	/*
+	Melakukan traversal ke seluruh bangunan pada list bangunan
+	dan melakukan penambahan 
+	*/
+	elb bangunan;
+	if (!IsEmpty(*L)){
+		bangunan = FirstB(*L);
+		while (bangunan != Nil){
+			NextTurnBangunan(&bangunan);
+			bangunan = NextB(bangunan);
+		}
+	}
+}
+
+/*
+	Checker netral, 
+	simple, kalo ga ada di list 2 pemain, bangunan netral
+*/
+boolean IsBangunanNetral(Bangunan b, Pemain p1, Pemain p2){
+	/* Melakukan pengecekan apakah suatu bangunan bersifat netral atau tidak */
+	
+}
+
+
+
+
