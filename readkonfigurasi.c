@@ -3,46 +3,63 @@
 #include "array.h"
 #include "graph.h"
 
-void readkonfig(int *PPeta, int *LPeta, int  *NBangunan, TabBangunan *ArrayBangunan, Graph *Graph) {
+void readkonfig(int *PPeta, int *LPeta, TabBangunan *ArrayBangunan, Graph *Graph) {
     int i,n;
-    int banyakb;
+    int NBangunan;
+    char typebangunan;
+    Point letakbangunan;
+    int letakx, letaky;
+    Bangunan bangunan;
 
+    /** menyimpan panjang peta (vertikal) ke dalam variabel PPeta **/
     STARTKATA();
     *PPeta = (CKata.TabKata[1] - '0') * 10 + (CKata.TabKata[2] - '0');
-    printf("%d\n", *PPeta);
+    //printf("%d\n", *PPeta);
 
+    /** menyimpan lebar peta (horizontal) ke dalam variabel LPeta **/
     ADVKATA();
-    for (i=1; i <= CKata.Length; i++) {
-        printf("%c", CKata.TabKata[i]);
-    }
-    printf("\n");
+    *LPeta = (CKata.TabKata[1] - '0') * 10 + (CKata.TabKata[2] - '0');
+    //printf("LPeta : %d\n", *LPeta);
 
+    /** menyimpan banyaknya bangunan ke dalam variabel NBangunan **/
     ADVKATA();
+    NBangunan=0;
     for (i=1; i <= CKata.Length; i++) {
-        printf("%c", CKata.TabKata[i]);
+        NBangunan = NBangunan * 10 + (CKata.TabKata[i] - '0');
     }
-    printf("\n");
+    //printf("Nbangunan : %d\n", NBangunan);
 
-    //jadiin fungsi String 2digit to Int
-    banyakb = (CKata.TabKata[1] - '0') * 10 + (CKata.TabKata[2] - '0');
+    /** membuat array kosong dengan ukuran NBangunan **/
+    CreateEmptyArray(ArrayBangunan, NBangunan);
 
-    printf("banyak bangunan = %d\n", banyakb);
+    /** looping untuk mengisi array bangunan dengan informasi yang dibaca dari file konfigurasi **/
+    for (n=1; n <= NBangunan; n ++) {
+        letakx=0;
+        letaky=0;
+        ADVKATA();
+        typebangunan = CKata.TabKata[1];
 
-    for (n=1; n <= banyakb * 3; n ++) {
         ADVKATA();
         for (i=1; i <= CKata.Length; i++) {
-            printf("%c", CKata.TabKata[i]);
+            letakx = letakx * 10 + (CKata.TabKata[i] - '0');
         }
-        printf(" ");
-        if (n % 3 == 0) {
-            printf("\n");
+        
+        ADVKATA();
+        for (i=1; i <= CKata.Length; i++) {
+            letaky = letaky * 10 + (CKata.TabKata[i] - '0');
         }
+
+        letakbangunan = MakePoint(letakx,letaky);
+
+        MakeBangunan(&bangunan, typebangunan, letakbangunan);
+        AddBangunan(ArrayBangunan,bangunan);
     }
 
-    for (n=1; n <= banyakb * banyakb; n++) {
+    /** ini belum jadi. masih belum paham graph **/
+    for (n=1; n <= NBangunan * NBangunan; n++) {
         IgnoreBlank();
         printf("%c ", CC);
-        if (n % banyakb == 0) {
+        if (n % NBangunan == 0) {
             printf("\n");
         }
         ADV();
