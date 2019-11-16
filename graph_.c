@@ -1,4 +1,4 @@
-#include"graph.h"
+#include"graph_.h"
 /* Konstruktor */
 void CreateGraph(infotypeGraph X, Graph* G)
 /* membuat graph baru */
