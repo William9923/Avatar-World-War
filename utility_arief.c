@@ -73,7 +73,8 @@ int main() {
     int PPeta,LPeta;
     TabBangunan AllBangunan;
     Graph connectivity;
-	int turn=0,nomor=1;
+	ListB Netral;
+	int turn=1,nomor=1;
 	boolean swapTurn = false;
 	char CMD[9];
 	CreateNewPlayer(&P1,'r',nomor);
@@ -81,31 +82,40 @@ int main() {
 	CreateNewPlayer(&P2,'b',nomor);
 	//Baca Konfigurasi Permainan
 	printf("Reading Configuration File...\n");
-    
-    readkonfig(&PPeta,&LPeta,&AllBangunan,&connectivity);
+    CreateEmptyListB(&Netral);
+    readkonfig(&PPeta,&LPeta,&AllBangunan,&connectivity,&P1,&P2,&Netral);
     //aDD LIST b KE SI pEMAIN 1
-    InsertLastListB(&(P1).b,AlokasiListB(ElmtArray(AllBangunan,1)));
-    InsertLastListB(&(P2).b,AlokasiListB(ElmtArray(AllBangunan,2)));
-
+	
+	
 	printf("Game Ready...\n");
 	printf("Press Any Key To Continue..\n");
+	
 	clrscr();
 	boolean stop = false;
     char *s;
+<<<<<<< HEAD
     
     printf("ENTER COMMAND:");
     s = BacaInputUser();
+=======
+>>>>>>> origin/master
 	while(!stop){
 		//Validasi Command
-        //if() 
-		//Yang dibawah semua buat else
-		//else{
-            CreateEmptyStackUndo(&SU);
-            //Print Map
-            turn++;
-            PemainNow(P1,P2,&Pnow,swapTurn,turn);
-            //Cetak Peta
+        CreateEmptyStackUndo(&SU);
+		//Print Map
+		PemainNow(P1,P2,&Pnow,swapTurn,turn);
+		//Cetak Peta
 
+		//Baca Command taruh disini...
+		//...
+		printf("Player %d\n",Pnow.nomor);
+		PrintBangunanListB(Pnow.b);
+		//printskill
+		printf("ENTER COMMAND: ");
+		s = BacaInputUser();
+		if(IsAttack(s)){
+
+<<<<<<< HEAD
             //Baca Command taruh disini...
             //...
             printf("Player %d\n",Pnow.nomor);
@@ -115,6 +125,32 @@ int main() {
       		if (turn > 2){
       			stop = true;
       		}
+=======
+		}
+		else if(IsLevelUp(s)){
+
+		}
+		else if(IsMove(s)){
+
+		}
+		else if(IsSkill(s)){
+
+		}
+		else if(IsUndo(s)){
+
+		}
+		else if(IsEndTurn(s)){
+			turn++;
+			system("clear");
+		}
+		else if(IsSave(s)){
+
+		}
+		else{
+			printf("Inputan tidak valid.\n");
+		}
+		
+>>>>>>> origin/master
         //}
 		
 	}

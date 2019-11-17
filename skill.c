@@ -2,7 +2,6 @@
 #include "boolean.h"
 #include "skill.h"
 #include <stdlib.h>
-#include <string.h>
 
 boolean IsEmptyQueue (Queue Q){
     return ((Head(Q)==0) && (Tail(Q)==0));
@@ -51,58 +50,60 @@ void DeAlokasiQueue(Queue * Q){
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
 
 /* *** Primitif Add/Delete *** */
-infotype SkillChecker(char X[25]){
+infotype SkillChecker(char X[]){
     infotype y;
-    char A[40];
-    
-    memset(A,'\0',sizeof(A));
-    strcpy(A,X);
-    if (strcmp(A, "InstantUpgrade") == 0 || strcmp(A, "Instant Upgrade") == 0){
-        y = 1;
+
+    y = 0;
+    if (X[0] == 'I'){
+        if(X[1] == 'U'){
+            y = 1;
+        }
+        else if(X[1] == 'R'){
+            y = 6;
+        }
     }
-    else if (strcmp(A, "Shield") == 0){
+    else if (X[0] = 'S'){
         y = 2;
     }
-    else if (strcmp(A, "ExtraTurn") == 0 || strcmp(A, "Extra Turn") == 0){
+    else if (X[0] = 'E'){
         y = 3;
     }
-    else if (strcmp(A, "AttackUp") == 0 || strcmp(A, "Attack Up") == 0){
+    else if (X[0] = 'A'){
         y = 4;
     }
-    else if (strcmp(A, "CriticalHit") == 0 || strcmp(A, "Critical Hit") == 0){
+    else if (X[0] = 'C'){
         y = 5;
     }
-    else if (strcmp(A, "InstantReinforcement") == 0 || strcmp(A, "Instant Reinforcement") == 0){
-        y = 6;
-    }
-    else if (strcmp(A, "Barrage") == 0){
+    else if (X[0] = 'B'){
         y = 7;
     }
     return y;
 }
 
 char readSkill (Queue *Q){
-    char X[25];
+    char X[2];
     if (InfoHead(*Q) == 1){
-        strcpy(X,"InstantUpgrade");
+        X[0] = 'I';
+        X[1] = 'U';
     }
     else if (InfoHead(*Q) == 2){
-        strcpy(X,"Shield");
+        X[0] = 'S';
     }
     else if (InfoHead(*Q) == 3){
-        strcpy(X,"ExtraTurn");
+        X[0] = 'E';
     }
     else if (InfoHead(*Q) == 4){
-        strcpy(X,"AttackUp");
+        X[0] = 'A';
     }
     else if (InfoHead(*Q) == 5){
-        strcpy(X,"CriticalHit");
+        X[0] = 'C';
     }
     else if (InfoHead(*Q) == 6){
-       strcpy(X,"InstantReinforcement");
+       X[0] = 'I';
+       X[1] = 'R';
     }
     else if (InfoHead(*Q) == 7){
-        strcpy(X,"Barrage");
+        X[0] = 'B';
     }
     return X[25];
 }
@@ -115,13 +116,13 @@ void AddSkillQueue(Queue * Q, char Y){
     *X = SkillChecker(&Y);
     while (!valid){
         if (*X == 1|| *X != 2 || *X != 3 || *X != 4 || *X != 5 || *X != 6 || *X != 7) {
-            // 1 == > Instant Upgrade
-            // 2 == > Shield
-            // 3 == > Extra Turn 
-            // 4 == > Attack Up
-            // 5 == > Critical Hit
-            // 6 == > Instant Reinforcement
-            // 7 == > Barrage
+            // 1 == > Instant Upgrade (IU)
+            // 2 == > Shield (S)
+            // 3 == > Extra Turn (E) 
+            // 4 == > Attack Up (A)
+            // 5 == > Critical Hit (C)
+            // 6 == > Instant Reinforcement (IR)
+            // 7 == > Barrage (B)
             printf("Maaf, skill yang ingin ditambahkan tidak boleh dimasukkan.");
             scanf("%p",&X);
         }
