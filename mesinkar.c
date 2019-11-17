@@ -22,6 +22,12 @@ void START() {
     ADV();
 }
 
+void STARTIn() {
+  /* Mesin siap dioperasikan. Dalam hal ini, pita yang akan 
+  dibaca merupakan pita karakter via command line */
+  pita = stdin;
+  ADV();
+}
 void ADV() {
 /* Pita dimajukan satu karakter.
    I.S. : Karakter pada jendela =

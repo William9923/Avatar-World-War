@@ -21,6 +21,13 @@ void IgnoreBlank()
     }
 }
 
+void IgnoreBlankIn()
+{
+  while ((CC == BLANK) && CC != MARK) {
+        ADV();
+    }
+}
+
 void STARTKATA()
 /* I.S. : CC sembarang
    F.S. : EndKata = true, dan CC = MARK;
@@ -35,6 +42,17 @@ void STARTKATA()
         EndKata = false;
         SalinKata();
     }
+}
+
+void STARTKATAIn(){
+  STARTIn();
+  IgnoreBlankIn();
+  if (CC == newline) {
+    EndKata = true;
+  } else {
+    EndKata = false;
+    SalinKataIn();
+  }
 }
 
 void ADVKATA()
@@ -53,6 +71,23 @@ void ADVKATA()
     IgnoreBlank();
 }
 
+void ADVKATAIn()
+/* I.S. : CC adalah karakter pertama kata yang akan diakuisisi
+   F.S. : CKata adalah kata terakhir yang sudah diakuisisi,
+          CC adalah karakter pertama dari kata berikutnya, mungkin MARK
+          Jika CC = MARK, EndKata = true.
+   Proses : Akuisisi kata menggunakan procedure SalinKata */
+{
+    //IgnoreBlank();
+    if (CC == newline) {
+        EndKata = true;
+    } else {
+        SalinKataIn();
+    }
+    IgnoreBlankIn();
+}
+
+
 void SalinKata()
 /* Mengakuisisi kata, menyimpan dalam CKata
    I.S. : CC adalah karakter pertama dari kata
@@ -70,4 +105,16 @@ void SalinKata()
         ADV();
     }
     CKata.Length = i;
+}
+
+void SalinKataIn()
+{
+  int i = 0;
+  IgnoreBlankIn();
+  while(CC != newline && CC != BLANK && i < NMax) {
+    i++;
+    CKata.TabKata[i] = CC;
+    ADV();
+  }
+  CKata.Length = i;
 }

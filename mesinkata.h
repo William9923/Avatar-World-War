@@ -31,12 +31,17 @@ void STARTKATA();
           atau EndKata = false, CKata adalah kata yang sudah diakuisisi,
           CC karakter pertama sesudah karakter terakhir kata */
 
+void STARTKATAIn();
+/* Sama seperti StartKata, namun masukan yang diterima via command line */
+
+
 void ADVKATA();
 /* I.S. : CC adalah karakter pertama kata yang akan diakuisisi
    F.S. : CKata adalah kata terakhir yang sudah diakuisisi,
           CC adalah karakter pertama dari kata berikutnya, mungkin MARK
           Jika CC = MARK, EndKata = true.
    Proses : Akuisisi kata menggunakan procedure SalinKata */
+void ADVKATAIn();
 
 void SalinKata();
 /* Mengakuisisi kata, menyimpan dalam CKata
@@ -45,5 +50,7 @@ void SalinKata();
           CC = BLANK atau CC = MARK;
           CC adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
+
+void SalinKataIn();
 
 #endif

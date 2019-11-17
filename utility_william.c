@@ -152,8 +152,11 @@ void NextTurnLBangunan(ListB * L){
 */
 boolean IsBangunanNetral(Bangunan b, Pemain p1, Pemain p2){
 	/* Melakukan pengecekan apakah suatu bangunan bersifat netral atau tidak */
-	
+	if ((SearchListB(p1.b,b) == Kosong) && (SearchListB(p2.b,b) == Kosong) return true;
+	else return false;
 }
+
+
 
 
 
