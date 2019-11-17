@@ -94,7 +94,7 @@ int main() {
     char *s;
     
     printf("ENTER COMMAND:");
-    s = BacaInputUser();\
+    s = BacaInputUser();
 	while(!stop){
 		//Validasi Command
         //if() 
@@ -112,6 +112,9 @@ int main() {
             PrintBangunanListB(Pnow.b);
             //printskill
             printf("ENTER COMMAND:\n");
+      		if (turn > 2){
+      			stop = true;
+      		}
         //}
 		
 	}

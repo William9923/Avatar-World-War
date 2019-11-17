@@ -4,9 +4,6 @@
 #include<stdlib.h>
 #include<stdio.h>
 
-void PrintConnectedBangunan(int n, Graph g, ){
-
-}
 
 
 

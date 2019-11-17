@@ -1,33 +1,33 @@
-// #include<stdio.h>
-// #include<stdlib.h>
-// #include<math.h>
-// #include"bangunan.h"
-// #include"point.h"
-// #include"stack.h"
-// #include"state.h"
-// #include"array.h"
-// #include"matriks.h"
-// #include "listbangunan.h"
-// //#include "skill.h"
-// #include"pemain.h"
-// #include"boolean.h"
-// #include"bangunan.c"
-// #include"point.c"
-// #include"stack.c"
-// #include"state.c"
-// #include"array.c"
-// #include"matriks.c"
-// #include "listbangunan.c"
-// //#include "listlinier.c"
-// #include "mesinkar.c"
-// #include "mesinkata.c"
-// #include "readkonfigurasi.c"
-// //#include "skill.c"
-// #include"pemain.c"
-// #include<stdio.h>
-// #include<stdlib.h>
-// #include"mesinkata.h"
-// #include"mesinkar.h"
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#include"bangunan.h"
+#include"point.h"
+#include"stack.h"
+#include"state.h"
+#include"array.h"
+#include"matriks.h"
+#include "listbangunan.h"
+//#include "skill.h"
+#include"pemain.h"
+#include"boolean.h"
+#include"bangunan.c"
+#include"point.c"
+#include"stack.c"
+#include"state.c"
+#include"array.c"
+#include"matriks.c"
+#include "listbangunan.c"
+//#include "listlinier.c"
+#include "mesinkar.c"
+#include "mesinkata.c"
+#include "readkonfigurasi.c"
+//#include "skill.c"
+#include"pemain.c"
+#include<stdio.h>
+#include<stdlib.h>
+#include"mesinkata.h"
+#include"mesinkar.h"
 #define printInt(x) printf("%d", x)
 #define printlnInt(x) printf("%d\n", x)
 #define println(x) printf("%c\n", x)
@@ -108,6 +108,9 @@ void NextTurnLBangunan(ListB * L){
 	}
 }
 
+// TODO : Perbaikin serang (serang buat bangunan netral)
+// TODO : kalo misalkan dia netral, tinggal di add ke list pemain yang nyerang,
+// TODO : kalo dia ga netral (punya pemain lain), tinggal di ChangeOwner
 void SerangB(Bangunan * bangunanPe, Bangunan * bangunanDe, int n, Pemain * P1, Pemain * P2){
 	/*
 	I.S. 2 Bangunan Terdefinisi
@@ -166,6 +169,18 @@ boolean IsBangunanNetral(Bangunan b, Pemain p1, Pemain p2){
 	if ((SearchListB(p1.b,b) == Kosong) && (SearchListB(p2.b,b) == Kosong)) return true;
 	else return false;
 }
+
+/* Buat tab bangunan baru untuk Attack */
+
+/* Buat tab bangunan baru untuk Move */
+
+
+
+
+
+
+
+
 
 char * outputString() {
 	char * s = malloc(sizeof (char) * CKata.Length);
