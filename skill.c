@@ -2,6 +2,7 @@
 #include "boolean.h"
 #include "skill.h"
 #include <stdlib.h>
+#include <string.h>
 
 boolean IsEmptyQueue (Queue Q){
     return ((Head(Q)==0) && (Tail(Q)==0));
@@ -52,55 +53,58 @@ void DeAlokasiQueue(Queue * Q){
 /* *** Primitif Add/Delete *** */
 infotype SkillChecker(char X[25]){
     infotype y;
+    char A[40];
     
-    if (X == "InstantUpgrade"){
+    memset(A,'\0',sizeof(A));
+    strcpy(A,X);
+    if (strcmp(A, "InstantUpgrade") == 0 || strcmp(A, "Instant Upgrade") == 0){
         y = 1;
     }
-    else if (X == "Shield"){
+    else if (strcmp(A, "Shield") == 0){
         y = 2;
     }
-    else if (X == "ExtraTurn"){
+    else if (strcmp(A, "ExtraTurn") == 0 || strcmp(A, "Extra Turn") == 0){
         y = 3;
     }
-    else if (X == "AttackUp"){
+    else if (strcmp(A, "AttackUp") == 0 || strcmp(A, "Attack Up") == 0){
         y = 4;
     }
-    else if (X == "CriticalHit"){
+    else if (strcmp(A, "CriticalHit") == 0 || strcmp(A, "Critical Hit") == 0){
         y = 5;
     }
-    else if (X == "InstantReinforcement"){
+    else if (strcmp(A, "InstantReinforcement") == 0 || strcmp(A, "Instant Reinforcement") == 0){
         y = 6;
     }
-    else if (X == "Barrage"){
+    else if (strcmp(A, "Barrage") == 0){
         y = 7;
     }
     return y;
 }
 
 char readSkill (Queue *Q){
-    char *X[25];
+    char X[25];
     if (InfoHead(*Q) == 1){
-        X[25] = "InstantUpgrade";
+        strcpy(X,"InstantUpgrade");
     }
     else if (InfoHead(*Q) == 2){
-        X[25] = "Shield";
+        strcpy(X,"Shield");
     }
     else if (InfoHead(*Q) == 3){
-        X[25] = "ExtraTurn";
+        strcpy(X,"ExtraTurn");
     }
     else if (InfoHead(*Q) == 4){
-        X[25] = "AttackUp";
+        strcpy(X,"AttackUp");
     }
     else if (InfoHead(*Q) == 5){
-        X[25] = "CriticalHit";
+        strcpy(X,"CriticalHit");
     }
     else if (InfoHead(*Q) == 6){
-       X[25] = "InstantReinforcement";
+       strcpy(X,"InstantReinforcement");
     }
     else if (InfoHead(*Q) == 7){
-        X[25] = "Barrage";
+        strcpy(X,"Barrage");
     }
-    return *X[25];
+    return X[25];
 }
 void AddSkillQueue(Queue * Q, char Y){
     address i,j;
