@@ -32,7 +32,7 @@ typedef struct
 
 /* Selektor */
 #define FirstGraph(G) (G).First 
-#define IdGraph(Pn) (Pn)->Id 
+#define IdGraph(Pn) (Pn)->IdBangunan
 #define TrailGraph(Pn) (Pn)->Trail
 #define SuccGraph(Pn) (Pn)->Succ
 #define NextGraph(Pn) (Pn)->Next 
@@ -62,7 +62,8 @@ addrSuccNode SearchEdge(Graph G, infotypeGraph prec, infotypeGraph succ);
 /* mencari succ dari prec pada G, return Nil jika tidak terdapat pada graph */
 void InsertNode(Graph * G, infotypeGraph X, addrNode * Pn);
 /* memasang X di akhir G */
-void InsertEdge(Graph * G, infotypeGraph prec, infotypeGraph succ);memasang succ ke akhir prec 
+void InsertEdge(Graph * G, infotypeGraph prec, infotypeGraph succ);
+/*memasang succ ke akhir prec*/ 
 
 infotypeGraph GetFirstSuccInfo(Graph G, infotypeGraph prec);
 /* Mencari info succ simpul pertama dari node */
