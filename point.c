@@ -29,7 +29,7 @@ void BacaPoint (Point * P){
    akan membentuk Point <1,2> */
 /* I.S. Sembarang */
 /* F.S. P terdefinisi */
-    float x,y;
+    int x,y;
     scanf("%d %d", &x,&y);
     *P = MakePoint(x,y);
 }
