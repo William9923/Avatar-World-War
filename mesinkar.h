@@ -7,6 +7,7 @@
 #include "boolean.h"
 
 #define MARK '.'
+#define EoL '\n'
 /* State Mesin */
 extern char CC;
 extern boolean EOP;
@@ -18,6 +19,9 @@ void START();
    F.S. : CC adalah karakter pertama pada pita
           Jika CC != MARK maka EOP akan padam (false)
           Jika CC = MARK maka EOP akan menyala (true) */
+
+void STARTIn();
+/* START versi inputan via command line */
 
 void ADV();
 /* Pita dimajukan satu karakter.
