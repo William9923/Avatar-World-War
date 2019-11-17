@@ -1,10 +1,11 @@
 #include "mesinkata.h"
 #include <stdio.h>
 #include "array.h"
-#include "graph.h"
+#include "graph_.h"
 
-void readkonfig(int *PPeta, int *LPeta, TabBangunan *ArrayBangunan, Graph *Graph) {
+void readkonfig(int *PPeta, int *LPeta, TabBangunan *ArrayBangunan, Graph *G) {
     int i,n;
+    infotypeGraph bmatriks,kmatriks;
     int NBangunan;
     char typebangunan;
     Point letakbangunan;
@@ -55,14 +56,21 @@ void readkonfig(int *PPeta, int *LPeta, TabBangunan *ArrayBangunan, Graph *Graph
         AddBangunan(ArrayBangunan,bangunan);
     }
 
-    /** ini belum jadi. masih belum paham graph **/
+    bmatriks.noBangunan=1;
+    kmatriks.noBangunan=1;
+    CreateGraph(bmatriks,G);
     for (n=1; n <= NBangunan * NBangunan; n++) {
         IgnoreBlank();
-        printf("%c ", CC);
-        if (n % NBangunan == 0) {
-            printf("\n");
+        if (CC == '1') {
+            InsertEdge(G,bmatriks,kmatriks);
         }
         ADV();
+        if (kmatriks.noBangunan < NBangunan) {
+            kmatriks.noBangunan++;
+        } else {
+            kmatriks.noBangunan = 1;
+            bmatriks.noBangunan++;
+        }
         IgnoreBlank();
     }
 }
