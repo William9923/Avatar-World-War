@@ -1,7 +1,7 @@
 #ifndef listbangunan_H
 #define listbangunan_H
 
-#include"bangunan.h"
+#include "array.h"
 #include<stddef.h>
 
 #include "boolean.h"
@@ -11,7 +11,7 @@
 
 typedef struct tElmtListB *elb;
 typedef struct tElmtListB{
-    Bangunan bangun;
+    IdxTypeArray id;
     elb next;
 } ElmtListB;
 
@@ -26,7 +26,7 @@ typedef struct {
 /* Setiap elemen dengan elb P dapat diacu Info(P), NextB(P) */
 /* Elemen terakhir list : jika elbnya Last, maka NextB(Last)=Nil */
 
-#define Bangunan(P) (P)->bangun
+#define Id(P) (P)->id
 #define NextB(P) (P)->next
 #define FirstB(L) ((L).FirstB)
 

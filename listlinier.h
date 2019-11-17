@@ -7,8 +7,9 @@
 #define listlinier_H
 
 #include "boolean.h"
+#include"array.h"
 
-#define Nil NULL
+#define Kosong NULL
 
 typedef int infotypeList;
 typedef struct tElmtlist *address;
@@ -25,9 +26,9 @@ typedef struct {
 /* Setiap elemen dengan address P dapat diacu Info(P), Next(P) */
 /* Elemen terakhir list : jika addressnya Last, maka Next(Last)=Nil */
 
-#define Info(P) (P)->info
-#define Next(P) (P)->next
-#define First(L) ((L).First)
+#define InfoL(P) (P)->info
+#define NextL(P) (P)->next
+#define FirstL(L) ((L).First)
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/

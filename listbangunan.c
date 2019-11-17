@@ -1,14 +1,14 @@
 /* File : listlinier.h */
 /* contoh ADT list berkait dengan representasi fisik pointer  */
 /* Representasi elb dengan pointer */
-/* Bangunan adalah integer */
+/* Int adalah integer */
 /*
 Nama			: William
 NIM 			: 13518138
 Topik 			: Linear ListB
 */
 
-#include"listbangunan.h"
+#include"listint.h"
 #include<stdlib.h>
 #include<stdio.h>
 
@@ -40,15 +40,15 @@ void CreateEmptyListB (ListB *L) {
 }
 
 /****************** Manajemen Memori ******************/
-elb AlokasiListB (Bangunan X) {
+elb AlokasiListB (IdxTypeArray X) {
 	/* Mengirimkan elb hasil alokasi sebuah elemen */
 	/* Jika alokasi berhasil, maka elb tidak nil, dan misalnya */
-	/* menghasilkan P, maka Bangunan(P)=X, NextB(P)=Kosong */
+	/* menghasilkan P, maka Int(P)=X, NextB(P)=Kosong */
 	/* Jika alokasi gagal, mengirimkan Kosong */
 	elb P;
 	P = (elb) malloc(sizeof(ElmtListB));
 	if (P != Kosong) {
-		Bangunan(P) = X;
+		Id(P) = X;
 		NextB(P) = Kosong;
 		return P;
 	} else {
@@ -64,8 +64,8 @@ void DealokasiListB (elb P) {
 }
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-elb SearchListB (ListB L, Bangunan X) {
-	/* Mencari apakah ada elemen list dengan Bangunan(P)= X */
+elb SearchListB (ListB L, IdxTypeArray X) {
+	/* Mencari apakah ada elemen list dengan Int(P)= X */
 	/* Jika ada, mengirimkan elb elemen tersebut. */
 	/* Jika tidak ada, mengirimkan Kosong */
 	elb P;
@@ -73,7 +73,7 @@ elb SearchListB (ListB L, Bangunan X) {
 		P = FirstB(L);
 		boolean Found = false;
 		loop2(!Found, P != Kosong) {
-			if (EQBangunan(Bangunan(P),X)) {
+			if (EQInt(Int(P),X)) {
 				Found = true;
 			} else {
 				P = NextB(P);
@@ -91,7 +91,7 @@ elb SearchListB (ListB L, Bangunan X) {
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirstListB (ListB *L, Bangunan X) {
+void InsVFirstListB (ListB *L, IdxTypeArray X) {
 	/* I.S. L mungkin kosong */
 	/* F.S. Melakukan alokasi sebuah elemen dan */
 	/* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
@@ -103,7 +103,7 @@ void InsVFirstListB (ListB *L, Bangunan X) {
 	}
 
 }
-void InsVLastListB (ListB *L, Bangunan X) {
+void InsVLastListB (ListB *L, IdxTypeArray X) {
 	/* I.S. L mungkin kosong */
 	/* F.S. Melakukan alokasi sebuah elemen dan */
 	/* menambahkan elemen list di akhir: elemen terakhir yang baru */
@@ -125,18 +125,18 @@ void InsVLastListB (ListB *L, Bangunan X) {
 }
 
 /*** PENGHAPUSAN ELEMEN ***/
-void DelVFirstBListB (ListB *L, Bangunan *X) {
+void DelVFirstBListB (ListB *L, IdxTypeArray *X) {
 	/* I.S. ListB L tidak kosong  */
 	/* F.S. Elemen pertama list dihapus: nilai info disimpan pada X */
 	/*      dan alamat elemen pertama di-dealokasi */
-	(*X) = Bangunan(FirstB(*L));
+	(*X) = Int(FirstB(*L));
 	elb P;
 	P = FirstB(*L);
 	FirstB(*L) = NextB(FirstB(*L));
 	NextB(P) = Kosong;
 	DealokasiListB(P);
 }
-void DelVLastListB (ListB *L, Bangunan *X) {
+void DelVLastListB (ListB *L, IdxTypeArray *X) {
 	/* I.S. list tidak kosong */
 	/* F.S. Elemen terakhir list dihapus: nilai info disimpan pada X */
 	/*      dan alamat elemen terakhir di-dealokasi */
@@ -147,7 +147,7 @@ void DelVLastListB (ListB *L, Bangunan *X) {
 		precLast = Last;
 		Last = NextB(Last);
 	}
-	(*X) = Bangunan(Last);
+	(*X) = Int(Last);
 	if (precLast == Kosong) {
 		FirstB(*L) = Kosong;
 	} else {
@@ -204,17 +204,17 @@ void DelFirstListB (ListB *L, elb *P) {
 	FirstB(*L) = NextB(FirstB(*L));
 	NextB(*P) = Kosong;
 }
-void DelPListB (ListB *L, Bangunan X) {
+void DelPListB (ListB *L, IdxTypeArray X) {
 	/* I.S. Sembarang */
-	/* F.S. Jika ada elemen list berelb P, dengan Bangunan(P)=X  */
+	/* F.S. Jika ada elemen list berelb P, dengan Int(P)=X  */
 	/* Maka P dihapus dari list dan di-dealokasi */
-	/* Jika ada lebih dari satu elemen list dengan Bangunan bernilai X */
-	/* maka yang dihapus hanya elemen pertama dengan Bangunan = X */
-	/* Jika tidak ada elemen list dengan Bangunan(P)=X, maka list tetap */
+	/* Jika ada lebih dari satu elemen list dengan Int bernilai X */
+	/* maka yang dihapus hanya elemen pertama dengan Int = X */
+	/* Jika tidak ada elemen list dengan Int(P)=X, maka list tetap */
 	/* ListB mungkin menjadi kosong karena penghapusan */
 	elb P, Last;
 	if (!IsEmptyListB(*L)) {
-		if (EQBangunan(Bangunan(FirstB(*L)), X)) {
+		if (EQInt(Int(FirstB(*L)), X)) {
 			DelFirstListB(L, &P);
 		} else {
 			P = SearchListB(*L, X);
@@ -278,7 +278,7 @@ void DelAfterListB (ListB * L, elb * Pdel, elb Prec) {
 }
 
 /****************** PROSES SEMUA ELEMEN LIST ******************/
- void PrintBangunanListB (ListB L) {
+ void PrintIntListB (ListB L) {
  	/* I.S. ListB mungkin kosong */
  	/* F.S. Jika list tidak kosong, iai list dicetak ke kanan: [e1,e2,...,en] */
  	/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
@@ -289,20 +289,20 @@ void DelAfterListB (ListB * L, elb * Pdel, elb Prec) {
 		elb Iterate = FirstB(L);
 		for(int i=1;i<=NbElmtListB(L);i++){
 			printf("%d. ",i);
-			PrintInfoBangunan(Bangunan(Iterate));
+			PrintInfoInt(Int(Iterate));
 			printf("\n");
 			Iterate = NextB(Iterate);
 		}
 	}
  }
 
-void OutputBangunanBelumSerang (ListB L, ListB  * LOut){
-	/* Membuat suatu list bangunan baru yang belum menyerang */
+void OutputIntBelumSerang (ListB L, ListB  * LOut){
+	/* Membuat suatu list int baru yang belum menyerang */
 	CreateEmptyListB(LOut);
 	if (!IsEmptyListB(L)){
 		elb Iterate = FirstB(L);
 		for (int i = 1; i <= NbElmtListB(L); i++){
-			if (!IsSudahSerang(Bangunan(Iterate))){
+			if (!IsSudahSerang(Int(Iterate))){
 				InsertLastListB(LOut, Iterate);
 			}
 			Iterate = NextB(Iterate);
@@ -326,17 +326,17 @@ int NbElmtListB (ListB L) {
 }
 
 // /*** Prekondisi untuk Max/Min/rata-rata : ListB tidak kosong ***/
-// Bangunan MaxListB (ListB L) {
-// 	/* Mengirimkan nilai Bangunan(P) yang maksimum */
-// 	Bangunan MAX;
+// Int MaxListB (ListB L) {
+// 	/* Mengirimkan nilai Int(P) yang maksimum */
+// 	Int MAX;
 // 	elb Last;
 
 // 	Last = FirstB(L);
-// 	MAX = Bangunan(Last);
+// 	MAX = Int(Last);
 // 	while (NextB(Last) != Kosong) {
 // 		Last = NextB(Last);
-// 		if (Bangunan(Last) > MAX) {
-// 			MAX = Bangunan(Last);
+// 		if (Int(Last) > MAX) {
+// 			MAX = Int(Last);
 // 		}
 // 	}
 // 	return MAX;

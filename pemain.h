@@ -11,11 +11,12 @@ States dari seorang pemain terdiri dari:
 
 #include"boolean.h"
 #include"bangunan.h"
-#include"listbangunan.h"
+#include"listlinier.h"
+#include "array.h"
 
 typedef struct{
     /*QueueSkill Skill*/
-   ListB b;
+   List b;
    char color;/*bisa R bisa B yang artinya Red/Blue*/
    int nomor;
 } Pemain;
@@ -28,10 +29,10 @@ void CreateNewPlayer(Pemain *P,char Q,int nomor);
 /* Fungsinya untuk membuat player baru di game, dengan ketentuan:
 Warna(*P) = R atau B,ListBangunan kosong */
 
-void ChangeOwner(Pemain *P,Bangunan b,Pemain *NewOwner);
+void ChangeOwner(Pemain *P,Bangunan b,Pemain *NewOwner, TabBangunan tab);
 /* Untuk mengganti kepemilikan bangunan dari P ke NewOwner */
 
-boolean haveBuildingB(Pemain P,Bangunan a);
+boolean haveBuildingB(Pemain P,Bangunan a, TabBangunan tab);
 /* Menghasilkan nilai T/F apakah P punya Bangunan a */
 
 #endif

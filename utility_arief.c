@@ -33,7 +33,9 @@
 #include"graph_.c"
 
 void clrscr(){
-	system("@cls||clear");
+	//system("@cls||clear");
+	system("clear");
+	// ini gw ganti dikit ya
 }
 
 void PemainNow(Pemain P1,Pemain P2,Pemain *P,boolean swapTurn,int turn){
@@ -86,19 +88,16 @@ int main() {
     readkonfig(&PPeta,&LPeta,&AllBangunan,&connectivity,&P1,&P2,&Netral);
     //aDD LIST b KE SI pEMAIN 1
 	
-	
 	printf("Game Ready...\n");
 	printf("Press Any Key To Continue..\n");
 	
 	clrscr();
 	boolean stop = false;
     char *s;
-<<<<<<< HEAD
-    
-    printf("ENTER COMMAND:");
-    s = BacaInputUser();
-=======
->>>>>>> origin/master
+
+    //PrintBangunanListB(Netral);
+
+
 	while(!stop){
 		//Validasi Command
         CreateEmptyStackUndo(&SU);
@@ -115,17 +114,6 @@ int main() {
 		s = BacaInputUser();
 		if(IsAttack(s)){
 
-<<<<<<< HEAD
-            //Baca Command taruh disini...
-            //...
-            printf("Player %d\n",Pnow.nomor);
-            PrintBangunanListB(Pnow.b);
-            //printskill
-            printf("ENTER COMMAND:\n");
-      		if (turn > 2){
-      			stop = true;
-      		}
-=======
 		}
 		else if(IsLevelUp(s)){
 
@@ -149,10 +137,6 @@ int main() {
 		else{
 			printf("Inputan tidak valid.\n");
 		}
-		
->>>>>>> origin/master
-        //}
-		
 	}
 }
 //Revisi:

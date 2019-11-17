@@ -1,33 +1,33 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
-#include"bangunan.h"
-#include"point.h"
-#include"stack.h"
-#include"state.h"
-#include"array.h"
-#include"matriks.h"
-#include "listbangunan.h"
-//#include "skill.h"
-#include"pemain.h"
-#include"boolean.h"
-#include"bangunan.c"
-#include"point.c"
-#include"stack.c"
-#include"state.c"
-#include"array.c"
-#include"matriks.c"
-#include "listbangunan.c"
-//#include "listlinier.c"
-#include "mesinkar.c"
-#include "mesinkata.c"
-#include "readkonfigurasi.c"
-//#include "skill.c"
-#include"pemain.c"
-#include<stdio.h>
-#include<stdlib.h>
-#include"mesinkata.h"
-#include"mesinkar.h"
+// #include<stdio.h>
+// #include<stdlib.h>
+// #include<math.h>
+// #include"bangunan.h"
+// #include"point.h"
+// #include"stack.h"
+// #include"state.h"
+// #include"array.h"
+// #include"matriks.h"
+// #include "listbangunan.h"
+// //#include "skill.h"
+// #include"pemain.h"
+// #include"boolean.h"
+// #include"bangunan.c"
+// #include"point.c"
+// #include"stack.c"
+// #include"state.c"
+// #include"array.c"
+// #include"matriks.c"
+// #include "listbangunan.c"
+// //#include "listlinier.c"
+// #include "mesinkar.c"
+// #include "mesinkata.c"
+// #include "readkonfigurasi.c"
+// //#include "skill.c"
+// #include"pemain.c"
+// #include<stdio.h>
+// #include<stdlib.h>
+// #include"mesinkata.h"
+// #include"mesinkar.h"
 #define printInt(x) printf("%d", x)
 #define printlnInt(x) printf("%d\n", x)
 #define println(x) printf("%c\n", x)
@@ -92,22 +92,6 @@ boolean IsAbleSerang(Bangunan bangunanPe, Bangunan bangunanDe, int n){
 	return true;
 }
 
-
-void NextTurnLBangunan(ListB * L){
-	/*
-	Melakukan traversal ke seluruh bangunan pada list bangunan
-	dan melakukan penambahan 
-	*/
-	elb bangunan;
-	if (!IsEmptyListB(*L)){
-		bangunan = FirstB(*L);
-		while (bangunan != Kosong){
-			NextTurnBangunan(&Bangunan(bangunan));
-			bangunan = NextB(bangunan);
-		}
-	}
-}
-
 // TODO : Perbaikin serang (serang buat bangunan netral)
 // TODO : kalo misalkan dia netral, tinggal di add ke list pemain yang nyerang,
 // TODO : kalo dia ga netral (punya pemain lain), tinggal di ChangeOwner
@@ -142,7 +126,19 @@ void SerangB(Bangunan * bangunanPe, Bangunan * bangunanDe, int n, Pemain * P1, P
 	}
 }
 
-void NextTurnPemain(Pemain * P){
+void NextTurnLBangunan (List * L, TabBangunan * tab){
+	address last;
+	last = FirstL(*L);
+	infotypeList a;
+	while(last != Kosong){
+		a = InfoL(last);
+		NaikLevel(ElmtArray(*tab, a));
+		last = NextL(last);
+	}
+}
+
+
+void NextTurnPemain(Pemain * P, TabBangunan * tab){
 	/*
 	I.S. Pemain terdefinisi,
 		 Seluruh bangunan yang dimiliki pemain dalam keadaan turn sebelumnya
@@ -151,36 +147,83 @@ void NextTurnPemain(Pemain * P){
 	btw, buat perubahan yang terjadi taro disini aja
 	*/
 	ListB listB;
-
 	listB = (*P).b;
-
-	NextTurnLBangunan(&listB);
-
+	NextTurnLBangunan(&listB, tab);
 	// ketentuan perubahan status pada turn berikutnya
 }
 
 
-/*
-	Checker netral, 
-	simple, kalo ga ada di list 2 pemain, bangunan netral
-*/
-boolean IsBangunanNetral(Bangunan b, Pemain p1, Pemain p2){
+boolean IsBangunanNetral(Bangunan b, Pemain p1, Pemain p2, TabBangunan tab){
 	/* Melakukan pengecekan apakah suatu bangunan bersifat netral atau tidak */
-	if ((SearchListB(p1.b,b) == Kosong) && (SearchListB(p2.b,b) == Kosong)) return true;
+	// cari indeks
+	infotypeList i = SearchIdxBangunan(tab, b);
+	if ((SearchList(p1.b,i) == Kosong) && (SearchListB(p2.b,i) == Kosong)) return true;
 	else return false;
 }
 
 /* Buat tab bangunan baru untuk Attack */
+TabBangunan NewTabAttack (Pemain p1, Pemain p2, ListB Netral, Graph g, TabBangunan tabB){
+	TabBangunan TabBaru;
 
+	ListB p1ListB = p1.b;
+	ListB p2ListB = p1.b;
+
+	CreateEmptyArray(&TabBaru, NbElmtListB(NbElmtListB(p2ListB) + NbElmtListB(Netral)));
+	
+	IdxTypeArray a;
+	IdxTypeArray b;
+	IdxTypeArray c;
+
+	if (!IsEmptyListB(p1ListB)){
+		elb Iterate = FirstB(p1ListB);
+		for (int i = 1; i <= NbElmtListB(p1ListB); i++){
+			a = SearchIdxBangunan(tabB, Bangunan(Iterate));
+			elb Iterate2 = FirstB(p2ListB);
+			for (int j = 1; j <= NbElmtListB(p2ListB); j++){
+				b = SearchIdxBangunan(tabB, Bangunan(Iterate2));
+				if (IsConnected(g, a, b)){
+					AddBangunan(&TabBaru, Bangunan(Iterate2));
+				}
+				Iterate2 = NextB(Iterate2);
+			}
+			elb Iterate3 = FirstB(Netral);
+			for (int k = 1; k <= NbElmtListB){
+				c = SearchIdxBangunan(tabB, Bangunan(Iterate3));
+				if (IsConnected(g,a,c)){
+					AddBangunan(&TabBaru, Bangunan(Iterate3));
+				}
+				Iterate3 = NextB(Iterate3);
+			}
+			Iterate = NextB(Iterate);
+		}
+	}
+	return TabBaru;
+}
 /* Buat tab bangunan baru untuk Move */
+TabBangunan NewTabMove (Pemain p Graph g, TabBangunan tabB){
+	TabBangunan tabBaru;
+	IdxTypeArray a;
+	IdxTypeArray b;
 
+	ListB pListB = p.b;
+	CreateEmptyArray(&TabBaru, NbElmtListB(pListB));
 
-
-
-
-
-
-
+	if(!IsEmptyListB(pListB)){
+		elb Iterate = FirstB(pListB);
+		for (int i = 1; i <= NbElmtListB(pListB); i++){
+			a = SearchIdxBangunan(tabB, Bangunan(Iterate));
+			elb Iterate2 = FirstB(pListB);
+			for (int j = 1; j <= NbElmtListB(p2ListB); j++){
+				b = SearchIdxBangunan(tabB, Bangunan(Iterate2));
+				if (IsConnected(g, a, b) && (a != b)){
+					AddBangunan(&TabBaru, Bangunan(Iterate2));
+				}
+				Iterate2 = NextB(Iterate2);
+			}
+			Iterate = NextB(Iterate);
+		}
+	}
+}
 
 char * outputString() {
 	char * s = malloc(sizeof (char) * CKata.Length);
