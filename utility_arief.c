@@ -88,10 +88,13 @@ int main() {
     InsertLastListB(&(P2).b,AlokasiListB(ElmtArray(AllBangunan,2)));
 
 	printf("Game Ready...\n");
-	printf("Press Any Key To Continue..");
-	scanf("_");
+	printf("Press Any Key To Continue..\n");
 	clrscr();
 	boolean stop = false;
+    char *s;
+    
+    printf("ENTER COMMAND:");
+    s = BacaInputUser();\
 	while(!stop){
 		//Validasi Command
         //if() 
