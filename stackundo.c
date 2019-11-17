@@ -15,11 +15,10 @@ typedef struct {
     int TOP;
 } StackUndo;
 
-
 boolean IsEmptyStack(StackUndo S){
     return Top(S)==0;
 }
-void CreateEmpty(StackUndo *S){
+void CreateEmptyStackUndo(StackUndo *S){
     Top(*S) = 0;
 }
 

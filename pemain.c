@@ -7,10 +7,11 @@ boolean haveBuilding(Pemain P){
     return !IsEmptyListB(P.b);  
 }
 
-void CreateNewPlayer(Pemain *P,char Q){
+void CreateNewPlayer(Pemain *P,char Q,int nomor){
 /* Fungsinya untuk membuat player baru di game, dengan ketentuan:
 Warna(*P) = R atau B,ListBangunan kosong */
     CreateEmptyListB(&((*P).b)); 
+    (*P).nomor = nomor;
     // SetWarna(P,Q);
 }
 

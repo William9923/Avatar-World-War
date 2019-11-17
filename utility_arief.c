@@ -10,7 +10,6 @@
 #include "listbangunan.h"
 #include "mesinkar.h"
 #include "mesinkata.h"
-#include "readkonfigurasi.h"
 #include "skill.h"
 #include"pemain.h"
 #include"bangunan.c"
@@ -78,7 +77,7 @@ int main() {
 	CreateNewPlayer(&P2,'b',nomor);
 	//Baca Konfigurasi Permainan
 	printf("Reading Configuration File...\n");
-	readkonfig();
+	//readkonfig();
 	printf("Game Ready...\n");
 	printf("Press Any Key To Continue..");
 	scanf("_");
@@ -96,7 +95,9 @@ int main() {
 		//Baca Command taruh disini...
 		//...
 		printf("Player %d\n",Pnow.nomor);
-		//PrintListBangunan
+        PrintBangunanListB(Pnow.b);
+        //printskill
+		printf("ENTER COMMAND:\n");
 		
 	}
 }

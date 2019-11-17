@@ -277,28 +277,24 @@ void DelAfterListB (ListB * L, elb * Pdel, elb Prec) {
 	}
 }
 
-// /****************** PROSES SEMUA ELEMEN LIST ******************/
-// void PrintBangunanistB (ListB L) {
-// 	/* I.S. ListB mungkin kosong */
-// 	/* F.S. Jika list tidak kosong, iai list dicetak ke kanan: [e1,e2,...,en] */
-// 	/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
-// 	/* Jika list kosong : menulis [] */
-// 	/* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
-// 	print('[');
-// 	if (!IsEmpty(L)) {
-// 		elb Last;
-// 		Last = FirstB(L);
-// 		while (NextB(Last) != Kosong) {
-// 			printInt(Bangunan(Last));
-// 			Last = NextB(Last);
-// 			print(',');
-// 		}
-// 		if (Last != Kosong) {
-// 			printInt(Bangunan(Last));
-// 		}
-// 	}
-// 	print(']');
-// }
+/****************** PROSES SEMUA ELEMEN LIST ******************/
+ void PrintBangunanListB (ListB L) {
+ 	/* I.S. ListB mungkin kosong */
+ 	/* F.S. Jika list tidak kosong, iai list dicetak ke kanan: [e1,e2,...,en] */
+ 	/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
+ 	/* Jika list kosong : menulis [] */
+ 	/* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
+	
+	if(!IsEmptyListB(L)){
+		elb Iterate = FirstB(L);
+		for(int i=1;i<=NbElmtListB(L);i++){
+			printf("%d. ",i);
+			PrintInfoBangunan(Bangunan(Iterate));
+			printf("\n");
+			Iterate = NextB(Iterate);
+		}
+	}
+ }
 
 int NbElmtListB (ListB L) {
 	/* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */

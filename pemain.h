@@ -17,13 +17,14 @@ typedef struct{
     /*QueueSkill Skill*/
    ListB b;
    char color;/*bisa R bisa B yang artinya Red/Blue*/
+   int nomor;
 } Pemain;
 
 
 boolean haveBuilding(Pemain P);
 /* Apakah player P punya bangunan */
 
-void CreateNewPlayer(Pemain *P,char Q);
+void CreateNewPlayer(Pemain *P,char Q,int nomor);
 /* Fungsinya untuk membuat player baru di game, dengan ketentuan:
 Warna(*P) = R atau B,ListBangunan kosong */
 
