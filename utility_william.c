@@ -10,7 +10,7 @@
 #include "listbangunan.h"
 #include "mesinkar.h"
 #include "mesinkata.h"
-#include "readkonfigurasi.h"
+//#include "readkonfigurasi.h"
 //#include "skill.h"
 #include"pemain.h"
 
@@ -155,6 +155,9 @@ boolean IsBangunanNetral(Bangunan b, Pemain p1, Pemain p2){
 	if ((SearchListB(p1.b,b) == Kosong) && (SearchListB(p2.b,b) == Kosong) return true;
 	else return false;
 }
+
+/* Checker hasil mesin kata */
+boolean IsAttack(char * )
 
 
 
