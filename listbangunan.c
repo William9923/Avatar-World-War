@@ -296,6 +296,21 @@ void DelAfterListB (ListB * L, elb * Pdel, elb Prec) {
 	}
  }
 
+void OutputBangunanBelumSerang (ListB L, ListB  * LOut){
+	/* Membuat suatu list bangunan baru yang belum menyerang */
+	CreateEmptyListB(LOut);
+	if (!IsEmptyListB(L)){
+		elb Iterate = FirstB(L);
+		for (int i = 1; i <= NbElmtListB(L); i++){
+			if (!IsSudahSerang(Bangunan(Iterate))){
+				InsertLastListB(LOut, Iterate);
+			}
+			Iterate = NextB(Iterate);
+		}
+	}
+}
+
+
 int NbElmtListB (ListB L) {
 	/* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 	int count = 0;

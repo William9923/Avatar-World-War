@@ -1,6 +1,14 @@
 #include"graph_.h"
+#include"listbangunan.h"
+#include"array.c"
 #include<stdlib.h>
 #include<stdio.h>
+
+void PrintConnectedBangunan(int n, Graph g, ){
+
+}
+
+
 
 int main() {
 	Graph g;

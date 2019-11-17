@@ -135,6 +135,7 @@ void SerangB(Bangunan * bangunanPe, Bangunan * bangunanDe, int n, Pemain * P1, P
 			}
 			Pasukan(*bangunanPe) -= n;
 		}
+	Serang(*bangunanPe) = true;
 	}
 }
 

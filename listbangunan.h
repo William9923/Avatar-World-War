@@ -120,6 +120,9 @@ void DelAfterListB (ListB *L, elb *Pdel, elb Prec);
 /*      Pdel adalah alamat elemen list yang dihapus  */
 
 /****************** PROSES SEMUA ELEMEN LIST ******************/
+void PrintBangunanListB (ListB L);
+void OutputBangunanBelumSerang (ListB L, ListB  * LOut);
+
 //void PrintInfoListB (ListB L);
 /* I.S. ListB mungkin kosong */
 /* F.S. Jika list tidak kosong, iai list dicetak ke kanan: [e1,e2,...,en] */
@@ -128,6 +131,7 @@ void DelAfterListB (ListB *L, elb *Pdel, elb Prec);
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
 int NbElmtListB (ListB L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
+
 
 /****************** PROSES TERHADAP LIST ******************/
 void Konkat1ListB (ListB *L1, ListB *L2, ListB *L3);
