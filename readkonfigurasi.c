@@ -23,6 +23,7 @@ void readkonfig(int *PPeta, int *LPeta, TabBangunan *ArrayBangunan, Graph *G) {
     //printf("LPeta : %d\n", *LPeta);
 
     /** menyimpan banyaknya bangunan ke dalam variabel NBangunan **/
+
     ADVKATA();
     NBangunan=0;
     for (i=1; i <= CKata.Length; i++) {
@@ -31,8 +32,8 @@ void readkonfig(int *PPeta, int *LPeta, TabBangunan *ArrayBangunan, Graph *G) {
     //printf("Nbangunan : %d\n", NBangunan);
 
     /** membuat array kosong dengan ukuran NBangunan **/
+    
     CreateEmptyArray(ArrayBangunan, NBangunan);
-
     /** looping untuk mengisi array bangunan dengan informasi yang dibaca dari file konfigurasi **/
     for (n=1; n <= NBangunan; n ++) {
         letakx=0;
@@ -55,7 +56,7 @@ void readkonfig(int *PPeta, int *LPeta, TabBangunan *ArrayBangunan, Graph *G) {
         MakeBangunan(&bangunan, typebangunan, letakbangunan);
         AddBangunan(ArrayBangunan,bangunan);
     }
-
+    
     bmatriks.noBangunan=1;
     kmatriks.noBangunan=1;
     CreateGraph(bmatriks,G);
