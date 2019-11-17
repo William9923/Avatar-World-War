@@ -1,19 +1,4 @@
-#include"pemain.h"
-
-
-#define Top(S) (S).TOP
-#define InfoTop(S) (S).T[(S).TOP]
-#define StateP1(Q) (Q).X
-#define StateP2(Q) (Q).Y 
-
-typedef struct{
-    Pemain X,Y;/*Pemain 1 dan Pemain 2*/
-} states;
-
-typedef struct {
-    states T[101];
-    int TOP;
-} StackUndo;
+#include"stackundo.h"
 
 boolean IsEmptyStack(StackUndo S){
     return Top(S)==0;

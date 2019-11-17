@@ -14,7 +14,7 @@ typedef struct {
     int TOP;
 } StackUndo;
 
-boolean IsEmptyStack(StackUndo *S);
+boolean IsEmptyStack(StackUndo S);
 void CreateEmptyStackUndo(StackUndo *S);
 void SaveState(StackUndo *S,Pemain P1,Pemain P2);
 void Push(StackUndo *S,states s);

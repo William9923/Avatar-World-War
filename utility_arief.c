@@ -3,7 +3,6 @@
 #include<math.h>
 #include"bangunan.h"
 #include"point.h"
-#include"stack.h"
 #include"state.h"
 #include"array.h"
 #include"matriks.h"
@@ -14,7 +13,6 @@
 #include"pemain.h"
 #include"bangunan.c"
 #include"point.c"
-#include"stack.c"
 #include"state.c"
 #include"array.c"
 #include"matriks.c"
@@ -29,7 +27,8 @@
 #include<stdlib.h>
 #include"boolean.h"
 #include<string.h>
-#include"stackundo.h"
+#include"stackundo.c"
+#include"utility_william.c"
 
 void clrscr(){
 	system("@cls||clear");
