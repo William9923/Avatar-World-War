@@ -68,6 +68,9 @@ void InsertEdge(Graph * G, infotypeGraph prec, infotypeGraph succ);
 infotypeGraph GetFirstSuccInfo(Graph G, infotypeGraph prec);
 /* Mencari info succ simpul pertama dari node */
 
+boolean IsConnected(Graph G, infotypeGraph prec, infotypeGraph succ);
+/* Mengembalikan nilai kebenaran apakah suatu bangunan terkoneksi dengan bangunan lainnya */
+
 #endif
 
 

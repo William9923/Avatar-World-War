@@ -123,3 +123,12 @@ infotypeGraph GetFirstSuccInfo(Graph G, infotypeGraph prec)
 
 	return IdGraph(SuccGraph(Ps));
 }
+
+boolean IsConnected(Graph G, infotypeGraph prec, infotypeGraph succ)
+/* Mengembalikan nilai kebenaran apakah suatu bangunan terkoneksi dengan bangunan lainnya */
+{
+	if (SearchEdge(G, prec, succ) != NilGraph){
+		return true;
+	} 
+	return false;
+}
