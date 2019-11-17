@@ -58,7 +58,7 @@ boolean IsAbleMove(Bangunan bangunanAwal, Bangunan bangunanTujuan, int n, Pemain
 	return true;
 }
 
-void Move(Bangunan * bangunanAwal, Bangunan * bangunanTujuan, int n, Pemain P){
+void MoveB(Bangunan * bangunanAwal, Bangunan * bangunanTujuan, int n, Pemain P){
 	/*
 	I.S. Bangunan Awal dan Bangunan Tujuan terdefinisi
 		 Jumlah pasukan <= pasukan total di bangunanAwal
@@ -68,6 +68,12 @@ void Move(Bangunan * bangunanAwal, Bangunan * bangunanTujuan, int n, Pemain P){
 	if (IsAbleMove((*bangunanAwal),(*bangunanTujuan), n, P)){
 		Pasukan(*bangunanAwal) -= n;
 		Pasukan(*bangunanTujuan) += n;
+	} else {
+		if (Pasukan(bangunanAwal) < n){
+			printf("%s\n", "Jumlah pasukan anda kurang !");
+		} else (!(haveBuildingB(P,bangunanAwal)) || !(haveBuildingB(P,bangunanTujuan))) {
+			printf("%s\n", "Bangunan tidak tersambung satu sama lain!");
+		}
 	}
 
 }
@@ -95,10 +101,12 @@ boolean IsAbleSerang(Bangunan bangunanPe, Bangunan bangunanDe, int n){
 // TODO : Perbaikin serang (serang buat bangunan netral)
 // TODO : kalo misalkan dia netral, tinggal di add ke list pemain yang nyerang,
 // TODO : kalo dia ga netral (punya pemain lain), tinggal di ChangeOwner
-void SerangB(Bangunan * bangunanPe, Bangunan * bangunanDe, int n, Pemain * P1, Pemain * P2){
+void SerangB(Bangunan * bangunanPe, Bangunan * bangunanDe, int n, Pemain * P1, Pemain * P2, TabBangunan tab){
 	/*
 	I.S. 2 Bangunan Terdefinisi
 	F.S. bangunan 1 menyerang bangunan 2
+
+	Inget, masukin bangunanPe ama bangunanDe nya tuh make pointer dari Elmt Array, sip
 	*/
 	int x;
 	if (IsAbleSerang((*bangunanPe), ((*bangunanDe)), n)){
@@ -111,8 +119,13 @@ void SerangB(Bangunan * bangunanPe, Bangunan * bangunanDe, int n, Pemain * P1, P
 				Pasukan(*bangunanDe) = n - Pasukan(*bangunanDe);
 			}
 			Pasukan(*bangunanPe) -= n;
-			ChangeOwner((P1), (*bangunanDe) , P2);
-
+			// kalo dia bersifat netral
+			if (IsBangunanNetral((*bangunanDe), (*P1), (*P2), tab)){
+				IdxTypeArray i = SearchIdxBangunan(tab, (*bangunanDe));
+				InsVLastList(&((*P1).b),i);
+			} else{
+				ChangeOwner((P1), (*bangunanDe) , P2);
+			} 
 		} else {
 			if (Pertahanan(*bangunanDe)){
 				x = floor((3/4) * n);
@@ -161,66 +174,70 @@ boolean IsBangunanNetral(Bangunan b, Pemain p1, Pemain p2, TabBangunan tab){
 	else return false;
 }
 
-/* Buat tab bangunan baru untuk Attack */
-TabBangunan NewTabAttack (Pemain p1, Pemain p2, ListB Netral, Graph g, TabBangunan tabB){
-	TabBangunan TabBaru;
+// TODO :Jadiin attack procedure
+// TODO : Jadiin move procedure
+// void AttackProcedure(Pemain * p1, Pemain * p2, TabBangunan * tab, Graph * g) {
+// 	printf("%s\n", "Daftar bangunan:");
 
-	ListB p1ListB = p1.b;
-	ListB p2ListB = p1.b;
+// }
 
-	CreateEmptyArray(&TabBaru, NbElmtListB(NbElmtListB(p2ListB) + NbElmtListB(Netral)));
-	
-	IdxTypeArray a;
-	IdxTypeArray b;
-	IdxTypeArray c;
+void PrintInfoLBangunan(TabBangunan tab, Pemain p){
+	address last = FirstL((p).b);
+	int count = 0;
+	while (last != Kosong){
+		count++;
+		printf("%d. ", count);
+		CetakBangunanIndeks(tab, InfoL(last));
+		endline;
+	}
+}
 
-	if (!IsEmptyListB(p1ListB)){
-		elb Iterate = FirstB(p1ListB);
-		for (int i = 1; i <= NbElmtListB(p1ListB); i++){
-			a = SearchIdxBangunan(tabB, Bangunan(Iterate));
-			elb Iterate2 = FirstB(p2ListB);
-			for (int j = 1; j <= NbElmtListB(p2ListB); j++){
-				b = SearchIdxBangunan(tabB, Bangunan(Iterate2));
-				if (IsConnected(g, a, b)){
-					AddBangunan(&TabBaru, Bangunan(Iterate2));
-				}
-				Iterate2 = NextB(Iterate2);
-			}
-			elb Iterate3 = FirstB(Netral);
-			for (int k = 1; k <= NbElmtListB){
-				c = SearchIdxBangunan(tabB, Bangunan(Iterate3));
-				if (IsConnected(g,a,c)){
-					AddBangunan(&TabBaru, Bangunan(Iterate3));
-				}
-				Iterate3 = NextB(Iterate3);
-			}
-			Iterate = NextB(Iterate);
+/* Print daftar bangunan bisa attack */
+void PrintInfoLBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j ,Graph g){
+	int count = 0;
+	for (IdxTypeArray i = 1; i <= NbElmt(tab); i++){
+		if (i != j && IsConnected(g, j , i) && !haveBuildingB(p, ElmtArray(tab,i), tab)){
+			count++;
+			printf("%d. ", count);
+			CetakBangunanIndeks(tab, i);
+			endline;
 		}
 	}
-	return TabBaru;
 }
-/* Buat tab bangunan baru untuk Move */
-TabBangunan NewTabMove (Pemain p Graph g, TabBangunan tabB){
-	TabBangunan tabBaru;
-	IdxTypeArray a;
-	IdxTypeArray b;
 
-	ListB pListB = p.b;
-	CreateEmptyArray(&TabBaru, NbElmtListB(pListB));
+/* Print daftar bangunan bisa move */
+void PrintInfoLBangunanMove(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g){
+	int count = 0;
+	for (IdxTypeArray i = 1; i <= NbElmt(tab); i++){
+		if (i != j && IsConnected(g,j,i) && haveBuildingB(p, ElmtArray(tab, i), tab)){
+			count++;
+			printf("%d. ", count);
+			CetakBangunanIndeks(tab,i);
+			endline;
+		}
+	}
+}	
 
-	if(!IsEmptyListB(pListB)){
-		elb Iterate = FirstB(pListB);
-		for (int i = 1; i <= NbElmtListB(pListB); i++){
-			a = SearchIdxBangunan(tabB, Bangunan(Iterate));
-			elb Iterate2 = FirstB(pListB);
-			for (int j = 1; j <= NbElmtListB(p2ListB); j++){
-				b = SearchIdxBangunan(tabB, Bangunan(Iterate2));
-				if (IsConnected(g, a, b) && (a != b)){
-					AddBangunan(&TabBaru, Bangunan(Iterate2));
-				}
-				Iterate2 = NextB(Iterate2);
-			}
-			Iterate = NextB(Iterate);
+/* Create an array containing the index of can be attacked bangunan */
+void SemuaBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int * arr){
+	arr = (int) malloc (sizeof(int) * NbElmt(tab));
+	int count = 0;
+	for (IdxTypeArray i = 1; i <= NbElmt(tab); i++){
+		if (i != j && IsConnected(g, j , i) && !haveBuildingB(p, ElmtArray(tab,i), tab)){
+			arr[count] = i;
+			count++;
+		}
+	}
+}
+
+/* Create an array containing the index of can be moved bangunan */
+void SemuaBangunanMove(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int * arr){
+	arr = (int) malloc(sizeof(int) * NbElmt(tab));
+	int count = 0;
+	for (IdxTypeArray i  = 1; i<= NbElmt(tab); i++){
+		if (i != j && IsConnected(g,j,i) && haveBuildingB(p, ElmtArray(tab, i), tab)){
+			arr[count] = i;
+			count++;
 		}
 	}
 }

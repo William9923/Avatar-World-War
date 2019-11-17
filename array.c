@@ -165,11 +165,11 @@ void CetakBangunanDimiliki (TabBangunan T)
 	{
 		printf("%d. ",i);
 		PrintInfoBangunan(ElmtArray(T,i));
-		printf(" ");
-		TulisPoint(Letak(ElmtArray(T,i)));
-		printf(" %d ",Pasukan(ElmtArray(T,i)));
-		printf("lv. %d\n",Level(ElmtArray(T,i)));
-		
 	}
+}
+
+void CetakBangunanIndeks(TabBangunan tab, IdxTypeArray i){
+	PrintInfoBangunan(ElmtArray(T,i));
+	printf(" ");
 }
 

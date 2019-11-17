@@ -108,4 +108,6 @@ void CetakBangunanDimiliki (TabBangunan T);
 /* I.S. Tabel T boleh kosong, tetapi tidak penuh */
 /* F.S. Bangunan-bangunan milik pemain P tercetak ke layar */
 
+void CetakBangunanIndeks(TabBangunan tab, IdxTypeArray i);
+
 #endif
