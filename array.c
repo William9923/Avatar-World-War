@@ -169,7 +169,7 @@ void CetakBangunanDimiliki (TabBangunan T)
 }
 
 void CetakBangunanIndeks(TabBangunan tab, IdxTypeArray i){
-	PrintInfoBangunan(ElmtArray(T,i));
+	PrintInfoBangunan(ElmtArray(tab,i));
 	printf(" ");
 }
 
