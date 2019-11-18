@@ -2,8 +2,10 @@
 #include <stdio.h>
 #include "array.h"
 #include "graph_.h"
+#include "pemain.h"
+#include "listlinier.h"
 
-void readkonfig(int *PPeta, int *LPeta, TabBangunan *ArrayBangunan, Graph *G, Pemain *P1, Pemain *P2, ListB *Netral) {
+void readkonfig(int *PPeta, int *LPeta, TabBangunan *ArrayBangunan, Graph *G, Pemain *P1, Pemain *P2, List *Netral) {
     int i,n;
     infotypeGraph bmatriks,kmatriks;
     int NBangunan;
@@ -56,11 +58,11 @@ void readkonfig(int *PPeta, int *LPeta, TabBangunan *ArrayBangunan, Graph *G, Pe
         MakeBangunan(&bangunan, typebangunan, letakbangunan);
         AddBangunan(ArrayBangunan,bangunan);
     }
-
-    InsertLastListB(&(*P1).b,AlokasiListB(ElmtArray(*ArrayBangunan,1)));
-    InsertLastListB(&(*P2).b,AlokasiListB(ElmtArray(*ArrayBangunan,2)));
+    
+    InsertLastList(&(*P1).b,AlokasiList(1));
+    InsertLastList(&(*P2).b,AlokasiList(2));
     for(n=3;n<=NBangunan;n++){
-        InsertLastListB(Netral,AlokasiListB(ElmtArray(*ArrayBangunan,n)));
+        InsertLastList(Netral,AlokasiList(n));
     }
     
     bmatriks.noBangunan=1;
