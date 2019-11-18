@@ -67,6 +67,15 @@ void ChangeTurnOrder(boolean *swapTurn){
 	}
 }
 
+boolean IsEQPemain(Pemain P1, Pemain P2){
+	boolean same = true;
+
+	if ((P1.nomor != P2.nomor) || (P1.color != P2.color)){
+		same = false;
+	}
+	return same;
+}
+
 int main() {
 	//KAMUS
 	Pemain P1,P2,Pnow;
@@ -112,7 +121,11 @@ int main() {
 		printf("ENTER COMMAND:");
 		s = BacaInputUser();
 		if(IsAttack(s)){
-
+			if (IsEQPemain(Pnow, P1)) {
+				ProsedurAttack(&AllBangunan, &P1, &P2 ,connectivity);
+			} else {
+				ProsedurAttack(&AllBangunan, &P2, &P1 ,connectivity);
+			}
 		}
 		else if(IsLevelUp(s)){
 
