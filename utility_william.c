@@ -241,6 +241,15 @@ void SemuaBangunanMove(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int *
 	}
 }
 
+void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, Graph g){
+	printf("%s\n", "Daftar Bangunan :");
+	PrintInfoLBangunan((*tab), (*p1));
+	endline;
+
+	printf("%s", "Bangunan yang digunakan untuk menyerang: ");
+	
+}
+
 /* Input User */
 char * outputString() {
 	char * s = malloc(sizeof (char) * CKata.Length);
