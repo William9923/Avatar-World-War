@@ -38,7 +38,7 @@
 #define endline printf("\n")
 #define SIZE 100
 
-boolean IsAbleMove(Bangunan bangunanAwal, Bangunan bangunanTujuan, int n, Pemain P){
+boolean IsAbleMove(Bangunan bangunanAwal, Bangunan bangunanTujuan, int n, Pemain P,TabBangunan Tab){
 	/* Mengecek apakah pasukan suatu bangunan dapat dipindahkan ke bangunan tujuan*/
 	/*
 		Validasi didasari oleh :
@@ -50,7 +50,7 @@ boolean IsAbleMove(Bangunan bangunanAwal, Bangunan bangunanTujuan, int n, Pemain
 	// cek apakah jumlah pasukan yang dimasukkan valid
 
 	// tambahin cek keterhubungan 2 bangunan
-	if (!(haveBuildingB(P,bangunanAwal)) || !(haveBuildingB(P,bangunanTujuan))){
+	if (!(haveBuildingB(P,bangunanAwal,Tab)) || !(haveBuildingB(P,bangunanTujuan,Tab))){
 		return false;
 	} 
 	if (Pasukan(bangunanAwal) < n){
@@ -59,20 +59,20 @@ boolean IsAbleMove(Bangunan bangunanAwal, Bangunan bangunanTujuan, int n, Pemain
 	return true;
 }
 
-void MoveB(Bangunan * bangunanAwal, Bangunan * bangunanTujuan, int n, Pemain P){
+void MoveB(Bangunan * bangunanAwal, Bangunan * bangunanTujuan, int n, Pemain P,TabBangunan Tab){
 	/*
 	I.S. Bangunan Awal dan Bangunan Tujuan terdefinisi
 		 Jumlah pasukan <= pasukan total di bangunanAwal
 	F.S. Pasukan sebanyak n dipindahkan ke bangunanTujuan dari bangunan Awal
 	Pemain d
 	*/
-	if (IsAbleMove((*bangunanAwal),(*bangunanTujuan), n, P)){
+	if (IsAbleMove((*bangunanAwal),(*bangunanTujuan), n, P,Tab)){
 		Pasukan(*bangunanAwal) -= n;
 		Pasukan(*bangunanTujuan) += n;
 	} else {
-		if (Pasukan(bangunanAwal) < n){
+		if (Pasukan(*bangunanAwal) < n){
 			printf("%s\n", "Jumlah pasukan anda kurang !");
-		} else (!(haveBuildingB(P,bangunanAwal)) || !(haveBuildingB(P,bangunanTujuan))) {
+		} else if(!(haveBuildingB(P,*bangunanAwal,Tab)) || !(haveBuildingB(P,*bangunanTujuan,Tab))) {
 			printf("%s\n", "Bangunan tidak tersambung satu sama lain!");
 		}
 	}
@@ -99,6 +99,14 @@ boolean IsAbleSerang(Bangunan bangunanPe, Bangunan bangunanDe, int n){
 	return true;
 }
 
+boolean IsBangunanNetral(Bangunan b, Pemain p1, Pemain p2, TabBangunan tab){
+	/* Melakukan pengecekan apakah suatu bangunan bersifat netral atau tidak */
+	// cari indeks
+	infotypeList i = SearchIdxBangunan(tab, b);
+	if ((SearchList(p1.b,i) == Kosong) && (SearchList(p2.b,i) == Kosong)) return true;
+	else return false;
+}
+
 // TODO : kalo dia ga netral (punya pemain lain), tinggal di ChangeOwner
 void SerangB(Bangunan * bangunanPe, Bangunan * bangunanDe, int n, Pemain * P1, Pemain * P2, TabBangunan tab){
 	/*
@@ -123,7 +131,7 @@ void SerangB(Bangunan * bangunanPe, Bangunan * bangunanDe, int n, Pemain * P1, P
 				IdxTypeArray i = SearchIdxBangunan(tab, (*bangunanDe));
 				InsVLastList(&((*P1).b),i);
 			} else{
-				ChangeOwner((P1), (*bangunanDe) , P2);
+				ChangeOwner((P1), (*bangunanDe) , P2,tab);
 			} 
 		} else {
 			if (Pertahanan(*bangunanDe)){
@@ -138,13 +146,13 @@ void SerangB(Bangunan * bangunanPe, Bangunan * bangunanDe, int n, Pemain * P1, P
 	}
 }
 
-void NextTurnLBangunan (List * L, TabBangunan * tab){
+void NextTurnLBangunan (List  L, TabBangunan * tab){
 	address last;
-	last = FirstL(*L);
+	last = FirstL(L);
 	infotypeList a;
 	while(last != Kosong){
 		a = InfoL(last);
-		NaikLevel(ElmtArray(*tab, a));
+		NaikLevel(&ElmtArray(*tab, a));
 		last = NextL(last);
 	}
 }
@@ -158,19 +166,8 @@ void NextTurnPemain(Pemain * P, TabBangunan * tab){
 		 ketentuan bangunan
 	btw, buat perubahan yang terjadi taro disini aja
 	*/
-	ListB listB;
-	listB = (*P).b;
-	NextTurnLBangunan(&listB, tab);
+	NextTurnLBangunan((*P).b, tab);
 	// ketentuan perubahan status pada turn berikutnya
-}
-
-
-boolean IsBangunanNetral(Bangunan b, Pemain p1, Pemain p2, TabBangunan tab){
-	/* Melakukan pengecekan apakah suatu bangunan bersifat netral atau tidak */
-	// cari indeks
-	infotypeList i = SearchIdxBangunan(tab, b);
-	if ((SearchList(p1.b,i) == Kosong) && (SearchListB(p2.b,i) == Kosong)) return true;
-	else return false;
 }
 
 // TODO :Jadiin attack procedure
@@ -218,27 +215,29 @@ void PrintInfoLBangunanMove(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g){
 }	
 
 /* Create an array containing the index of can be attacked bangunan */
-void SemuaBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int * arr){
-	arr = (int) malloc (sizeof(int) * NbElmt(tab));
+void SemuaBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int *arr[]){
+	int b[NbElmt(tab)];
 	int count = 0;
 	for (IdxTypeArray i = 1; i <= NbElmt(tab); i++){
 		if (i != j && IsConnected(g, j , i) && !haveBuildingB(p, ElmtArray(tab,i), tab)){
-			arr[count] = i;
+			b[count] = i;
 			count++;
 		}
 	}
+	*arr = b;
 }
 
 /* Create an array containing the index of can be moved bangunan */
-void SemuaBangunanMove(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int * arr){
-	arr = (int) malloc(sizeof(int) * NbElmt(tab));
+void SemuaBangunanMove(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int * arr[]){
+	int b[NbElmt(tab)];
 	int count = 0;
 	for (IdxTypeArray i  = 1; i<= NbElmt(tab); i++){
 		if (i != j && IsConnected(g,j,i) && haveBuildingB(p, ElmtArray(tab, i), tab)){
-			arr[count] = i;
+			b[count] = i;
 			count++;
 		}
 	}
+	*arr = b;
 }
 
 void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, Graph g){

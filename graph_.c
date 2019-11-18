@@ -46,7 +46,7 @@ void DealokSuccNode(addrSuccNode P)
 boolean IsNodeEqual(addrNode P, infotypeGraph X)
 /* mengembalikan apakah P memiliki ID X */
 {
-	return (IdGraph(P).noBangunan == X.noBangunan);
+	return (IdGraph(P) == X );
 }
 addrNode SearchNode(Graph G, infotypeGraph X)
 /* mencari X pada G, return NilGraph bila tidak ada yang sama */
@@ -113,7 +113,7 @@ infotypeGraph GetFirstSuccInfo(Graph G, infotypeGraph prec)
 {
 	infotypeGraph fal;
 	// dummy value
-	fal.noBangunan = -1;
+	fal  = -1;
 
 	addrNode Pn = SearchNode(G, prec);
 	if (Pn == NilGraph) return fal;

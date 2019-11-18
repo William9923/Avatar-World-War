@@ -69,8 +69,8 @@ void readkonfig(int *PPeta, int *LPeta, TabBangunan *ArrayBangunan, Graph *G, Pe
         InsertLastList(Netral,AlokasiList(n));
     }
     
-    bmatriks.noBangunan=1;
-    kmatriks.noBangunan=1;
+    bmatriks  =1;
+    kmatriks  =1;
     CreateGraph(bmatriks,G);
     for (n=1; n <= NBangunan * NBangunan; n++) {
         IgnoreBlank();
@@ -78,11 +78,11 @@ void readkonfig(int *PPeta, int *LPeta, TabBangunan *ArrayBangunan, Graph *G, Pe
             InsertEdge(G,bmatriks,kmatriks);
         }
         ADV();
-        if (kmatriks.noBangunan < NBangunan) {
-            kmatriks.noBangunan++;
+        if (kmatriks   < NBangunan) {
+            kmatriks  ++;
         } else {
-            kmatriks.noBangunan = 1;
-            bmatriks.noBangunan++;
+            kmatriks   = 1;
+            bmatriks  ++;
         }
         IgnoreBlank();
     }

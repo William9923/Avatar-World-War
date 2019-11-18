@@ -107,9 +107,9 @@ int main() {
 		//Baca Command taruh disini...
 		//...
 		printf("Player %d\n",Pnow.nomor);
-		PrintBangunanListB(Pnow.b);
+		PrintInfoLBangunan(AllBangunan,Pnow);
 		//printskill
-		printf("ENTER COMMAND: ");
+		printf("ENTER COMMAND:");
 		s = BacaInputUser();
 		if(IsAttack(s)){
 
