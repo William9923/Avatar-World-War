@@ -109,7 +109,7 @@ int main() {
 		printf("Player %d\n",Pnow.nomor);
 		PrintInfoLBangunan(AllBangunan,Pnow);
 		//printskill
-		printf("ENTER COMMAND: ");
+		printf("ENTER COMMAND:");
 		s = BacaInputUser();
 		if(IsAttack(s)){
 
