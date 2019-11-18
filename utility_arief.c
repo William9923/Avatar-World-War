@@ -6,22 +6,22 @@
 #include"state.h"
 #include"array.h"
 #include"matriks.h"
-#include "listbangunan.h"
+//#include "listbangunan.h"
 #include "mesinkar.h"
 #include "mesinkata.h"
-#include "skill.h"
+//#include "skill.h"
 #include"pemain.h"
 #include"bangunan.c"
 #include"point.c"
 #include"state.c"
 #include"array.c"
 #include"matriks.c"
-#include "listbangunan.c"
-//#include "listlinier.c"
+//#include "listbangunan.c"
+#include "listlinier.c"
 #include "mesinkar.c"
 #include "mesinkata.c"
 #include "readkonfigurasi.c"
-#include "skill.c"
+//#include "skill.c"
 #include"pemain.c"
 #include<stdio.h>
 #include<stdlib.h>
@@ -33,7 +33,6 @@
 #include"graph_.c"
 
 void clrscr(){
-	//system("@cls||clear");
 	system("clear");
 	// ini gw ganti dikit ya
 }
@@ -75,7 +74,7 @@ int main() {
     int PPeta,LPeta;
     TabBangunan AllBangunan;
     Graph connectivity;
-	ListB Netral;
+	List Netral;
 	int turn=1,nomor=1;
 	boolean swapTurn = false;
 	char CMD[9];
@@ -84,7 +83,7 @@ int main() {
 	CreateNewPlayer(&P2,'b',nomor);
 	//Baca Konfigurasi Permainan
 	printf("Reading Configuration File...\n");
-    CreateEmptyListB(&Netral);
+    CreateEmptyList(&Netral);
     readkonfig(&PPeta,&LPeta,&AllBangunan,&connectivity,&P1,&P2,&Netral);
     //aDD LIST b KE SI pEMAIN 1
 	
