@@ -1,34 +1,34 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
-#include"bangunan.h"
-#include"point.h"
-#include"stack.h"
-#include"state.h"
-#include"array.h"
-#include"matriks.h"
-//#include "listbangunan.h"
-//#include "skill.h"
-#include"listlinier.h"
-#include"pemain.h"
-#include"boolean.h"
-#include"bangunan.c"
-#include"point.c"
-#include"stack.c"
-#include"state.c"
-#include"array.c"
-#include"matriks.c"
-//#include "listbangunan.c"
-#include "listlinier.c"
-#include "mesinkar.c"
-#include "mesinkata.c"
-#include "readkonfigurasi.c"
-//#include "skill.c"
-#include"pemain.c"
-#include<stdio.h>
-#include<stdlib.h>
-#include"mesinkata.h"
-#include"mesinkar.h"
+// #include<stdio.h>
+// #include<stdlib.h>
+// #include<math.h>
+// #include"bangunan.h"
+// #include"point.h"
+// #include"stack.h"
+// #include"state.h"
+// #include"array.h"
+// #include"matriks.h"
+// //#include "listbangunan.h"
+// //#include "skill.h"
+// #include"listlinier.h"
+// #include"pemain.h"
+// #include"boolean.h"
+// #include"bangunan.c"
+// #include"point.c"
+// #include"stack.c"
+// #include"state.c"
+// #include"array.c"
+// #include"matriks.c"
+// //#include "listbangunan.c"
+// #include "listlinier.c"
+// #include "mesinkar.c"
+// #include "mesinkata.c"
+// #include "readkonfigurasi.c"
+// //#include "skill.c"
+// #include"pemain.c"
+// #include<stdio.h>
+// #include<stdlib.h>
+// #include"mesinkata.h"
+// #include"mesinkar.h"
 #define printInt(x) printf("%d", x)
 #define printlnInt(x) printf("%d\n", x)
 #define println(x) printf("%c\n", x)

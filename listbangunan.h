@@ -43,7 +43,7 @@ void CreateEmptyListB (ListB *L);
 /* F.S. Terbentuk list kosong */
 
 /****************** Manajemen Memori ******************/
-elb AlokasiListB (Bangunan X);
+elb AlokasiListB (IdxTypeArray X);
 /* Mengirimkan elb hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka elb tidak nil, dan misalnya */
 /* menghasilkan P, maka Info(P)=X, NextB(P)=Nil */
@@ -54,18 +54,18 @@ void DealokasiListB (elb P);
 /* Melakukan dealokasi/pengembalian elb P */
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-elb SearchListB (ListB L, Bangunan X);
+elb SearchListB (ListB L, IdxTypeArray X);
 /* Mencari apakah ada elemen list dengan Info(P)= X */
 /* Jika ada, mengirimkan elb elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirstListB (ListB *L, Bangunan X);
+void InsVFirstListB (ListB *L, IdxTypeArray X);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
-void InsVLastListB (ListB *L, Bangunan X);
+void InsVLastListB (ListB *L, IdxTypeArray X);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
@@ -100,7 +100,7 @@ void DelFirstListB (ListB *L, elb *P);
 /* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* FirstB element yg baru adalah suksesor elemen pertama yang lama */
-void DelPListB (ListB *L, Bangunan X);
+void DelPListB (ListB *L, IdxTypeArray X);
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list berelb P, dengan Info(P)=X  */
 /* Maka P dihapus dari list dan di-dealokasi */

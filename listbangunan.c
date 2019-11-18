@@ -8,7 +8,7 @@ NIM 			: 13518138
 Topik 			: Linear ListB
 */
 
-#include"listint.h"
+//#include"listint.h"
 #include<stdlib.h>
 #include<stdio.h>
 
