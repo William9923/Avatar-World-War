@@ -20,9 +20,6 @@ int main() {
     Pemain P2;
     List Netral;
 
-    CreateEmptyList(&(P1.b));
-    CreateEmptyList(&(P2.b));
-    CreateEmptyList(&Netral);
     readkonfig(&P,&L,&B,&G,&P1,&P2,&Netral);
 
     printf("Panjang Peta: %d\n", P);

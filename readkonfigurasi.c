@@ -59,6 +59,10 @@ void readkonfig(int *PPeta, int *LPeta, TabBangunan *ArrayBangunan, Graph *G, Pe
         AddBangunan(ArrayBangunan,bangunan);
     }
     
+    CreateEmptyList(&((*P1).b));
+    CreateEmptyList(&((*P2).b));
+    CreateEmptyList(Netral);
+
     InsertLastList(&(*P1).b,AlokasiList(1));
     InsertLastList(&(*P2).b,AlokasiList(2));
     for(n=3;n<=NBangunan;n++){
