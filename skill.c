@@ -93,6 +93,10 @@ void AddSkillQueue (Queue * Q, char X)
 			}
 		}
 	}
+    else 
+    {   
+        printf("Queue telah penuh. "); KodeToSkill(X); printf(" tidak bisa ditambahkan");
+    }
 }
 
 void DelSkillQueue (Queue * Q, infotype * X)
