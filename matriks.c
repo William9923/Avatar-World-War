@@ -21,16 +21,13 @@ void MakePetaJadi(PETA *P, TabBangunan B)
 /* I.S. PETA terdefinisi, bisa kosong */
 /* F.S PETA terisi */
 {
-	int i, j, k;
-
-	for (i=GetFirstIdxBrs(*P); i<=GetLastIdxBrs(*P); i++) {
-		for (j=GetFirstIdxKol(*P); j<=GetLastIdxKol(*P); j++) {
-			for (k=GetFirstIdx(B); k<=GetLastIdx(B); k++) {
-				if (Absis(Letak(ElmtArray(B,k))) == i && Ordinat(Letak(ElmtArray(B,k))) == j) {
-					ElmtMatriks(*P,i,j) = Type(ElmtArray(B,k));
-				}
-			}
-		}
+	for (i=IdxMinArray(T);i<=NeffArray(T);i++)
+	{
+			Bangunan A = ElmtArray(T,i);
+			Point B = Letak(A);
+			int X = Absis(B);
+			int Y = Ordinat(B);
+			ElmtMatriks(*P,X,Y) = Type(A);
 	}
 }
 
