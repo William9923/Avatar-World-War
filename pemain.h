@@ -17,7 +17,6 @@ States dari seorang pemain terdiri dari:
 typedef struct{
     /*QueueSkill Skill*/
    List b;
-   char color;/*bisa R bisa B yang artinya Red/Blue*/
    int nomor;
 } Pemain;
 
@@ -25,7 +24,7 @@ typedef struct{
 boolean haveBuilding(Pemain P);
 /* Apakah player P punya bangunan */
 
-void CreateNewPlayer(Pemain *P,char Q,int nomor);
+void CreateNewPlayer(Pemain *P,int nomor);
 /* Fungsinya untuk membuat player baru di game, dengan ketentuan:
 Warna(*P) = R atau B,ListBangunan kosong */
 
@@ -35,6 +34,8 @@ void ChangeOwner(Pemain *P,Bangunan b,Pemain *NewOwner, TabBangunan tab);
 boolean haveBuildingB(Pemain P,Bangunan a, TabBangunan tab);
 /* Menghasilkan nilai T/F apakah P punya Bangunan a */
 
+
+boolean haveBuildingKoordinat(Pemain P,int i,int j,TabBangunan Tab);
 #endif
 
 

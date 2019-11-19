@@ -25,12 +25,13 @@
 #include"pemain.c"
 #include<stdio.h>
 #include<stdlib.h>
-#include"boolean.h"
 #include<string.h>
 #include"stackundo.c"
 #include"utility_william.c"
 #include"graph_.h"
 #include"graph_.c"
+#include<math.h>
+#include"boolean.h"
 
 void clrscr(){
 	system("clear");
@@ -70,7 +71,7 @@ void ChangeTurnOrder(boolean *swapTurn){
 boolean IsEQPemain(Pemain P1, Pemain P2){
 	boolean same = true;
 
-	if ((P1.nomor != P2.nomor) || (P1.color != P2.color)){
+	if ((P1.nomor != P2.nomor)){
 		same = false;
 	}
 	return same;
@@ -80,7 +81,7 @@ int main() {
 	//KAMUS
 	Pemain P1,P2,Pnow;
 	StackUndo SU;
-    int PPeta,LPeta;
+    PETA P;
     TabBangunan AllBangunan;
     Graph connectivity;
 	List Netral;
@@ -89,30 +90,25 @@ int main() {
 	
 	char CMD[9];
 
-	CreateNewPlayer(&P1,'r',nomor);
 	nomor++;
-	CreateNewPlayer(&P2,'b',nomor);
 
 	//Baca Konfigurasi Permainan
 	printf("Reading Configuration File...\n");
     CreateEmptyList(&Netral);
-    readkonfig(&PPeta,&LPeta,&AllBangunan,&connectivity,&P1,&P2,&Netral);
+    readkonfig(&P,&AllBangunan,&connectivity,&P1,&P2,&Netral);
     //aDD LIST b KE SI pEMAIN 1
 	printf("Game Ready...\n");
 	printf("Press Any Key To Continue..\n");
 	clrscr();
 	boolean stop = false;
     char *s;
-
-
+	CreateEmptyStackUndo(&SU);
 	while(!stop){
-		PrintInfoLBangunanSemua(AllBangunan);
-
 		//Validasi Command
-        CreateEmptyStackUndo(&SU);
+		
 		//Print Map
 		PemainNow(P1,P2,&Pnow,swapTurn,turn);
-		//Cetak Peta
+		CetakPeta(P,P1,P2,AllBangunan);
 		
 		//Baca Command taruh disini...
 		//...
@@ -120,14 +116,17 @@ int main() {
 		PrintInfoLBangunan(AllBangunan,Pnow);
 		//printskill
 		printf("ENTER COMMAND: ");
+		
 		s = BacaInputUser();
 		printf("\n");
 		if(IsAttack(s)){
 			if (IsEQPemain(Pnow, P1)) {
 				ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity);
+				SaveState(&SU,P1,P2,Netral,AllBangunan);
 			} else {
 				// pemain p2
 				ProsedurAttack(&AllBangunan, &P2, &P1,&Netral ,connectivity);
+				SaveState(&SU,P1,P2,Netral,AllBangunan);
 			}
 		}
 		else if(IsLevelUp(s)){
@@ -136,16 +135,20 @@ int main() {
 		else if(IsMove(s)){
 			if (IsEQPemain(Pnow, P1)){
 				ProsedurMove(&AllBangunan, &P1, connectivity);
+				SaveState(&SU,P1,P2,Netral,AllBangunan);
 			} else {
 				// pemain p2
 				ProsedurMove(&AllBangunan, &P2, connectivity);
+				SaveState(&SU,P1,P2,Netral,AllBangunan);
 			}
 		}
 		else if(IsSkill(s)){
 
 		}
 		else if(IsUndo(s)){
-
+			LoadState(&SU,&P1,&P2,&Netral,&AllBangunan);
+			continue;
+			PemainNow(P1,P2,&Pnow,swapTurn,turn);
 		}
 		else if(IsEndTurn(s)){
 			if (turn > 1){

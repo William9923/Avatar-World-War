@@ -5,10 +5,11 @@
 #define StateP1(Q) (Q).X
 #define StateP2(Q) (Q).Y 
 #define StateNetral(Q) (Q).Netral
-
+#define StateBangunan(Q) (Q).Tab
 typedef struct{
     Pemain X,Y;/*Pemain 1 dan Pemain 2*/
     List Netral;
+    TabBangunan Tab;
 } states;
 
 typedef struct {
@@ -18,10 +19,10 @@ typedef struct {
 
 boolean IsEmptyStack(StackUndo S);
 void CreateEmptyStackUndo(StackUndo *S);
-void SaveState(StackUndo *S,Pemain P1,Pemain P2,List Netral);
+void SaveState(StackUndo *S,Pemain P1,Pemain P2,List Netral,TabBangunan Bangunan);
 void Push(StackUndo *S,states s);
 void Pop(StackUndo *S,states *q);
-void Undo(states q,Pemain *P1,Pemain *P2);
+void LoadState(StackUndo *S,Pemain *P1,Pemain *P2,List *Netral,TabBangunan *Bangunan);
 
 
 
