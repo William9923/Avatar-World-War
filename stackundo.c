@@ -20,11 +20,20 @@ void Push(StackUndo *S,states s){
 }
 
 
-void SaveState(StackUndo *S,Pemain P1,Pemain P2){
+void SaveState(StackUndo *S,Pemain P1,Pemain P2,List Netral){
     states q;
     StateP1(q) = P1;
     StateP2(q) = P2;
+    StateNetral(q) = Netral;
     Push(S,q);
+}
+
+void LoadState(StackUndo *S,Pemain *P1,Pemain *P2,List *Netral){
+    states q;
+    Pop(S,&q);
+    *P1 = StateP1(q);
+    *P2 = StateP2(q);
+    *Netral = StateNetral(q);
 }
 
 void Pop(StackUndo *S,states *q){
@@ -32,10 +41,6 @@ void Pop(StackUndo *S,states *q){
     Top(*S)--;
 }
 
-void Undo(states q,Pemain *P1,Pemain *P2){
-    *P1 = StateP1(q);
-    *P2 = StateP2(q);
-}
 
 
 
