@@ -1,4 +1,4 @@
-/* File : queue.h */
+/* File : skill.h */
 /* Definisi ADT Queue dengan representasi array secara eksplisit dan alokasi dinamik */
 /* Model Implementasi Versi III dengan circular buffer */
 
