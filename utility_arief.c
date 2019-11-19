@@ -28,6 +28,7 @@
 #include<string.h>
 #include"stackundo.c"
 #include"utility_william.c"
+#include"utility_felix.c"
 #include"graph_.h"
 #include"graph_.c"
 #include<math.h>
@@ -84,8 +85,6 @@ int main() {
 	List Netral;
 	int turn=1,nomor=1;
 	boolean swapTurn = false;
-	
-	char CMD[9];
 
 	nomor++;
 
@@ -93,7 +92,13 @@ int main() {
 	printf("Reading Configuration File...\n");
     CreateEmptyList(&Netral);
     readkonfig(&P,&AllBangunan,&connectivity,&P1,&P2,&Netral);
-    //aDD LIST b KE SI pEMAIN 1
+	SaveState(&SU,P1,P2,Netral,AllBangunan);
+	printf("%d",Pasukan(ElmtArray(AllBangunan,1)));
+	Pasukan(ElmtArray(AllBangunan,1)) = 30;
+	printf("%d",Pasukan(ElmtArray(AllBangunan,1)));
+	LoadState(&SU,&P1,&P2,&Netral,&AllBangunan);
+	printf("%d",Pasukan(ElmtArray(AllBangunan,1)));
+	scanf("_");
 	printf("Game Ready...\n");
 	printf("Press Any Key To Continue..\n");
 	clrscr();
@@ -113,40 +118,33 @@ int main() {
 		//Baca Command taruh disini...
 		//...
 		printf("Player %d\n",Pnow.nomor);
-		PrintInfoLBangunan(AllBangunan,Pnow);
+		PrintInfoLBangunan(AllBangunan,P1);
 		//printskill
 		printf("ENTER COMMAND: ");
-		
 		s = BacaInputUser();
 		printf("\n");
 		if(IsAttack(s)){
 			if (IsEQPemain(Pnow, P1)) {
 				ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity);
-				SaveState(&SU,P1,P2,Netral,AllBangunan);
 			} else {
 				// pemain p2
 				ProsedurAttack(&AllBangunan, &P2, &P1,&Netral ,connectivity);
-				SaveState(&SU,P1,P2,Netral,AllBangunan);
 			}
 		}
 		else if(IsLevelUp(s)){
 			if (IsEQPemain(Pnow, P1)) {
 				ProsedurLevelUp(&AllBangunan,P1);
-				SaveState(&SU,P1,P2,Netral,AllBangunan);
 			} else {
 				// pemain p2
 				ProsedurLevelUp(&AllBangunan,P2);
-				SaveState(&SU,P1,P2,Netral,AllBangunan);
 			}
 		}
 		else if(IsMove(s)){
 			if (IsEQPemain(Pnow, P1)){
 				ProsedurMove(&AllBangunan, &P1, connectivity);
-				SaveState(&SU,P1,P2,Netral,AllBangunan);
 			} else {
 				// pemain p2
 				ProsedurMove(&AllBangunan, &P2, connectivity);
-				SaveState(&SU,P1,P2,Netral,AllBangunan);
 			}
 		}
 		else if(IsSkill(s)){
@@ -154,8 +152,6 @@ int main() {
 		}
 		else if(IsUndo(s)){
 			LoadState(&SU,&P1,&P2,&Netral,&AllBangunan);
-			continue;
-			PemainNow(P1,P2,&Pnow,swapTurn,turn);
 		}
 		else if(IsEndTurn(s)){
 			if (turn > 1){
