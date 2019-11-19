@@ -8,7 +8,6 @@
 
 void clrscr(){
 	system("clear");
-	// ini gw ganti dikit ya
 }
 
 boolean IsAbleMove(Bangunan bangunanAwal, Bangunan bangunanTujuan, int n, Pemain P,TabBangunan Tab){

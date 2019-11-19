@@ -142,7 +142,9 @@ int main() {
 			}
 		}
 		else if(IsSkill(s)){
-
+			// nanti skillnya tuh sesuain aja ama yang lain, 
+			// trus setiap skill tuh bakal jadi prosedur, dimana dia bakal ngambil dari inputan,
+			// trus output hasilnya.
 		}
 		else if(IsUndo(s)){
 			LoadState(&SU,&P1,&P2,&Netral,&AllBangunan);
