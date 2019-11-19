@@ -9,14 +9,8 @@ void CreateEmptyStackUndo(StackUndo *S){
 
 
 void Push(StackUndo *S,states s){
-    if(IsEmptyStack(*S)){
-        Top(*S)++;
-        InfoTop(*S)=s;
-    }
-    else{
-        Top(*S)++;
-        InfoTop(*S)=s;
-    }
+    Top(*S)++;
+    InfoTop(*S)=s;
 }
 
 
@@ -29,6 +23,12 @@ void SaveState(StackUndo *S,Pemain P1,Pemain P2,List Netral,TabBangunan Bangunan
     Push(S,q);
 }
 
+
+void Pop(StackUndo *S,states *q){
+    *q = InfoTop(*S);
+    Top(*S)--;
+}
+
 void LoadState(StackUndo *S,Pemain *P1,Pemain *P2,List *Netral,TabBangunan *Bangunan){
     states q;
     Pop(S,&q);
@@ -37,12 +37,6 @@ void LoadState(StackUndo *S,Pemain *P1,Pemain *P2,List *Netral,TabBangunan *Bang
     *Netral = StateNetral(q);
     *Bangunan = StateBangunan(q);
 }
-
-void Pop(StackUndo *S,states *q){
-    *q = InfoTop(*S);
-    Top(*S)--;
-}
-
 
 
 
