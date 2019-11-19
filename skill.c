@@ -52,7 +52,6 @@ void DeAlokasiQueue(Queue * Q){
 /* *** Primitif Add/Delete *** */
 infotype SkillChecker(char X[]){
     infotype y;
-
     y = 0;
     if (X[0] == 'I'){
         if(X[1] == 'U'){
@@ -124,7 +123,7 @@ void AddSkillQueue(Queue * Q, char Y){
             // 6 == > Instant Reinforcement (IR)
             // 7 == > Barrage (B)
             printf("Maaf, skill yang ingin ditambahkan tidak boleh dimasukkan.");
-            scanf("%p",&X);
+            scanf("%p",&X); // ngentot mana ada scanf disini
         }
         else /* Q tidak kosong */ {
             if (Tail(*Q) == MaxEl(*Q) && NBElmtQueue(*Q) != MaxEl(*Q)) { /* Geser elemen smp Head(Q)=1 */
@@ -170,7 +169,7 @@ void DelSkillQueue(Queue * Q, infotype * X){
         Q mungkin kosong */
 void startSkillQueue(Queue *Q){
     CreateEmptyQueue(Q,10);
-    InfoHead(*Q) = 1; //1 ==> InstantUpgrade
+    InfoHead(*Q) = 1; //1 ==> InstantUpgrade // ini salah beb
 }
 
 

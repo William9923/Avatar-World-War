@@ -86,10 +86,13 @@ int main() {
 	List Netral;
 	int turn=1,nomor=1;
 	boolean swapTurn = false;
+	
 	char CMD[9];
+
 	CreateNewPlayer(&P1,'r',nomor);
 	nomor++;
 	CreateNewPlayer(&P2,'b',nomor);
+
 	//Baca Konfigurasi Permainan
 	printf("Reading Configuration File...\n");
     CreateEmptyList(&Netral);
