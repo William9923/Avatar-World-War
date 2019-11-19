@@ -130,6 +130,7 @@ int main() {
 				// pemain p2
 				ProsedurAttack(&AllBangunan, &P2, &P1,&Netral ,connectivity);
 			}
+			endgame(P1,P2,&stop);
 		}
 		else if(IsLevelUp(s)){
 			if (IsEQPemain(Pnow, P1)) {
@@ -167,6 +168,9 @@ int main() {
 		}
 		else if(IsSave(s)){
 
+		}
+		else if(IsExit(s)) {
+			stop = true;
 		}
 		else{
 			printf("Inputan tidak valid.\n");
