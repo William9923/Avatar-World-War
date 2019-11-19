@@ -28,6 +28,7 @@
 #include<string.h>
 #include"stackundo.c"
 #include"utility_william.c"
+#include "utility_felix.c"
 #include"graph_.h"
 #include"graph_.c"
 #include<math.h>
@@ -130,7 +131,14 @@ int main() {
 			}
 		}
 		else if(IsLevelUp(s)){
-
+			if (IsEQPemain(Pnow, P1)) {
+				ProsedurLevelUp(&AllBangunan,P1);
+				SaveState(&SU,P1,P2,Netral,AllBangunan);
+			} else {
+				// pemain p2
+				ProsedurLevelUp(&AllBangunan,P2);
+				SaveState(&SU,P1,P2,Netral,AllBangunan);
+			}
 		}
 		else if(IsMove(s)){
 			if (IsEQPemain(Pnow, P1)){
