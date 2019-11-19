@@ -72,6 +72,8 @@ address SearchList (List L, infotypeList X) {
 	/* Mencari apakah ada elemen list dengan Info(P)= X */
 	/* Jika ada, mengirimkan address elemen tersebut. */
 	/* Jika tidak ada, mengirimkan Kosong */
+	printf("%s ", "Jancuk type");
+	printlnInt(X);
 	address P;
 	if (!IsEmptyList(L)) {
 		P = FirstL(L);
@@ -84,6 +86,7 @@ address SearchList (List L, infotypeList X) {
 			}
 		}
 		if (Found) {
+			printf("%s\n", "Harusntya uda bener");
 			return P;
 		} else {
 			return Kosong;

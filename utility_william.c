@@ -226,6 +226,7 @@ void SemuaBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int
 	int count = 0;
 	for (IdxTypeArray i = 1; i <= NbElmt(tab); i++){
 		if (i != j && IsConnected(g, j , i) && !haveBuildingB(p, ElmtArray(tab,i), tab)){
+			printf("%d\n", i); printf("%s\n", "Tes1");
 			b[count] = i;
 			count++;
 		}
@@ -238,6 +239,7 @@ int * getSemuaBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g,
 	int count = 0;
 	for (IdxTypeArray i = 1; i <= NbElmt(tab); i++){
 		if (i != j && IsConnected(g, j , i) && !haveBuildingB(p, ElmtArray(tab,i), tab)){
+			printf("%d\n", i); printf("%s\n", "Tes2");
 			a[count] = i;
 			count++;
 		}
@@ -251,6 +253,7 @@ void SemuaBangunanMove(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int *
 	int count = 0;
 	for (IdxTypeArray i  = 1; i<= NbElmt(tab); i++){
 		if (i != j && IsConnected(g,j,i) && haveBuildingB(p, ElmtArray(tab, i), tab)){
+			printf("%d\n", i);
 			b[count] = i;
 			count++;
 		}
@@ -485,6 +488,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 	if (!IsSudahSerang(ElmtArray((*tab),a))) {
 		int n;
 		SemuaBangunanAttack((*tab), (*p1), a,g, &n);
+		printf("%s\n", "Pembagi");
 		attackArr = getSemuaBangunanAttack((*tab), (*p1), a,g, n);
 		if (n > 0){
 			printf("%s\n", "Daftar bangunan yang dapat diserang:");
