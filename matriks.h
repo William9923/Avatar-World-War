@@ -31,6 +31,11 @@ void MakePeta (int NB, int NK, PETA * P);
 /* I.S. NB dan NK adalah valid untuk memori peta yang dibuat */
 /* F.S. Peta P sesuai dengan definisi di atas terbentuk */
 
+void MakePetaJadi(PETA *P, TabBangunan B);
+/* Mengisi PETA dengan char */
+/* I.S. PETA terdefinisi, bisa kosong */
+/* F.S PETA terisi */
+
 /* *** Selektor: Untuk sebuah peta P yang terdefinisi: *** */
 IdxTypeMatriks GetFirstIdxBrs (PETA P);
 /* Mengirimkan indeks baris terkecil P */
