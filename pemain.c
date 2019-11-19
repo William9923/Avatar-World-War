@@ -25,12 +25,6 @@ void ChangeOwner(Pemain *P,Bangunan b,Pemain *NewOwner, TabBangunan tab){
 
 boolean haveBuildingB(Pemain P,Bangunan a, TabBangunan tab){
  	IdxTypeArray i = SearchIdxBangunan(tab,a);
- 	printf("%s: ", "Index Bangunan");
- 	printf("%d\n", i);
- 	if (SearchList(P.b,i) != NULL){
- 		printf("%s\n", "TESTING");//coba push
- 		printf("Nilai hasil search :%d\n", InfoL(SearchList(P.b,i)));
- 	}
     return (SearchList(P.b,i) != NULL);
 }
 

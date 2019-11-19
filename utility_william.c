@@ -136,14 +136,10 @@ void SerangB(IdxTypeArray i, IdxTypeArray j, int n, Pemain * P1, Pemain * P2, Li
 			printf("%s\n", "Bangunan menjadi milikmu");
 		} else {
 			if (Pertahanan(ElmtArray((*tab),j))) {
-				printlnInt(n);
 				x = (3/4.0) * n;
-				printlnInt(x);
 				Pasukan(ElmtArray((*tab),j)) -= x;
-				printlnInt(Pasukan(ElmtArray((*tab),j)));
 			} else {
 				Pasukan(ElmtArray((*tab),j)) = Pasukan(ElmtArray((*tab),j)) - n;
-				printlnInt(Pasukan(ElmtArray((*tab),j)));
 			}
 			Pasukan(ElmtArray((*tab),i)) -= n;
 			printf("%s\n", "Bangunan gagal direbut");
@@ -226,7 +222,6 @@ void SemuaBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int
 	int count = 0;
 	for (IdxTypeArray i = 1; i <= NbElmt(tab); i++){
 		if (i != j && IsConnected(g, j , i) && !haveBuildingB(p, ElmtArray(tab,i), tab)){
-			printf("%d\n", i); printf("%s\n", "Tes1");
 			b[count] = i;
 			count++;
 		}
@@ -239,7 +234,6 @@ int * getSemuaBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g,
 	int count = 0;
 	for (IdxTypeArray i = 1; i <= NbElmt(tab); i++){
 		if (i != j && IsConnected(g, j , i) && !haveBuildingB(p, ElmtArray(tab,i), tab)){
-			printf("%d\n", i); printf("%s\n", "Tes2");
 			a[count] = i;
 			count++;
 		}
@@ -253,7 +247,6 @@ void SemuaBangunanMove(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int *
 	int count = 0;
 	for (IdxTypeArray i  = 1; i<= NbElmt(tab); i++){
 		if (i != j && IsConnected(g,j,i) && haveBuildingB(p, ElmtArray(tab, i), tab)){
-			printf("%d\n", i);
 			b[count] = i;
 			count++;
 		}
@@ -488,7 +481,6 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 	if (!IsSudahSerang(ElmtArray((*tab),a))) {
 		int n;
 		SemuaBangunanAttack((*tab), (*p1), a,g, &n);
-		printf("%s\n", "Pembagi");
 		attackArr = getSemuaBangunanAttack((*tab), (*p1), a,g, n);
 		if (n > 0){
 			printf("%s\n", "Daftar bangunan yang dapat diserang:");
@@ -537,7 +529,6 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g){
 	int n;
 	SemuaBangunanMove((*tab), (*p1), a,g, &n);
 	moveArr = getSemuaBangunanMove((*tab), (*p1), a,g, n);
-	printlnInt(n);
 	if (n > 0){
 		printf("%s\n", "Daftar Bangunan terdekat");
 		for (int z = 0; z < n; z++){
@@ -549,7 +540,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g){
 		s = BacaInputUser();
 		j = pengubahAngka();
 
-		printf("%s\n", "Jumlah pasukan: ");
+		printf("%s", "Jumlah pasukan: ");
 		s = BacaInputUser();
 		k = pengubahAngka();
 
