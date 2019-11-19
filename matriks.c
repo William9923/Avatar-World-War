@@ -16,18 +16,19 @@ void MakePeta (int NB, int NK, PETA * P)
 	NKolEff(*P) = NK;
 }
 
-void MakePetaJadi(PETA *P, TabBangunan B)
+void MakePetaJadi(PETA *P, TabBangunan T)
 /* Mengisi PETA dengan char */
 /* I.S. PETA terdefinisi, bisa kosong */
 /* F.S PETA terisi */
 {
-	for (i=IdxMinArray(T);i<=NeffArray(T);i++)
+	int i;
+	for (i=GetFirstIdx(T);i<=GetLastIdx(T);i++)
 	{
-			Bangunan A = ElmtArray(T,i);
-			Point B = Letak(A);
-			int X = Absis(B);
-			int Y = Ordinat(B);
-			ElmtMatriks(*P,X,Y) = Type(A);
+		Bangunan A = ElmtArray(T,i);
+		Point B = Letak(A);
+		int X = Absis(B);
+		int Y = Ordinat(B);
+		ElmtMatriks(*P,X,Y) = Type(A);
 	}
 }
 

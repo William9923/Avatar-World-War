@@ -26,7 +26,7 @@ int main() {
     CetakBangunanDimiliki(B);
 
     printf("Tampilan Peta\n");
-    CetakPeta(P);
+    CetakPeta(P,P1,P2,B);
 
 
     /*
