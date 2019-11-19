@@ -81,7 +81,7 @@ int main() {
 	//KAMUS
 	Pemain P1,P2,Pnow;
 	StackUndo SU;
-    int PPeta,LPeta;
+    PETA P;
     TabBangunan AllBangunan;
     Graph connectivity;
 	List Netral;
@@ -94,7 +94,7 @@ int main() {
 	//Baca Konfigurasi Permainan
 	printf("Reading Configuration File...\n");
     CreateEmptyList(&Netral);
-    readkonfig(&PPeta,&LPeta,&AllBangunan,&connectivity,&P1,&P2,&Netral);
+    readkonfig(&P,&AllBangunan,&connectivity,&P1,&P2,&Netral);
     //aDD LIST b KE SI pEMAIN 1
 	printf("Game Ready...\n");
 	printf("Press Any Key To Continue..\n");

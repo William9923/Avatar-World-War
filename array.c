@@ -87,9 +87,9 @@ IdxTypeArray SearchIdxBangunan (TabBangunan T, ElTypeArray X)
 	i = IdxMinArray;
 	while ((NeffArray(T)!=0) && (i<=NeffArray(T)) && (Absis(Letak(ElmtArray(T,i))) != Absis(Letak(X))) && (Ordinat(Letak(ElmtArray(T,i))) != Ordinat(Letak(X)))) 
 	{
-		i += 1;
+ 		i += 1;
 	}
-	if ((Absis(Letak(ElmtArray(T,i))) != Absis(Letak(X))) && (Ordinat(Letak(ElmtArray(T,i))) != Ordinat(Letak(X))))
+	if (EQBangunan(X,ElmtArray(T,i)))
 		{return i;}
 	else 
 		{return IdxUndefArray;}
