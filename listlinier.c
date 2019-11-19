@@ -377,5 +377,17 @@ void KonkatDoang (List L1, List L2, List * L3){
 	}
 }
 
+void CopyList(List L1, List * L2){
+	address Last;
+	CreateEmptyList(L2);
+	if (!IsEmptyList(L1)){
+		Last = FirstL(L1);
+		while(Last != Kosong){
+			InsertLastList(L2, Last);
+			Last = NextL(Last);
+		}
+	}
+}
+
 
 

@@ -182,7 +182,3 @@ int main() {
 		}
 	}
 }
-//Revisi:
-//Perbaiki StackUndo
-//Penambahan MAP
-//Pengubahan ADT Pemain

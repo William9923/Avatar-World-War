@@ -110,4 +110,6 @@ void CetakBangunanDimiliki (TabBangunan T);
 
 void CetakBangunanIndeks(TabBangunan tab, IdxTypeArray i);
 
+void CopyArray(TabBangunan tab1, TabBangunan * tab2);
+
 #endif
