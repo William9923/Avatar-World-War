@@ -103,9 +103,12 @@ int main() {
 	boolean stop = false;
     char *s;
 	CreateEmptyStackUndo(&SU);
+
+	P1.nomor = 1;
+	P2.nomor = 2;
+
 	while(!stop){
 		//Validasi Command
-		
 		//Print Map
 		PemainNow(P1,P2,&Pnow,swapTurn,turn);
 		CetakPeta(P,P1,P2,AllBangunan);

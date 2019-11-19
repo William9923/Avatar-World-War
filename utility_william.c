@@ -89,12 +89,12 @@ boolean IsAbleSerang(Bangunan bangunanPe, Bangunan bangunanDe, int n){
 	// cek keterhubungan
 	if (IsSudahSerang(bangunanPe)){
 		// cek kondisi apakah sudah pernah menyerang atau belum
-		printf("%s\n", "Pasukan lelah!. Bangunan ini telah menyerang di turn yang sama");
+		printf("%s\n\n", "Pasukan lelah!. Bangunan ini telah menyerang di turn yang sama");
 		return false;
 	} 
 	if (Pasukan(bangunanPe) < n){
 		// cek apakah jumlah pasukan yang diinput valid atau tidak
-		printf("%s\n", "Jumlah pasukan tidak mencukupi!");
+		printf("%s\n\n", "Jumlah pasukan tidak mencukupi!");
 		return false;
 	}
 	return true;
@@ -502,7 +502,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 			printf("%s\n", "Tidak ada bangunan yang dapat diserang.");	
 		}
 	} else {
-		printf("%s\n", "Bangunan sudah menyerang di turn ini!");
+		printf("%s\n\n", "Bangunan sudah menyerang di turn ini!");
 	}
 }
 
@@ -518,8 +518,8 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g){
 	printf("%s", "Pilih Bangunan: ");
 	s = BacaInputUser();
 	c = pengubahAngka();
+	
 	address last;
-
 	last = FirstL((*p1).b);
 	for (int i = 1; i < c; i++){
 		last = NextL(last);
@@ -536,18 +536,50 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g){
 			CetakBangunanIndeks((*tab),moveArr[z]);
 			endline;
 		}
+
 		printf("%s", "Bangunan yang akan menerima pasukan baru: ");
 		s = BacaInputUser();
 		j = pengubahAngka();
 
-		printf("%s", "Jumlah pasukan: ");
-		s = BacaInputUser();
-		k = pengubahAngka();
+		if (j <= n) {
+			printf("%s", "Jumlah pasukan: ");
+			s = BacaInputUser();
+			k = pengubahAngka();
 
-		MoveB(a,moveArr[j - 1], k, (*p1),tab);
+			MoveB(a,moveArr[j - 1], k, (*p1),tab);		
+		} else {
+			do {
+				printf("%s\n", "Urutan Bangunan tidak valid");
+				printf("%s\n", "Silahkan diulangi");
+				printf("%s", "Bangunan yang akan menerima pasukan baru: ");
+				s = BacaInputUser();
+				j = pengubahAngka();
+			} while();
+		}
 	} else {
-		printf("%s\n", "Tidak ada bangunan yang bisa menampung pasukan!");
+		printf("%s\n\n", "Tidak ada bangunan yang bisa menampung pasukan!");
 	}
-	
-
 }
+
+// void ProsedurLevelUp (TabBangunan * tab, Pemain p1) {
+// 	char * s;
+// 	int * levelArr;
+// 	IdxTypeArray a,b;
+// 	int c,j;
+
+// 	printf("%s\n", "Daftar Bangunan :");
+// 	PrintInfoLBangunan((*tab), (*p1));
+
+// 	printf("%s", "Bangunan yang akan di level up: ");
+// 	s = BacaInputUser();
+// 	c = pengubahAngka();
+
+// 	address last;
+// 	for (int i = 1; i < c; i++){
+// 		last = NextL(last);
+// 	}
+// 	a = InfoL(last);
+// 	int n;
+
+
+// }
