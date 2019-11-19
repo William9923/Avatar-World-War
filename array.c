@@ -85,14 +85,15 @@ IdxTypeArray SearchIdxBangunan (TabBangunan T, ElTypeArray X)
 	IdxTypeArray i;
 	// ALGORITMA 
 	i = IdxMinArray;
-	while ((NeffArray(T)!=0) && (i<=NeffArray(T)) && (Absis(Letak(ElmtArray(T,i))) != Absis(Letak(X))) && (Ordinat(Letak(ElmtArray(T,i))) != Ordinat(Letak(X)))) 
-	{
- 		i += 1;
+	while (i<=NeffArray(T)){
+		if(EQBangunan(X,ElmtArray(T,i))){
+			return i;
+		}
+		else{
+			i++;
+		}
 	}
-	if (EQBangunan(X,ElmtArray(T,i)))
-		{return i;}
-	else 
-		{return IdxUndefArray;}
+	return IdxUndefArray;
 }
 
 boolean SearchBangunan (TabBangunan T, ElTypeArray X)

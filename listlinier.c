@@ -88,7 +88,7 @@ address SearchList (List L, infotypeList X) {
 			}
 		}
 		if (Found) {
-			printf("%s\n", "Harusntya uda bener");
+			printf("%s\n", "Harusnya uda bener");
 			return P;
 		} else {
 			return Kosong;
