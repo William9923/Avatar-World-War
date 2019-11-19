@@ -252,3 +252,7 @@ boolean EQBangunan(Bangunan b1, Bangunan b2){
 	}
 	return false;
 }
+
+
+
+

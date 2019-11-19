@@ -33,10 +33,7 @@
 #include<math.h>
 #include"boolean.h"
 
-void clrscr(){
-	system("clear");
-	// ini gw ganti dikit ya
-}
+
 
 void PemainNow(Pemain P1,Pemain P2,Pemain *P,boolean swapTurn,int turn){
 	if(swapTurn){
