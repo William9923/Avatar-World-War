@@ -8,9 +8,10 @@
 #include "listlinier.c"
 #include "bangunan.c"
 #include "point.c"
+#include "matriks.c"
 
 int main() {
-    int L, P;
+    PETA P;
     TabBangunan B;
     Graph G;
     infotypeGraph X;
@@ -20,21 +21,25 @@ int main() {
     Pemain P2;
     List Netral;
 
-    readkonfig(&P,&L,&B,&G,&P1,&P2,&Netral);
+    readkonfig(&P,&B,&G,&P1,&P2,&Netral);
 
-    printf("Panjang Peta: %d\n", P);
-    printf("Lebar Peta: %d\n", L);
     CetakBangunanDimiliki(B);
+
+    printf("Tampilan Peta\n");
+    CetakPeta(P);
+
+
+    /*
 
     
     for (i=1; i <= 17; i++) {
         for (j=1; j <= 17; j++) {
-            X.noBangunan=i;
-            Y.noBangunan=j;
+            X=i;
+            Y=j;
             if (IsConnected(G, X,Y)){
-                printf("bangunan %d dan bangunan %d %s\n", X.noBangunan, Y.noBangunan,"Connected");
+                printf("bangunan %d dan bangunan %d %s\n", X, Y,"Connected");
             } else {
-                printf("bangunan %d dan bangunan %d %s\n",X.noBangunan,Y.noBangunan, "Not connected");
+                printf("bangunan %d dan bangunan %d %s\n",X,Y, "Not connected");
             }
         }
     }
@@ -49,4 +54,5 @@ int main() {
     printf("bangunan netral: ");
     PrintInfoList(Netral);
     printf("\n");
+    */
 }
