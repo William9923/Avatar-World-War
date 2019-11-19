@@ -125,6 +125,7 @@ int main() {
 			if (IsEQPemain(Pnow, P1)) {
 				ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity);
 			} else {
+				// pemain p2
 				ProsedurAttack(&AllBangunan, &P2, &P1,&Netral ,connectivity);
 			}
 		}
@@ -132,7 +133,12 @@ int main() {
 
 		}
 		else if(IsMove(s)){
-
+			if (IsEQPemain(Pnow, P1)){
+				ProsedurMove(&AllBangunan, &P1, connectivity);
+			} else {
+				// pemain p2
+				ProsedurMove(&AllBangunan, &P2, connectivity);
+			}
 		}
 		else if(IsSkill(s)){
 
@@ -143,11 +149,9 @@ int main() {
 		else if(IsEndTurn(s)){
 			if (turn > 1){
 				if (IsEQPemain(Pnow, P2)){
-					printf("%s\n", "debugging end turn");
 					NextTurnLBangunan(P1.b, &AllBangunan);
 				} else {
 					// P1 sekarang
-					printf("%s\n", "debugging end turn");
 					NextTurnLBangunan(P2.b, &AllBangunan);
 				}
 			}

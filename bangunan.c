@@ -211,7 +211,6 @@ void NextTurnBangunan(Bangunan * bangunan){
 	I.S. : Kondisi bangunan sebelum next turn
 	F.S. : Kondisi bangunan setelah next turn
 */
-	printf("%s\n", "Nyampe sini 2");
 	// Pertama tambah pasukan
 	PlusPasukan(bangunan);
 
