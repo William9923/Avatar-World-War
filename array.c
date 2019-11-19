@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include "boolean.h"
 #include "bangunan.h"
@@ -170,6 +171,5 @@ void CetakBangunanDimiliki (TabBangunan T)
 
 void CetakBangunanIndeks(TabBangunan tab, IdxTypeArray i){
 	PrintInfoBangunan(ElmtArray(tab,i));
-	printf(" ");
 }
 

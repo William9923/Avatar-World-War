@@ -25,12 +25,13 @@
 #include"pemain.c"
 #include<stdio.h>
 #include<stdlib.h>
-#include"boolean.h"
 #include<string.h>
 #include"stackundo.c"
 #include"utility_william.c"
 #include"graph_.h"
 #include"graph_.c"
+#include<math.h>
+#include"boolean.h"
 
 void clrscr(){
 	system("clear");
@@ -103,8 +104,6 @@ int main() {
 
 
 	while(!stop){
-		PrintInfoLBangunanSemua(AllBangunan);
-
 		//Validasi Command
         CreateEmptyStackUndo(&SU);
 		//Print Map
@@ -117,6 +116,7 @@ int main() {
 		PrintInfoLBangunan(AllBangunan,Pnow);
 		//printskill
 		printf("ENTER COMMAND: ");
+		
 		s = BacaInputUser();
 		printf("\n");
 		if(IsAttack(s)){

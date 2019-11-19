@@ -183,9 +183,9 @@ void PrintInfoLBangunan(TabBangunan tab, Pemain p){
 		count++;
 		printf("%d. ", count);
 		CetakBangunanIndeks(tab, InfoL(last));
-		endline;
-		last = NextL(last);
+		last =  NextL(last);
 	}
+	endline;
 }
 
 void PrintInfoLBangunanSemua(TabBangunan tab){
@@ -491,8 +491,8 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 			for (int z = 0; z < n; z++){
 				printf("%d. ", z+1);
 				CetakBangunanIndeks((*tab),attackArr[z]);
-				endline;
 			}
+			endline;
 			printf("%s", "Bangunan yang diserang: ");
 			s = BacaInputUser();
 			j = pengubahAngka();
