@@ -4,9 +4,11 @@
 #define InfoTop(S) (S).T[(S).TOP]
 #define StateP1(Q) (Q).X
 #define StateP2(Q) (Q).Y 
+#define StateNetral(Q) (Q).Netral
 
 typedef struct{
     Pemain X,Y;/*Pemain 1 dan Pemain 2*/
+    List Netral;
 } states;
 
 typedef struct {
@@ -16,7 +18,7 @@ typedef struct {
 
 boolean IsEmptyStack(StackUndo S);
 void CreateEmptyStackUndo(StackUndo *S);
-void SaveState(StackUndo *S,Pemain P1,Pemain P2);
+void SaveState(StackUndo *S,Pemain P1,Pemain P2,List Netral);
 void Push(StackUndo *S,states s);
 void Pop(StackUndo *S,states *q);
 void Undo(states q,Pemain *P1,Pemain *P2);

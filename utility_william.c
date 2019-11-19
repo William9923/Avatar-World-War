@@ -185,6 +185,7 @@ void PrintInfoLBangunan(TabBangunan tab, Pemain p){
 		printf("%d. ", count);
 		CetakBangunanIndeks(tab, InfoL(last));
 		endline;
+		last = NextL(last);
 	}
 }
 

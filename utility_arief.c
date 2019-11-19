@@ -86,16 +86,13 @@ int main() {
     CreateEmptyList(&Netral);
     readkonfig(&PPeta,&LPeta,&AllBangunan,&connectivity,&P1,&P2,&Netral);
     //aDD LIST b KE SI pEMAIN 1
-	
 	printf("Game Ready...\n");
 	printf("Press Any Key To Continue..\n");
-	
 	clrscr();
 	boolean stop = false;
     char *s;
 
     //PrintBangunanListB(Netral);
-
 
 	while(!stop){
 		//Validasi Command
@@ -103,14 +100,15 @@ int main() {
 		//Print Map
 		PemainNow(P1,P2,&Pnow,swapTurn,turn);
 		//Cetak Peta
-
+		
 		//Baca Command taruh disini...
 		//...
 		printf("Player %d\n",Pnow.nomor);
 		PrintInfoLBangunan(AllBangunan,Pnow);
 		//printskill
-		printf("ENTER COMMAND:");
+		printf("ENTER COMMAND: ");
 		s = BacaInputUser();
+		printf("\n");
 		if(IsAttack(s)){
 
 		}
