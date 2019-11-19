@@ -3,6 +3,7 @@
 #include "bangunan.h"
 #include "matriks.h"
 #include"pcolor.c"
+#include"pemain.h"
 
 /* ********** DEFINISI PROTOTIPE PRIMITIF ********** */
 /* *** Konstruktor membentuk PETA *** */
@@ -59,7 +60,7 @@ IdxTypeMatriks GetLastIdxKol (PETA P)
 
 // PAKE MODUL WARNA 
 /* ********** BACA/TULIS ********** */
-void CetakPeta (PETA P,Pemain P1,Pemain P2)
+void CetakPeta (PETA P,Pemain P1,Pemain P2,TabBangunan Tab)
 /* I.S. P terdefinisi */
 /* F.S. Elemen P dicetak ke layar per baris per kolom */
 /* Proses: Mencetak nilai setiap elemen P ke layar dengan traversal per baris dan per kolom */
@@ -72,7 +73,15 @@ void CetakPeta (PETA P,Pemain P1,Pemain P2)
 				printf("*");
 			} else {
 				if(ElmtMatriks(P,i,j) == 'C' || ElmtMatriks(P,i,j) == 'V' || ElmtMatriks(P,i,j) == 'T' || ElmtMatriks(P,i,j) == 'F') {
-					printf("%c", ElmtMatriks(P,i,j));
+					if(haveBuildingKoordinat(P1,i,j,Tab)){
+						print_red(ElmtMatriks(P,i,j));
+					}
+					else if(haveBuildingKoordinat(P2,i,j,Tab)){
+						print_blue(ElmtMatriks(P,i,j));
+					}
+					else{
+						printf("%c", ElmtMatriks(P,i,j));
+					}
 				} else {
 					printf(" ");
 				}

@@ -8,7 +8,7 @@ boolean haveBuilding(Pemain P){
     return !IsEmptyList(P.b);  
 }
 
-void CreateNewPlayer(Pemain *P,char Q,int nomor){
+void CreateNewPlayer(Pemain *P,int nomor){
 /* Fungsinya untuk membuat player baru di game, dengan ketentuan:
 Warna(*P) = R atau B,ListBangunan kosong */
     CreateEmptyList(&((*P).b)); 
@@ -32,6 +32,24 @@ boolean haveBuildingB(Pemain P,Bangunan a, TabBangunan tab){
  		printf("Nilai hasil search :%d\n", InfoL(SearchList(P.b,i)));
  	}
     return (SearchList(P.b,i) != NULL);
+}
+
+boolean haveBuildingKoordinat(Pemain P,int i,int j,TabBangunan Tab){
+	List X = P.b;
+	address last = FirstL(X);
+	Bangunan b;
+	while(last!=NULL){
+		b = ElmtArray(Tab,InfoL(last));
+		Point T;
+		T = MakePoint(i,j);
+		if(EQ(T,b.letak)){
+			return true;
+		}
+		else{
+			last=NextL(last);
+		}
+	}
+	return false;
 }
 
 /*

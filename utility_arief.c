@@ -71,7 +71,7 @@ void ChangeTurnOrder(boolean *swapTurn){
 boolean IsEQPemain(Pemain P1, Pemain P2){
 	boolean same = true;
 
-	if ((P1.nomor != P2.nomor) || (P1.color != P2.color)){
+	if ((P1.nomor != P2.nomor)){
 		same = false;
 	}
 	return same;
@@ -88,9 +88,9 @@ int main() {
 	int turn=1,nomor=1;
 	boolean swapTurn = false;
 	char CMD[9];
-	CreateNewPlayer(&P1,'r',nomor);
+	CreateNewPlayer(&P1,nomor);
 	nomor++;
-	CreateNewPlayer(&P2,'b',nomor);
+	CreateNewPlayer(&P2,nomor);
 	//Baca Konfigurasi Permainan
 	printf("Reading Configuration File...\n");
     CreateEmptyList(&Netral);
@@ -108,7 +108,7 @@ int main() {
         CreateEmptyStackUndo(&SU);
 		//Print Map
 		PemainNow(P1,P2,&Pnow,swapTurn,turn);
-		//Cetak Peta
+		CetakPeta(P,P1,P2,AllBangunan);
 		
 		//Baca Command taruh disini...
 		//...

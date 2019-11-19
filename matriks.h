@@ -2,7 +2,7 @@
 #define MATRIKS_H
 
 #include "boolean.h"
-
+#include"pemain.h"
 /* Ukuran minimum dan maksimum baris dan kolom */
 #define BrsMin 1
 #define BrsMax 30
@@ -48,7 +48,7 @@ IdxTypeMatriks GetLastIdxKol (PETA P);
 
 // PAKE MODUL WARNA 
 /* ********** BACA/TULIS ********** */
-void CetakPeta (PETA P);
+void CetakPeta (PETA P,Pemain P1,Pemain P2,TabBangunan Tab);
 /* I.S. P terdefinisi */
 /* F.S. Elemen P dicetak ke layar per baris per kolom */
 /* Proses: Mencetak nilai setiap elemen P ke layar dengan traversal per baris dan per kolom */
