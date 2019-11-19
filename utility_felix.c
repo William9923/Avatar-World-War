@@ -109,3 +109,13 @@ void ProsedurLevelUp (TabBangunan *tab, Pemain p1) {
         }
     }
 }
+
+void endgame(Pemain P1, Pemain P2, boolean *selesai) {
+    if (IsEmptyList(P1.b)) {
+        printf("P2 menang");
+        *selesai = true;
+    } else if (IsEmptyList(P2.b)) {
+        printf("P1 menang");
+        *selesai = true;
+    }
+}

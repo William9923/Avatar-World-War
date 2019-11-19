@@ -431,6 +431,27 @@ boolean IsSave (char s[]){
 	return true;
 }
 
+boolean IsExit(char s[]){
+	char exit[4];
+	exit[0] = 'E';
+	exit[1] = 'X';
+	exit[2] = 'I';
+	exit[3] = 'T';
+
+	int sizeof_exit = sizeof(exit) / sizeof(char);
+	int sizeof_s;
+	for(sizeof_s = 0; s[sizeof_s] != '\0'; ++sizeof_s);
+	if (sizeof_s != sizeof_exit) return false;
+	else {
+		for (int i = 0; i < sizeof_exit; i++){
+			if (s[i] != exit[i]){
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
 
 void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,Graph g){
 	char * s;
