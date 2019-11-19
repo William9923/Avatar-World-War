@@ -479,7 +479,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab);
 				} else {
 					do {
-						printf("%s\n", "Urutan bangunan salah. Silahkan ulangi!");
+						printf("\n%s\n", "Urutan bangunan salah. Silahkan ulangi!");
 						printf("%s", "Bangunan yang diserang: ");
 						s = BacaInputUser();
 						j = pengubahAngka();
@@ -489,6 +489,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					k = pengubahAngka();
 
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab);
+					clrscr();
 				}
 			} else {
 				printf("%s\n", "Tidak ada bangunan yang dapat diserang.");
@@ -501,7 +502,10 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 	} else {
 		do {	
 			printf("\n%s\n", "Urutan Bangunan tidak valid");
-			printf("%s\n", "Silahkan diulangi");
+			printf("%s\n\n", "Silahkan diulangi");
+			printf("%s\n", "Daftar Bangunan :");
+			PrintInfoLBangunan((*tab), (*p1));
+
 			printf("%s", "Bangunan yang digunakan untuk menyerang: ");
 			s = BacaInputUser();
 			c = pengubahAngka();			
@@ -536,7 +540,14 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab);
 				} else {
 					do {
-						printf("%s\n", "Urutan bangunan salah. Silahkan ulangi!");
+						printf("\n%s\n", "Urutan bangunan salah. Silahkan ulangi!");
+						printf("%s\n", "Daftar bangunan yang dapat diserang:");
+						
+						for (int z = 0; z < n; z++){
+							printf("%d. ", z+1);
+							CetakBangunanIndeks((*tab),attackArr[z]);
+						}
+
 						printf("%s", "Bangunan yang diserang: ");
 						s = BacaInputUser();
 						j = pengubahAngka();
@@ -546,6 +557,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					k = pengubahAngka();
 
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab);
+					clrscr();
 				}
 			} else {
 				printf("%s\n", "Tidak ada bangunan yang dapat diserang.");
@@ -611,6 +623,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g){
 					s = BacaInputUser();
 					k = pengubahAngka();
 					MoveB(a,moveArr[j - 1], k, (*p1),tab);	
+					clrscr();
 			}
 		} else {
 			printf("%s\n\n", "Tidak ada bangunan yang bisa menampung pasukan!");
@@ -662,6 +675,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g){
 					s = BacaInputUser();
 					k = pengubahAngka();
 					MoveB(a,moveArr[j - 1], k, (*p1),tab);	
+					clrscr();
 			}
 		} else {
 			printf("%s\n\n", "Tidak ada bangunan yang bisa menampung pasukan!");
