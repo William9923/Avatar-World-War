@@ -253,6 +253,17 @@ boolean EQBangunan(Bangunan b1, Bangunan b2){
 	return false;
 }
 
+void CopyBangunan(Bangunan B,Bangunan *T){
+	(*T).type=B.type; // T : Tower, C : Castle, F : Fort, V : Village
+    (*T).level=B.level; // 1 - 4
+ 	(*T).A=B.A; // nilai pertambahan pasukan
+ 	(*T).M=B.M; // maksimum penambahan pasukan
+	(*T).P=B.P; // true -> ada pertahanan, dan sebaliknya
+	(*T).pasukan=B.pasukan; // pasukan awal
+	(*T).letak=B.letak;
+	(*T).serang=B.serang;
+}
+
 
 
 

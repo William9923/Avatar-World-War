@@ -92,13 +92,13 @@ int main() {
 	printf("Reading Configuration File...\n");
     CreateEmptyList(&Netral);
     readkonfig(&P,&AllBangunan,&connectivity,&P1,&P2,&Netral);
-	
 	printf("Game Ready...\n");
 	printf("Press Any Key To Continue..\n");
 	clrscr();
 	boolean stop = false;
     char *s;
 	CreateEmptyStackUndo(&SU);
+	SaveState(&SU,P1,P2,Netral,AllBangunan);
 	P1.nomor = 1;
 	P2.nomor = 2;
 

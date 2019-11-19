@@ -46,6 +46,10 @@ boolean haveBuildingKoordinat(Pemain P,int i,int j,TabBangunan Tab){
 	return false;
 }
 
+void CopyPemain(Pemain P,Pemain *Destination){
+	CopyList(P.b,&((*Destination).b));
+}
+
 /*
 TODO :
 1. Ganti semua fungsi jadi fungsi yang ada di listlinier.c (sebenarnya ilangin aja si B nya dari fungsi wkwk)

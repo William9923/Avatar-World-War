@@ -179,7 +179,8 @@ void CopyArray(TabBangunan tab1, TabBangunan * tab2){
 	CreateEmptyArray(tab2, x);
 
 	for(int i = GetFirstIdx(tab1); i <= x; i++){
-		ElmtArray((*tab2), i) = ElmtArray(tab1,i);
+		CopyBangunan(ElmtArray(tab1,i),&(ElmtArray((*tab2), i)));
 	}
+	NeffArray(*tab2) = NeffArray(tab1);
 }
 

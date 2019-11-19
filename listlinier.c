@@ -383,7 +383,7 @@ void CopyList(List L1, List * L2){
 	if (!IsEmptyList(L1)){
 		Last = FirstL(L1);
 		while(Last != Kosong){
-			InsertLastList(L2, Last);
+			InsertLastList(L2,AlokasiList(InfoL(Last)));
 			Last = NextL(Last);
 		}
 	}

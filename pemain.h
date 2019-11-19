@@ -36,6 +36,8 @@ boolean haveBuildingB(Pemain P,Bangunan a, TabBangunan tab);
 
 
 boolean haveBuildingKoordinat(Pemain P,int i,int j,TabBangunan Tab);
+
+void CopyPemain(Pemain P,Pemain *Destination);
 #endif
 
 
