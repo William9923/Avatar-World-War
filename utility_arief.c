@@ -67,6 +67,15 @@ void ChangeTurnOrder(boolean *swapTurn){
 	}
 }
 
+boolean IsEQPemain(Pemain P1, Pemain P2){
+	boolean same = true;
+
+	if ((P1.nomor != P2.nomor) || (P1.color != P2.color)){
+		same = false;
+	}
+	return same;
+}
+
 int main() {
 	//KAMUS
 	Pemain P1,P2,Pnow;
@@ -92,9 +101,10 @@ int main() {
 	boolean stop = false;
     char *s;
 
-    //PrintBangunanListB(Netral);
 
 	while(!stop){
+		PrintInfoLBangunanSemua(AllBangunan);
+
 		//Validasi Command
         CreateEmptyStackUndo(&SU);
 		//Print Map
@@ -104,19 +114,28 @@ int main() {
 		//Baca Command taruh disini...
 		//...
 		printf("Player %d\n",Pnow.nomor);
-		PrintInfoLBangunan(AllBangunan,Pnow);
 		//printskill
 		printf("ENTER COMMAND: ");
 		s = BacaInputUser();
 		printf("\n");
 		if(IsAttack(s)){
-
+			if (IsEQPemain(Pnow, P1)) {
+				ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity);
+			} else {
+				// pemain p2
+				ProsedurAttack(&AllBangunan, &P2, &P1,&Netral ,connectivity);
+			}
 		}
 		else if(IsLevelUp(s)){
 
 		}
 		else if(IsMove(s)){
-
+			if (IsEQPemain(Pnow, P1)){
+				ProsedurMove(&AllBangunan, &P1, connectivity);
+			} else {
+				// pemain p2
+				ProsedurMove(&AllBangunan, &P2, connectivity);
+			}
 		}
 		else if(IsSkill(s)){
 
@@ -125,6 +144,14 @@ int main() {
 
 		}
 		else if(IsEndTurn(s)){
+			if (turn > 1){
+				if (IsEQPemain(Pnow, P2)){
+					NextTurnLBangunan(P1.b, &AllBangunan);
+				} else {
+					// P1 sekarang
+					NextTurnLBangunan(P2.b, &AllBangunan);
+				}
+			}
 			turn++;
 			system("clear");
 		}

@@ -47,9 +47,6 @@ void MakeBangunan(Bangunan * bangunan, char type, Point letak) {
 		Pertahanan(*bangunan) = false;
 	}
 	Serang(*bangunan) = false;
-	// else {
-	// 	Type(*(bangunan)) = CharUndef
-	// }
 }
 
 /* Fungsi - fungsi Primitif */
@@ -183,8 +180,8 @@ void NaikLevel(Bangunan * bangunan) {
 boolean IsPindahPemilik(Bangunan bBertahan, int jumlahPenyerang) {
 	float jumlahPenyerangDesimal;
 	if (Pertahanan(bBertahan)) {
-		jumlahPenyerangDesimal = (jumlahPenyerang * 3) / 4;
-		return (Pasukan(bBertahan) < jumlahPenyerangDesimal);
+		jumlahPenyerangDesimal = (jumlahPenyerang * 3) / 4.0;
+		return (Pasukan(bBertahan) <= jumlahPenyerangDesimal);
 	} else {
 		return (Pasukan(bBertahan) <= jumlahPenyerang);
 	}
@@ -214,7 +211,6 @@ void NextTurnBangunan(Bangunan * bangunan){
 	I.S. : Kondisi bangunan sebelum next turn
 	F.S. : Kondisi bangunan setelah next turn
 */
-
 	// Pertama tambah pasukan
 	PlusPasukan(bangunan);
 
