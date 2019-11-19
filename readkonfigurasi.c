@@ -4,8 +4,10 @@
 #include "graph_.h"
 #include "pemain.h"
 #include "listlinier.h"
+#include "matriks.h"
 
-void readkonfig(int *PPeta, int *LPeta, TabBangunan *ArrayBangunan, Graph *G, Pemain *P1, Pemain *P2, List *Netral) {
+void readkonfig(PETA *P, TabBangunan *ArrayBangunan, Graph *G, Pemain *P1, Pemain *P2, List *Netral) {
+    int PPeta, LPeta;
     int i,n;
     infotypeGraph bmatriks,kmatriks;
     int NBangunan;
@@ -16,13 +18,16 @@ void readkonfig(int *PPeta, int *LPeta, TabBangunan *ArrayBangunan, Graph *G, Pe
 
     /** menyimpan panjang peta (vertikal) ke dalam variabel PPeta **/
     STARTKATA();
-    *PPeta = (CKata.TabKata[1] - '0') * 10 + (CKata.TabKata[2] - '0');
+    PPeta = (CKata.TabKata[1] - '0') * 10 + (CKata.TabKata[2] - '0');
     //printf("%d\n", *PPeta);
 
     /** menyimpan lebar peta (horizontal) ke dalam variabel LPeta **/
     ADVKATA();
-    *LPeta = (CKata.TabKata[1] - '0') * 10 + (CKata.TabKata[2] - '0');
+    LPeta = (CKata.TabKata[1] - '0') * 10 + (CKata.TabKata[2] - '0');
     //printf("LPeta : %d\n", *LPeta);
+
+    /* membuat peta kosong seukuran PPeta x LPeta */
+    MakePeta(PPeta,LPeta, P);
 
     /** menyimpan banyaknya bangunan ke dalam variabel NBangunan **/
 
@@ -58,7 +63,10 @@ void readkonfig(int *PPeta, int *LPeta, TabBangunan *ArrayBangunan, Graph *G, Pe
         MakeBangunan(&bangunan, typebangunan, letakbangunan);
         AddBangunan(ArrayBangunan,bangunan);
     }
+    /* membuat peta jadi sesuai letak tiap bangunan */
+    MakePetaJadi(P, *ArrayBangunan);
     
+    /* membuat list kepemilikan bangunan tiap pemain dan bangunan netral */
     CreateEmptyList(&((*P1).b));
     CreateEmptyList(&((*P2).b));
     CreateEmptyList(Netral);
@@ -69,6 +77,7 @@ void readkonfig(int *PPeta, int *LPeta, TabBangunan *ArrayBangunan, Graph *G, Pe
         InsertLastList(Netral,AlokasiList(n));
     }
     
+    /* mengisi graf yang merepresentasikan keterhubungan antar bangunan */
     bmatriks  =1;
     kmatriks  =1;
     CreateGraph(bmatriks,G);
