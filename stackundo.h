@@ -19,10 +19,10 @@ typedef struct {
 
 boolean IsEmptyStack(StackUndo S);
 void CreateEmptyStackUndo(StackUndo *S);
-void SaveState(StackUndo *S,Pemain P1,Pemain P2,List Netral);
+void SaveState(StackUndo *S,Pemain P1,Pemain P2,List Netral,TabBangunan Bangunan);
 void Push(StackUndo *S,states s);
 void Pop(StackUndo *S,states *q);
-void Undo(states q,Pemain *P1,Pemain *P2);
+void LoadState(StackUndo *S,Pemain *P1,Pemain *P2,List *Netral,TabBangunan *Bangunan);
 
 
 
