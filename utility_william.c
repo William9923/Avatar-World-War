@@ -533,6 +533,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g){
 	int n;
 	SemuaBangunanMove((*tab), (*p1), a,g, &n);
 	moveArr = getSemuaBangunanMove((*tab), (*p1), a,g, n);
+	printlnInt(n);
 	if (n > 0){
 		printf("%s\n", "Daftar Bangunan terdekat");
 		for (int z = 0; z < n; z++){
