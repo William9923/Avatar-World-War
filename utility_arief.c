@@ -114,6 +114,7 @@ int main() {
 		//Baca Command taruh disini...
 		//...
 		printf("Player %d\n",Pnow.nomor);
+		PrintInfoLBangunan(AllBangunan,Pnow);
 		//printskill
 		printf("ENTER COMMAND: ");
 		s = BacaInputUser();
