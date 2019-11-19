@@ -103,28 +103,29 @@ int main() {
 	boolean stop = false;
     char *s;
 
-    //PrintBangunanListB(Netral);
 
 
 	while(!stop){
+		PrintInfoLBangunanSemua(AllBangunan);
+
 		//Validasi Command
         CreateEmptyStackUndo(&SU);
 		//Print Map
 		PemainNow(P1,P2,&Pnow,swapTurn,turn);
 		//Cetak Peta
 
+
 		//Baca Command taruh disini...
 		//...
 		printf("Player %d\n",Pnow.nomor);
-		PrintInfoLBangunan(AllBangunan,Pnow);
 		//printskill
 		printf("ENTER COMMAND:");
 		s = BacaInputUser();
 		if(IsAttack(s)){
 			if (IsEQPemain(Pnow, P1)) {
-				ProsedurAttack(&AllBangunan, &P1, &P2 ,connectivity);
+				ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity);
 			} else {
-				ProsedurAttack(&AllBangunan, &P2, &P1 ,connectivity);
+				ProsedurAttack(&AllBangunan, &P2, &P1,&Netral ,connectivity);
 			}
 		}
 		else if(IsLevelUp(s)){
@@ -140,6 +141,16 @@ int main() {
 
 		}
 		else if(IsEndTurn(s)){
+			if (turn > 1){
+				if (IsEQPemain(Pnow, P2)){
+					printf("%s\n", "debugging end turn");
+					NextTurnLBangunan(P1.b, &AllBangunan);
+				} else {
+					// P1 sekarang
+					printf("%s\n", "debugging end turn");
+					NextTurnLBangunan(P2.b, &AllBangunan);
+				}
+			}
 			turn++;
 			system("clear");
 		}

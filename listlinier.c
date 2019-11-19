@@ -360,5 +360,20 @@ void Konkat1List (List * L1, List * L2, List * L3) {
 
 }
 
+void KonkatDoang (List L1, List L2, List * L3){
+	address Last;
+	CreateEmptyList(L3);
+	if (IsEmptyList(L1)) {
+		FirstL(*L3) = FirstL(L2);
+	} else {
+		FirstL(*L3) = FirstL(L1);
+		Last = FirstL(*L3);
+		while (NextL(Last) != Kosong) {
+			Last = NextL(Last);
+		}
+		NextL(Last) = FirstL(L2);
+	}
+}
+
 
 

@@ -139,5 +139,6 @@ void Konkat1 (List *L1, List *L2, List *L3);
 /* menghasilkan L3 yang baru (dengan elemen list L1 dan L2) */
 /* dan L1 serta L2 menjadi list kosong.*/
 /* Tidak ada alokasi/dealokasi pada prosedur ini */
+void KonkatDoang (List L1, List L2, List * L3);
 
 #endif

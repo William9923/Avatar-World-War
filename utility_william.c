@@ -1,6 +1,6 @@
 // #include<stdio.h>
 // #include<stdlib.h>
-// #include<math.h>
+//#include<math.h>
 // #include"bangunan.h"
 // #include"point.h"
 // #include"stack.h"
@@ -90,10 +90,12 @@ boolean IsAbleSerang(Bangunan bangunanPe, Bangunan bangunanDe, int n){
 	// cek keterhubungan
 	if (IsSudahSerang(bangunanPe)){
 		// cek kondisi apakah sudah pernah menyerang atau belum
+		printf("%s\n", "Pasukan lelah!. Bangunan ini telah menyerang di turn yang sama");
 		return false;
 	} 
 	if (Pasukan(bangunanPe) < n){
 		// cek apakah jumlah pasukan yang diinput valid atau tidak
+		printf("%s\n", "Jumlah pasukan tidak mencukupi!");
 		return false;
 	}
 	return true;
@@ -107,7 +109,7 @@ boolean IsBangunanNetral(Bangunan b, Pemain p1, Pemain p2, TabBangunan tab){
 	else return false;
 }
 
-void SerangB(Bangunan * bangunanPe, Bangunan * bangunanDe, int n, Pemain * P1, Pemain * P2, TabBangunan tab){
+void SerangB(IdxTypeArray i, IdxTypeArray j, int n, Pemain * P1, Pemain * P2, List * Netral, TabBangunan * tab){
 	/*
 	I.S. 2 Bangunan Terdefinisi
 	F.S. bangunan 1 menyerang bangunan 2
@@ -115,35 +117,39 @@ void SerangB(Bangunan * bangunanPe, Bangunan * bangunanDe, int n, Pemain * P1, P
 	Inget, masukin bangunanPe ama bangunanDe nya tuh make pointer dari Elmt Array, sip
 	*/
 	int x;
-	if (IsAbleSerang((*bangunanPe), ((*bangunanDe)), n)){
-		if (IsPindahPemilik((*bangunanDe),n)){
-			if (Pertahanan(*bangunanDe)){
-				x = ceil((4/3) * Pasukan(*bangunanDe));
-				Pasukan(*bangunanDe) = n - x;
+	if (IsAbleSerang(ElmtArray((*tab),i), ElmtArray((*tab),j), n)){
+		if (IsPindahPemilik(ElmtArray((*tab),j),n)){
+			if (Pertahanan(ElmtArray((*tab),j))){
+				x = ceil((4.0/3) * Pasukan(ElmtArray((*tab),j)));
+				Pasukan(ElmtArray((*tab),j)) = n - x;
 			} else {
 				// tidak ada pertahanan
-				Pasukan(*bangunanDe) = n - Pasukan(*bangunanDe);
+				Pasukan(ElmtArray((*tab),j)) = n - Pasukan(ElmtArray((*tab),j));
 			}
-			Pasukan(*bangunanPe) -= n;
+			Pasukan(ElmtArray((*tab),i)) -= n;
 			// kalo dia bersifat netral
-			if (IsBangunanNetral((*bangunanDe), (*P1), (*P2), tab)){
-				IdxTypeArray i = SearchIdxBangunan(tab, (*bangunanDe));
-				InsVLastList(&((*P1).b),i);
+			if (IsBangunanNetral(ElmtArray((*tab),j), (*P1), (*P2), *tab)){
+				InsVLastList(&((*P1).b),j);
+				DelPList(Netral, j);
 			} else{
-				ChangeOwner((P1), (*bangunanDe) , P2,tab);
+				ChangeOwner((P1), ElmtArray((*tab),j) , P2,*tab);
 			} 
 			printf("%s\n", "Bangunan menjadi milikmu");
 		} else {
-			if (Pertahanan(*bangunanDe)){
-				x = floor((3/4) * n);
-				Pasukan(*bangunanDe) -= x;
+			if (Pertahanan(ElmtArray((*tab),j))) {
+				printlnInt(n);
+				x = (3/4.0) * n;
+				printlnInt(x);
+				Pasukan(ElmtArray((*tab),j)) -= x;
+				printlnInt(Pasukan(ElmtArray((*tab),j)));
 			} else {
-				Pasukan(*bangunanDe) = Pasukan(*bangunanDe) - n;
+				Pasukan(ElmtArray((*tab),j)) = Pasukan(ElmtArray((*tab),j)) - n;
+				printlnInt(Pasukan(ElmtArray((*tab),j)));
 			}
-			Pasukan(*bangunanPe) -= n;
+			Pasukan(ElmtArray((*tab),i)) -= n;
 			printf("%s\n", "Bangunan gagal direbut");
 		}
-	Serang(*bangunanPe) = true;
+	Serang(ElmtArray((*tab),i)) = true;
 	}
 }
 
@@ -153,7 +159,8 @@ void NextTurnLBangunan (List  L, TabBangunan * tab){
 	infotypeList a;
 	while(last != Kosong){
 		a = InfoL(last);
-		NaikLevel(&ElmtArray(*tab, a));
+		printf("wow uda sampe sini, debugging lanjutan\n");
+		NextTurnBangunan(&(ElmtArray(*tab, a)));
 		last = NextL(last);
 	}
 }
@@ -179,6 +186,13 @@ void PrintInfoLBangunan(TabBangunan tab, Pemain p){
 		printf("%d. ", count);
 		CetakBangunanIndeks(tab, InfoL(last));
 		endline;
+		last = NextL(last);
+	}
+}
+
+void PrintInfoLBangunanSemua(TabBangunan tab){
+	for (int i = 1; i <= NbElmt(tab); i++){
+		CetakBangunanIndeks(tab, i);
 	}
 }
 
@@ -209,7 +223,7 @@ void PrintInfoLBangunanMove(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g){
 }	
 
 /* Create an array containing the index of can be attacked bangunan */
-void SemuaBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int *arr[]){
+void SemuaBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int * n){
 	int b[NbElmt(tab)];
 	int count = 0;
 	for (IdxTypeArray i = 1; i <= NbElmt(tab); i++){
@@ -218,8 +232,21 @@ void SemuaBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int
 			count++;
 		}
 	}
-	*arr = b;
+	*n = count;
 }
+
+int * getSemuaBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int n){
+	static int a[600];
+	int count = 0;
+	for (IdxTypeArray i = 1; i <= NbElmt(tab); i++){
+		if (i != j && IsConnected(g, j , i) && !haveBuildingB(p, ElmtArray(tab,i), tab)){
+			a[count] = i;
+			count++;
+		}
+	}
+	return a;
+}
+
 
 /* Create an array containing the index of can be moved bangunan */
 void SemuaBangunanMove(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int * arr[]){
@@ -424,7 +451,7 @@ boolean IsSave (char s[]){
 }
 
 
-void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, Graph g){
+void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,Graph g){
 	char * s;
 	int * attackArr;
 	IdxTypeArray a;
@@ -432,12 +459,10 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, Graph g){
 
 	printf("%s\n", "Daftar Bangunan :");
 	PrintInfoLBangunan((*tab), (*p1));
-	endline;
 
 	printf("%s", "Bangunan yang digunakan untuk menyerang: ");
 	s = BacaInputUser();
 	c = pengubahAngka();
-	// cari indeksnya
 	address last;
 
 	last = FirstL((*p1).b);
@@ -445,26 +470,31 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, Graph g){
 		last = NextL(last);
 	}
 	a = InfoL(last);
-	// tampilin yang bisa diserang
-	printf("%s\n", "Daftar bangunan yang dapat diserang:");
-	SemuaBangunanAttack((*tab), (*p1), a,g,&attackArr);
-	if (attackArr != NULL){
-		int numOfCount = sizeof(attackArr) / sizeof(attackArr[0]);
-		for (int z = 0; z < numOfCount; z++){
-			printf("%d. ", z+1);
-			CetakBangunanIndeks((*tab),attackArr[z]);
-			endline;
+
+	if (!IsSudahSerang(ElmtArray((*tab),a))) {
+		printf("%s\n", "Daftar bangunan yang dapat diserang:");
+		int n;
+		SemuaBangunanAttack((*tab), (*p1), a,g, &n);
+		attackArr = getSemuaBangunanAttack((*tab), (*p1), a,g, n);
+		if (n > 0){
+			for (int z = 0; z < n; z++){
+				printf("%d. ", z+1);
+				CetakBangunanIndeks((*tab),attackArr[z]);
+				endline;
+			}
+			printf("%s", "Bangunan yang diserang: ");
+			s = BacaInputUser();
+			j = pengubahAngka();
+
+			printf("%s", "Jumlah pasukan: ");
+			s = BacaInputUser();
+			k = pengubahAngka();
+
+			SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab);
+		} else {
+			printf("%s\n", "Tidak ada bangunan yang dapat diserang.");	
 		}
-		printf("%s\n", "Bangunan yang diserang: ");
-		s = BacaInputUser();
-		j = pengubahAngka();
-
-		printf("%s\n", "Jumlah pasukan: ");
-		s = BacaInputUser();
-		k = pengubahAngka();
-
-		SerangB(&(ElmtArray(*tab,c)), &(ElmtArray(*tab,j)), k, p1, p2, (*tab));
 	} else {
-		printf("%s\n", "Tidak ada bangunan yang dapat diserang.");	
+		printf("%s\n", "Bangunan sudah menyerang di turn ini!");
 	}
 }
