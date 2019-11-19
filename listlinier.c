@@ -67,6 +67,8 @@ void DealokasiList (address *P) {
 	free(*P);
 }
 
+/*Pika*/
+
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
 address SearchList (List L, infotypeList X) {
 	/* Mencari apakah ada elemen list dengan Info(P)= X */
