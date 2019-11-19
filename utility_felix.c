@@ -36,7 +36,6 @@ void ProsedurLevelUp (TabBangunan *tab, Pemain p1) {
  		last = NextL(last);
  	}
  	a = InfoL(last);
- 	int n;
 
     if(IsAbleNaikLevel(ElmtArray(*tab,a))) {
         if (Type(ElmtArray(*tab,a)) == 'C') {
@@ -62,5 +61,15 @@ void ProsedurLevelUp (TabBangunan *tab, Pemain p1) {
         } else {
             printf("Jumlah pasukan %s kurang untuk level up\n", "Tower");
         }
+    }
+}
+
+void endgame(Pemain P1, Pemain P2, boolean *selesai) {
+    if (IsEmptyList(P1.b)) {
+        printf("P2 menang");
+        *selesai = true;
+    } else if (IsEmptyList(P2.b)) {
+        printf("P1 menang");
+        *selesai = true;
     }
 }
