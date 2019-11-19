@@ -174,3 +174,12 @@ void CetakBangunanIndeks(TabBangunan tab, IdxTypeArray i){
 	PrintInfoBangunan(ElmtArray(tab,i));
 }
 
+void CopyArray(TabBangunan tab1, TabBangunan * tab2){
+	int x = NbElmt(tab1);
+	CreateEmptyArray(tab2, x);
+
+	for(int i = GetFirstIdx(tab1); i <= x; i++){
+		ElmtArray((*tab2), i) = ElmtArray(tab1,i);
+	}
+}
+

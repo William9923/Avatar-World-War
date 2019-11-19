@@ -1,175 +1,173 @@
-#include <stdio.h>
 #include "boolean.h"
 #include "skill.h"
+#include <stdio.h>
 #include <stdlib.h>
 
-boolean IsEmptyQueue (Queue Q){
-    return ((Head(Q)==0) && (Tail(Q)==0));
-}
+
+
+/* ********* Prototype ********* */
+boolean IsEmptyQueue (Queue Q)
 /* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsFullQueue (Queue Q){
-    return ((Head(Q)==1) && (Tail(Q)==MaxEl(Q)));
+{
+    return ((Head(Q)==Zero) && (Tail(Q)==Zero));
 }
+
+boolean IsFullQueue (Queue Q)
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
-/* yaitu mengandung elemen sebanyak MaxEl */
-int NBElmtQueue (Queue Q){
-    if (!IsEmptyQueue(Q)){
-        return (((Tail(Q) - Head(Q) + MaxEl(Q))% MaxEl(Q)) +1);
-    }
-    else{
-        return 0;
+/* yaitu mengandung elemen sebanyak MaxElQueue */
+{
+	return (NBElmtQueue(Q) == MaxElQueue(Q));
+}
+
+int NBElmtQueue (Queue Q)
+/* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
+{
+    if (IsEmptyQueue(Q)) {
+        return Zero;
+    } else {
+        if (Tail(Q) >= Head(Q)) {
+            return (Tail(Q) - Head(Q) + 1);
+        } else {
+            if (Head(Q) - Tail(Q) == 1) {
+                return MaxElQueue(Q);
+            } else {
+                if (Head(Q) == MaxElQueue(Q)) {
+                    return (Tail(Q) + 1);
+                } else {
+                    return (MaxElQueue(Q) - (Head(Q)-Tail(Q)) + 1);
+                }
+            }
+        }
     }
 }
-/* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 
 /* *** Kreator *** */
-void CreateEmptyQueue (Queue * Q, int Max){
-    (*Q).T = (infotype *) malloc ((Max+1) * sizeof(infotype *));
+void CreateEmptyQueue (Queue * Q)
+{
+    (*Q).T = (infotype *) malloc ((MaxQueue+1) * sizeof(infotype *));
     if ((*Q).T != NULL) {
-        MaxEl(*Q) = Max;
-        Head(*Q) = 0;
-        Tail(*Q) = 0;
+        MaxElQueue(*Q) = MaxQueue;
+        Head(*Q) = Zero;
+        Tail(*Q) = Zero;
     } 
     else /* alokasi gagal */ {
-        MaxEl(*Q) = 0;
+        MaxElQueue(*Q) = 0;
     }
 }
-/* I.S. sembarang */
-/* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
-/* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
-/* atau : jika alokasi gagal, Q kosong dg MaxEl=0 */
-/* Proses : Melakukan alokasi, membuat sebuah Q kosong */
 
 /* *** Destruktor *** */
-void DeAlokasiQueue(Queue * Q){
-    MaxEl(*Q) = 0;
-    free((*Q).T); 
-}
+void DeAlokasiQueue(Queue * Q)
 /* Proses: Mengembalikan memori Q */
 /* I.S. Q pernah dialokasi */
-/* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
-
-/* *** Primitif Add/Delete *** */
-infotype SkillChecker(char X[]){
-    infotype y;
-    y = 0;
-    if (X[0] == 'I'){
-        if(X[1] == 'U'){
-            y = 1;
-        }
-        else if(X[1] == 'R'){
-            y = 6;
-        }
-    }
-    else if (X[0] = 'S'){
-        y = 2;
-    }
-    else if (X[0] = 'E'){
-        y = 3;
-    }
-    else if (X[0] = 'A'){
-        y = 4;
-    }
-    else if (X[0] = 'C'){
-        y = 5;
-    }
-    else if (X[0] = 'B'){
-        y = 7;
-    }
-    return y;
+/* F.S. Q menjadi tidak terdefinisi lagi, MaxElQueue(Q) diset 0 */
+{
+    MaxElQueue(*Q) = 0;
+    free((*Q).T); 
 }
 
-char readSkill (Queue *Q){
-    char X[2];
-    if (InfoHead(*Q) == 1){
-        X[0] = 'I';
-        X[1] = 'U';
-    }
-    else if (InfoHead(*Q) == 2){
-        X[0] = 'S';
-    }
-    else if (InfoHead(*Q) == 3){
-        X[0] = 'E';
-    }
-    else if (InfoHead(*Q) == 4){
-        X[0] = 'A';
-    }
-    else if (InfoHead(*Q) == 5){
-        X[0] = 'C';
-    }
-    else if (InfoHead(*Q) == 6){
-       X[0] = 'I';
-       X[1] = 'R';
-    }
-    else if (InfoHead(*Q) == 7){
-        X[0] = 'B';
-    }
-    return X[25];
-}
-void AddSkillQueue(Queue * Q, char Y){
-    address i,j;
-    boolean valid;
-    valid = false;
-    int *X;
-    
-    *X = SkillChecker(&Y);
-    while (!valid){
-        if (*X == 1|| *X != 2 || *X != 3 || *X != 4 || *X != 5 || *X != 6 || *X != 7) {
-            // 1 == > Instant Upgrade (IU)
-            // 2 == > Shield (S)
-            // 3 == > Extra Turn (E) 
-            // 4 == > Attack Up (A)
-            // 5 == > Critical Hit (C)
-            // 6 == > Instant Reinforcement (IR)
-            // 7 == > Barrage (B)
-            printf("Maaf, skill yang ingin ditambahkan tidak boleh dimasukkan.");
-            scanf("%p",&X); // ngentot mana ada scanf disini
-        }
-        else /* Q tidak kosong */ {
-            if (Tail(*Q) == MaxEl(*Q) && NBElmtQueue(*Q) != MaxEl(*Q)) { /* Geser elemen smp Head(Q)=1 */
-                Tail(*Q) = 1;
-                InfoTail(*Q) = *X;
-                valid = true;
-            }
-            else if (Tail(*Q) != MaxEl(*Q)){
-                Tail(*Q)++;
-                InfoTail(*Q)= *X;
-                valid = true;
-            }
-            else{
-                valid = true;
-            }
-        }
-    }
-}
+void AddSkillQueue (Queue * Q, char X)
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
-/* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
+/* I.S. Q tidak kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
-void DelSkillQueue(Queue * Q, infotype * X){
-    if (Head(*Q)==Tail(*Q)) { /* Set mjd queue kosong */
-        *X = InfoHead(*Q);
-        InfoHead(*Q)=0;
-        Head(*Q)=0;
-        Tail(*Q)=0;
-    } 
-    else if (Head(*Q) == MaxEl(*Q)){
-            *X = InfoHead(*Q);
-            InfoHead(*Q)=0;
-            Head(*Q)=1;
+/* Skill yang tidak bisa ditambah adalah Instant Upgrade */
+{
+	if (!IsFullQueue(*Q))
+	{
+		if (IsEmptyQueue(*Q))
+		{
+			Head(*Q) = 1;
+			Tail(*Q) = 1;
+			InfoTail(*Q) = X;
+		}
+		else 
+		{
+			if (Tail(*Q) == MaxElQueue(*Q))
+			{
+				Tail(*Q) = 1;
+				InfoTail(*Q) = X;
+			}
+			else 
+			{
+				Tail(*Q) += 1;
+				InfoTail(*Q) = X;
+			}
+		}
+	}
+    else 
+    {   
+        printf("Queue telah penuh. "); KodeToSkill(X); printf(" tidak bisa ditambahkan");
     }
-    else{
-            *X = InfoHead(*Q);
-            InfoHead(*Q)=0;
-            Head(*Q)++;
-    }   
 }
+
+void DelSkillQueue (Queue * Q, infotype * X)
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
-/* F.S. X = 0ai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
+/* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
         Q mungkin kosong */
-void startSkillQueue(Queue *Q){
-    CreateEmptyQueue(Q,10);
-    InfoHead(*Q) = 1; //1 ==> InstantUpgrade // ini salah beb
+{
+	if (!IsEmptyQueue(*Q))
+	{
+		*X = InfoHead(*Q);
+		if ( NBElmtQueue(*Q) == 1) 
+		{
+			Head(*Q) = Zero;
+			Tail(*Q) = Zero;
+		}
+		else 
+		{
+			if (Head(*Q) == MaxElQueue(*Q))
+			{
+				Head(*Q) = 1;	
+			}
+			else 
+			{
+				Head(*Q) += 1;
+			}
+		}
+	}
 }
 
+void StartSkill(Queue *Q)
+/* Proses : Memasukkan skill pertama ke dalam Queue yang sudah disiapkan*/
+/* I.S. Q kosong*/
+/* F.S Info(First(*Q)) = "Instant_Upgrade" dan NBElmtQueue = 1*/
+{
+    CreateEmptyQueue(Q);
+    AddSkillQueue(Q,'A');
 
+}
+
+void KodeToSkill (char S)
+/* I.S. Q terisi */
+/* F.S Tercetak nama skill dari kode yang diinput  */
+{
+    if (S == 'A') 
+    {
+        printf("IU");
+    }
+    else if (S == 'B')
+    {
+        printf("S");
+    }
+    else if (S == 'C')
+    {
+        printf("E");
+    }
+    else if (S == 'D')
+    {
+        printf("A");
+    }
+    else if (S == 'E')
+    {
+        printf("C");
+    }
+    else if (S == 'F')
+    {
+        printf("IR");
+    }
+    else if (S == 'G')
+    {
+        printf("B");
+    }
+
+}
