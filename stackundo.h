@@ -5,10 +5,11 @@
 #define StateP1(Q) (Q).X
 #define StateP2(Q) (Q).Y 
 #define StateNetral(Q) (Q).Netral
-
+#define StateBangunan(Q) (Q).Tab
 typedef struct{
     Pemain X,Y;/*Pemain 1 dan Pemain 2*/
     List Netral;
+    TabBangunan Tab;
 } states;
 
 typedef struct {

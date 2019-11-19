@@ -101,11 +101,10 @@ int main() {
 	clrscr();
 	boolean stop = false;
     char *s;
-
-
+	CreateEmptyStackUndo(&SU);
 	while(!stop){
 		//Validasi Command
-        CreateEmptyStackUndo(&SU);
+		
 		//Print Map
 		PemainNow(P1,P2,&Pnow,swapTurn,turn);
 		CetakPeta(P,P1,P2,AllBangunan);
@@ -122,9 +121,11 @@ int main() {
 		if(IsAttack(s)){
 			if (IsEQPemain(Pnow, P1)) {
 				ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity);
+				SaveState(&SU,P1,P2,Netral);
 			} else {
 				// pemain p2
 				ProsedurAttack(&AllBangunan, &P2, &P1,&Netral ,connectivity);
+				SaveState(&SU,P1,P2,Netral);
 			}
 		}
 		else if(IsLevelUp(s)){
@@ -133,16 +134,19 @@ int main() {
 		else if(IsMove(s)){
 			if (IsEQPemain(Pnow, P1)){
 				ProsedurMove(&AllBangunan, &P1, connectivity);
+				SaveState(&SU,P1,P2,Netral);
 			} else {
 				// pemain p2
 				ProsedurMove(&AllBangunan, &P2, connectivity);
+				SaveState(&SU,P1,P2,Netral);
 			}
 		}
 		else if(IsSkill(s)){
 
 		}
 		else if(IsUndo(s)){
-
+			LoadState(&SU,&P1,&P2,&Netral);
+			PemainNow(P1,P2,&Pnow,swapTurn,turn);
 		}
 		else if(IsEndTurn(s)){
 			if (turn > 1){
