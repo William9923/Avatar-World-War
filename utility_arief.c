@@ -80,9 +80,6 @@ int main() {
 	printf("Press Any Key To Continue..\n");
 	clrscr();
 	boolean stop = false;
-    char *s;
-	CreateEmptyStackUndo(&SU);
-	SaveState(&SU,P1,P2,Netral,AllBangunan);
 	P1.nomor = 1;
 	P2.nomor = 2;
 	Pnow = P1;
@@ -91,6 +88,7 @@ int main() {
 		//Print Map
 		int jatah=1;
 		while(!stop && jatah!=0){
+			SaveState(&SU,P1,P2,Netral,AllBangunan);
 			printf("%s%d%s\n", "**************TURN ", turn , "**************");
 			CetakPeta(P,P1,P2,AllBangunan);
 			//Baca Command taruh disini...
@@ -160,6 +158,7 @@ int main() {
 				}
 				turn++;
 				jatah--;
+				CreateEmptyStackUndo(&SU);
 				system("clear");
 			}
 			else if(IsSave(s)){
