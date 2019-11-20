@@ -86,10 +86,9 @@ int main() {
 	while(!stop){
 		//Validasi Command
 		//Print Map
-		CreateEmptyStackUndo(&SU);
-		SaveState(&SU,P1,P2,Netral,AllBangunan);
 		int jatah=1;
 		while(!stop && jatah!=0){
+			SaveState(&SU,P1,P2,Netral,AllBangunan);
 			printf("%s%d%s\n", "**************TURN ", turn , "**************");
 			CetakPeta(P,P1,P2,AllBangunan);
 			//Baca Command taruh disini...
@@ -158,6 +157,7 @@ int main() {
 				}
 				turn++;
 				jatah--;
+				CreateEmptyStackUndo(&SU);
 				system("clear");
 			}
 			else if(IsSave(s)){
