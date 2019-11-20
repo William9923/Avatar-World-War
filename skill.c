@@ -170,7 +170,7 @@ void KodeToSkill (char S)
 
 }
 
-void PakeSkill (Queue *Q,TabBangunan * tab,Pemain p1, Pemain p2)
+void PakeSkill (Queue *Q,TabBangunan * tab,Pemain p1, Pemain p2, int * x)
 {
     char X;
     
@@ -187,7 +187,7 @@ void PakeSkill (Queue *Q,TabBangunan * tab,Pemain p1, Pemain p2)
         }
         else if (X == 'C')
         {
-            printf("Extra");
+            ExtraTurn(x);
         }
         else if (X == 'D')
         {
@@ -200,6 +200,7 @@ void PakeSkill (Queue *Q,TabBangunan * tab,Pemain p1, Pemain p2)
         else if (X == 'F')
         {
             InstantReinforcement(tab,p1);
+        }
         else if (X == 'G')
         {
             Barrage(tab,p1,p2);

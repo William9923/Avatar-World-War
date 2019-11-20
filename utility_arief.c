@@ -9,13 +9,14 @@
 //#include "listbangunan.h"
 #include "mesinkar.h"
 #include "mesinkata.h"
-//#include "skill.h"
+#include "skill.h"
 #include"pemain.h"
 #include"bangunan.c"
 #include"point.c"
 #include"state.c"
 #include"array.c"
 #include"matriks.c"
+#include"skill.c"
 //#include "listbangunan.c"
 #include "listlinier.c"
 #include "mesinkar.c"
@@ -54,17 +55,10 @@ void NextPemain(Pemain P1,Pemain P2,Pemain *P){
 	}
 }
 
-// void ChangeTurnOrder(boolean *swapTurn){
-// 	if(*swapTurn){
-// 		*swapTurn = false;
-// 	}
-// 	else{
-// 		*swapTurn = true;
-// 	}
-
-
 int main() {
 	//KAMUS
+	Queue q1,q2;
+	StartSkill(&q1);StartSkill(&q2);
 	Pemain P1,P2,Pnow;
 	StackUndo SU;
     PETA P;
@@ -127,10 +121,11 @@ int main() {
 				}
 			}
 			else if(IsSkill(s)){
-				// nanti skillnya tuh sesuain aja ama yang lain, 
-				// trus setiap skill tuh bakal jadi prosedur, dimana dia bakal ngambil dari inputan,
-				// trus output hasilnya.
-				InstantReinforcement(&AllBangunan, Pnow);
+				if (IsEQPemain(P1, Pnow)){
+					PakeSkill (&q1,&AllBangunan,P1, P2, &jatah);
+				} else {
+					PakeSkill (&q2,&AllBangunan,P1, P2, &jatah);
+				}
 			}
 			else if(IsUndo(s)){
 				if(!IsEmptyStack(SU)){
@@ -165,7 +160,7 @@ int main() {
 			}
 			else if(IsSave(s)){
 				//DISINI COBA CODING EXTRA TURN
-				jatah++;
+				//jatah++;
 			}
 			else if(IsExit(s)) {
 				stop = true;

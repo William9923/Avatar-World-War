@@ -9,16 +9,16 @@
 
 #define Zero 0
 #define MaxQueue 10
-/* Konstanta untuk mendefinisikan address tak terdefinisi */
+/* Konstanta untuk mendefinisikan adressqueue tak terdefinisi */
 
-/* Definisi elemen dan address */
+/* Definisi elemen dan adressqueue */
 typedef char infotype;
-typedef int address;   /* indeks tabel */
+typedef int adressqueue;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Queue : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
 typedef struct { infotype * T;   /* tabel penyimpan elemen */
-                 address HEAD;  /* alamat penghapusan */
-                 address TAIL;  /* alamat penambahan */
+                 adressqueue HEAD;  /* alamat penghapusan */
+                 adressqueue TAIL;  /* alamat penambahan */
                  int MaxElQueue;     /* Max elemen queue */
                } Queue;
 /* Definisi Queue kosong: HEAD=Nil; TAIL=Nil. */
@@ -75,6 +75,6 @@ void StartSkill(Queue *Q);
 
 void KodeToSkill(char S);
 
-void PakeSkill (Queue *Q);
+void PakeSkill (Queue *Q,TabBangunan * tab,Pemain p1, Pemain p2, int * x);
 
 #endif
