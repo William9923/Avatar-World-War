@@ -93,10 +93,7 @@ void AddSkillQueue (Queue * Q, char X)
 			}
 		}
 	}
-    else 
-    {   
-        printf("Queue telah penuh. "); KodeToSkill(X); printf(" tidak bisa ditambahkan");
-    }
+ 
 }
 
 void DelSkillQueue (Queue * Q, infotype * X)
@@ -168,6 +165,50 @@ void KodeToSkill (char S)
     else if (S == 'G')
     {
         printf("B");
+    }
+
+}
+
+void PakeSkill (Queue *Q)
+{
+    char X;
+    
+    if (!IsEmptyQueue(*Q))
+    {
+        DelSkillQueue(Q,&X);
+        if (X == 'A')
+        {
+            printf("Instant Upgrade");
+        }
+        else if (X == 'B')
+        {
+            printf("Shield");
+        }
+        else if (X == 'C')
+        {
+            printf("Extra");
+        }
+        else if (X == 'D')
+        {
+            printf("Attack Up");
+        }
+        else if (X == 'E')
+        {
+            printf("Critical Hit");
+        }
+        else if (X == 'F')
+        {
+            printf("Instant Reinforcement");
+        }
+        else if (X == 'G')
+        {
+            printf("Barrage");
+        }
+    }
+    
+    else 
+    {
+        printf("Anda tidak memiliki skill");
     }
 
 }

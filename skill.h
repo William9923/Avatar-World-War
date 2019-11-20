@@ -75,4 +75,6 @@ void StartSkill(Queue *Q);
 
 void KodeToSkill(char S);
 
+void PakeSkill (Queue *Q);
+
 #endif

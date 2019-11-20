@@ -25,11 +25,20 @@ int main() {
 //	printf("%d\n",MaxElQueue(Q));
 	
 //	DelSkillQueue(&Q,&C);
+	printf("awal\n");
 	printf("%c\n",InfoHead(Q));
 	printf("%c\n",InfoTail(Q));
 	printf("%d\n",NBElmtQueue(Q));
 
-	AddSkillQueue(&Q,'E'); // pesan kesalahan queue penuh
+	PakeSkill(&Q);
+
+	printf("\n");
+	printf("akhir\n");
+	printf("%c\n",InfoHead(Q));
+	printf("%c\n",InfoTail(Q));
+	printf("%d\n",NBElmtQueue(Q));
+
+	PakeSkill(&Q);
 /*	if (IsEmptyQueue(Q))
 	{
 		printf("kosong\n");
