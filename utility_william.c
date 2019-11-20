@@ -28,6 +28,9 @@ boolean IsAbleMove(Bangunan bangunanAwal, Bangunan bangunanTujuan, int n, Pemain
 	if (Pasukan(bangunanAwal) < n){
 		return false;
 	}
+	if (IsSudahMove(bangunanAwal)){
+		return false;
+	}
 	return true;
 }
 
@@ -46,6 +49,8 @@ void MoveB(IdxTypeArray i,IdxTypeArray j, int n, Pemain P,TabBangunan * tab){
 			printf("%s\n", "Jumlah pasukan anda kurang !");
 		} else if(!(haveBuildingB(P,ElmtArray((*tab),i),(*tab))) || !(haveBuildingB(P,ElmtArray((*tab),j),(*tab)))) {
 			printf("%s\n", "Bangunan tidak tersambung satu sama lain!");
+		} else {
+			printf("%s\n", "Bangunan telah melakukan migrasi pasukan di turn ini.");
 		}
 	}
 

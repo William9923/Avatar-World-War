@@ -21,6 +21,7 @@ typedef struct {
 	Point letak;
 	boolean serang; // apakah suatu bangunan telah menyerang di turn tersebut atau tidak
 					// true -> uda serang, false -> belum serang
+	boolean move;
 } Bangunan;
 
 /* Notasi Akses : Selektor Bangunan*/
@@ -34,6 +35,7 @@ typedef struct {
 #define Pasukan(B) (B).pasukan
 #define Letak(B) (B).letak
 #define Serang(B) (B).serang
+#define Move(B) (B).move
 
 
 /* *** DEFINISI PROTOTIPE PRIMITIF *** */
@@ -100,6 +102,11 @@ boolean IsSudahSerang(Bangunan bangunan);
 	dibentuk fungsi penanda apakah sudah serang di turn itu atau belum
 */
 
+boolean IsSudahMove(Bangunan bangunan);
+/*
+	Dikarenakan setiap bangunan hanya boleh berpindah sekali dalam 1 turn, maka 
+	dibentuk fungsi penanda apakah sudah pindah di turn itu atau belum
+*/
 Point letakBangunan(Bangunan bangunan);
 /*
 	Fungsi yang mengembalikan nilai Point letak dari 
