@@ -18,7 +18,7 @@
 #include<math.h>
 #include"boolean.h"
 
-void ProsedurLevelUp (TabBangunan *tab, Pemain P1,Pemain P3,Pemain P2,List Netral,TabBangunan Tab,StackUndo *SU) {
+void ProsedurLevelUp (TabBangunan *tab, Pemain P1,Pemain P3,Pemain P2,List Netral,StackUndo *SU) {
      char * s;
  	int * levelArr;
  	IdxTypeArray a,b;
@@ -42,7 +42,7 @@ void ProsedurLevelUp (TabBangunan *tab, Pemain P1,Pemain P3,Pemain P2,List Netra
         a = InfoL(last);
 
         if(IsAbleNaikLevel(ElmtArray(*tab,a))) {
-            SaveState(SU,P3,P2,Netral,Tab);
+            SaveState(SU,P3,P2,Netral,*tab);
             if (Type(ElmtArray(*tab,a)) == 'C') {
                 ElmtArray(*tab,a) = NaikLevelCastle(ElmtArray(*tab,a));
                 printf("Level Castle-mu meningkat menjadi %d!\n",Level(ElmtArray(*tab,a)));
@@ -85,7 +85,7 @@ void ProsedurLevelUp (TabBangunan *tab, Pemain P1,Pemain P3,Pemain P2,List Netra
         a = InfoL(last);
 
         if(IsAbleNaikLevel(ElmtArray(*tab,a))) {
-            SaveState(SU,P3,P2,Netral,Tab);
+            SaveState(SU,P3,P2,Netral,*tab);
             if (Type(ElmtArray(*tab,a)) == 'C') {
                 ElmtArray(*tab,a) = NaikLevelCastle(ElmtArray(*tab,a));
                 printf("Level Castle-mu meningkat menjadi %d!\n",Level(ElmtArray(*tab,a)));
