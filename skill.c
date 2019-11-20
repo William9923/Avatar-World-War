@@ -2,7 +2,7 @@
 #include "skill.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+#include"prosedur_skill.h"
 
 
 /* ********* Prototype ********* */
@@ -137,6 +137,7 @@ void StartSkill(Queue *Q)
 void KodeToSkill (char S)
 /* I.S. Q terisi */
 /* F.S Tercetak nama skill dari kode yang diinput  */
+/* mungkin dipakai */
 {
     if (S == 'A') 
     {
@@ -169,7 +170,7 @@ void KodeToSkill (char S)
 
 }
 
-void PakeSkill (Queue *Q)
+void PakeSkill (Queue *Q,TabBangunan * tab,Pemain p1, Pemain p2)
 {
     char X;
     
@@ -178,7 +179,7 @@ void PakeSkill (Queue *Q)
         DelSkillQueue(Q,&X);
         if (X == 'A')
         {
-            printf("Instant Upgrade");
+            InstantUpgrade(tab, p1);
         }
         else if (X == 'B')
         {
@@ -198,11 +199,10 @@ void PakeSkill (Queue *Q)
         }
         else if (X == 'F')
         {
-            printf("Instant Reinforcement");
-        }
+            InstantReinforcement(tab,p1);
         else if (X == 'G')
         {
-            printf("Barrage");
+            Barrage(tab,p1,p2);
         }
     }
     

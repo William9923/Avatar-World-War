@@ -33,7 +33,7 @@
 #include"graph_.c"
 #include<math.h>
 #include"boolean.h"
-
+#include"prosedur_skill.c"
 
 boolean IsEQPemain(Pemain P1, Pemain P2){
 	boolean same = true;
@@ -83,6 +83,7 @@ int main() {
 	P1.nomor = 1;
 	P2.nomor = 2;
 	Pnow = P1;
+	char * s;
 	while(!stop){
 		//Validasi Command
 		//Print Map
@@ -129,6 +130,7 @@ int main() {
 				// nanti skillnya tuh sesuain aja ama yang lain, 
 				// trus setiap skill tuh bakal jadi prosedur, dimana dia bakal ngambil dari inputan,
 				// trus output hasilnya.
+				InstantReinforcement(&AllBangunan, Pnow);
 			}
 			else if(IsUndo(s)){
 				if(!IsEmptyStack(SU)){

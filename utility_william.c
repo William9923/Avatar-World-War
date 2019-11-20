@@ -107,7 +107,8 @@ void SerangB(IdxTypeArray i, IdxTypeArray j, int n, Pemain * P1, Pemain * P2, Li
 				InsVLastList(&((*P1).b),j);
 				DelPList(Netral, j);
 			} else{
-				ChangeOwner((P1), ElmtArray((*tab),j) , P2,*tab);
+				InsVLastList(&((*P1).b),j);
+				DelPList(&((*P2).b), j);
 			} 
 			printf("%s\n", "Bangunan menjadi milikmu");
 		} else {

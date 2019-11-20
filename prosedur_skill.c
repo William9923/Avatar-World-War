@@ -1,7 +1,4 @@
-#include"bangunan.h"
-#include"array.h"
-#include"pemain.h"
-#include "listlinier.h"
+#include "prosedur_skill.h"
 
 void InstantUpgrade(TabBangunan * tab, Pemain p1){
 	/* Implementasi Dari Instant Upgrade */
@@ -9,14 +6,14 @@ void InstantUpgrade(TabBangunan * tab, Pemain p1){
 
     for (int i = 1; i <= NbElmtList(p1.b); i++){
 		if (Level(ElmtArray((*tab), InfoL(last))) < 4) {
-			Pasukan(ElmtArray((*tab), InfoL(last))) += M(ElmtArray((*tab), InfoL(last))) / 2
+			Pasukan(ElmtArray((*tab), InfoL(last))) += M(ElmtArray((*tab), InfoL(last))) / 2;
 			NaikLevel(&(ElmtArray((*tab), InfoL(last))));
 		}
         last = NextL(last);
     }
 }
 
-void TambahPasukan(Bangunan * bangunan, int n){
+void TambahPasukanB(Bangunan * bangunan, int n){
 	/* Prosedur antara untuk menambah jumlah bangunan */
 	Pasukan(*bangunan) += n;
 }
@@ -34,7 +31,7 @@ void InstantReinforcement(TabBangunan * tab, Pemain p1) {
 	address last = FirstL(p1.b);
 	int tambahanPasukan = 5;
 	for (int i = 1; i <= NbElmtList(p1.b); i++){
-		TambahPasukan(&(ElmtArray((*tab), InfoL(last))),tambahanPasukan);
+		TambahPasukanB(&(ElmtArray((*tab), InfoL(last))),tambahanPasukan);
 		last = NextL(last);
 	}
 }
