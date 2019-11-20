@@ -80,15 +80,14 @@ int main() {
 	printf("Press Any Key To Continue..\n");
 	clrscr();
 	boolean stop = false;
-    char *s;
-	CreateEmptyStackUndo(&SU);
-	SaveState(&SU,P1,P2,Netral,AllBangunan);
 	P1.nomor = 1;
 	P2.nomor = 2;
 	Pnow = P1;
 	while(!stop){
 		//Validasi Command
 		//Print Map
+		CreateEmptyStackUndo(&SU);
+		SaveState(&SU,P1,P2,Netral,AllBangunan);
 		int jatah=1;
 		while(!stop && jatah!=0){
 			printf("%s%d%s\n", "**************TURN ", turn , "**************");
