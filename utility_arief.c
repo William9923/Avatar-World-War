@@ -83,6 +83,13 @@ int main() {
 		//Print Map
 		int jatah=1;
 		while(!stop && jatah!=0){
+			/*
+			Validasi state untuk mendapatkan skill
+			*/
+
+
+
+
 			SaveState(&SU,P1,P2,Netral,AllBangunan);
 			printf("%s%d%s\n", "**************TURN ", turn , "**************");
 			CetakPeta(P,P1,P2,AllBangunan);
