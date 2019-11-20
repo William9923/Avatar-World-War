@@ -49,3 +49,20 @@ void Barrage(TabBangunan * tab, Pemain p1, Pemain p2){
 void ExtraTurn (int * n){
 	(*n) += 1;
 }
+
+boolean IsObtainIR (TabBangunan tab, Pemain p1){
+	/* Fungsi untuk melakukan pengecekan apakah pemain 
+	   mendapatkan skill Instant Reinforcement atau tidak */
+	address last = FirstL(p1.b);
+	boolean checker = true;
+	int i = 1;
+	while (i <= NbElmtList(p1.b) && checker){
+		if (Level(ElmtArray(tab, InfoL(last))) < 4){
+			checker = false
+		}
+		i++;
+		last = NextL(last);
+	}
+	return checker;
+}
+boolean IsObtainBarrage(TabBangunan tab, Pemain p2);
