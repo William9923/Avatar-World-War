@@ -105,13 +105,13 @@ int main() {
 	while(!stop){
 		//Validasi Command
 		//Print Map
+		printf("%s%d%s\n", "**************TURN ", turn , "**************");
 		PemainNow(P1,P2,&Pnow,swapTurn,turn);
 		CetakPeta(P,P1,P2,AllBangunan);
-		
 		//Baca Command taruh disini...
 		//...
 		printf("Player %d\n",Pnow.nomor);
-		PrintInfoLBangunan(AllBangunan,P1);
+		PrintInfoLBangunan(AllBangunan,Pnow);
 		//printskill
 		printf("ENTER COMMAND: ");
 		s = BacaInputUser();

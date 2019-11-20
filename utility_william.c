@@ -499,7 +499,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab);
 				} else {
 					do {
-						printf("\n%s\n", "Urutan bangunan salah. Silahkan ulangi!");
+						printf("\n%s\n", "Masukan bangunan salah. Silahkan ulangi!");
 						printf("%s", "Bangunan yang diserang: ");
 						s = BacaInputUser();
 						j = pengubahAngka();
@@ -509,19 +509,16 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					k = pengubahAngka();
 
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab);
-					clrscr();
 				}
 			} else {
-				printf("%s\n", "Tidak ada bangunan yang dapat diserang.");
-				clrscr();	
+				printf("%s\n", "Tidak ada bangunan yang dapat diserang.");	
 			}
 		} else {
 			printf("%s\n\n", "Bangunan sudah menyerang di turn ini!");
-			clrscr();
 		}
 	} else {
 		do {	
-			printf("\n%s\n", "Urutan Bangunan tidak valid");
+			printf("\n%s\n", "Masukan Bangunan tidak valid");
 			printf("%s\n\n", "Silahkan diulangi");
 			printf("%s\n", "Daftar Bangunan :");
 			PrintInfoLBangunan((*tab), (*p1));
@@ -560,7 +557,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab);
 				} else {
 					do {
-						printf("\n%s\n", "Urutan bangunan salah. Silahkan ulangi!");
+						printf("\n%s\n", "Masukan bangunan salah. Silahkan ulangi!");
 						printf("%s\n", "Daftar bangunan yang dapat diserang:");
 						
 						for (int z = 0; z < n; z++){
@@ -577,15 +574,12 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					k = pengubahAngka();
 
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab);
-					clrscr();
 				}
 			} else {
 				printf("%s\n", "Tidak ada bangunan yang dapat diserang.");
-				clrscr();	
 			}
 		} else {
 			printf("%s\n\n", "Bangunan sudah menyerang di turn ini!");
-			clrscr();
 		}
 	}
 }
@@ -633,7 +627,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g){
 				MoveB(a,moveArr[j - 1], k, (*p1),tab);		
 			} else {
 				do {
-					printf("\n%s\n", "Urutan Bangunan tidak valid");
+					printf("\n%s\n", "Masukan Bangunan tidak valid");
 					printf("%s\n", "Silahkan diulangi");
 					printf("%s", "Bangunan yang akan menerima pasukan baru: ");
 					s = BacaInputUser();
@@ -643,17 +637,17 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g){
 					s = BacaInputUser();
 					k = pengubahAngka();
 					MoveB(a,moveArr[j - 1], k, (*p1),tab);	
-					clrscr();
 			}
 		} else {
-			printf("%s\n\n", "Tidak ada bangunan yang bisa menampung pasukan!");
-			clrscr();
+			printf("%s\n\n", "Tidak ada bangunan yang bisa menampung migrasi pasukan!");
 		}
 
 	} else {
 		do {
-			printf("\n%s\n", "Urutan Bangunan tidak valid");
+			printf("\n%s\n", "Masukan Bangunan tidak valid");
 			printf("%s\n", "Silahkan diulangi");
+			printf("%s\n", "Daftar Bangunan :");
+            PrintInfoLBangunan((*tab), (*p1));
 			printf("%s", "Pilih Bangunan: ");
 			s = BacaInputUser();
 			c = pengubahAngka();
@@ -685,8 +679,14 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g){
 				MoveB(a,moveArr[j - 1], k, (*p1),tab);		
 			} else {
 				do {
-					printf("\n%s\n", "Urutan Bangunan tidak valid");
+					printf("\n%s\n", "Masukan Bangunan tidak valid");
 					printf("%s\n", "Silahkan diulangi");
+					printf("%s\n", "Daftar Bangunan terdekat");
+					for (int z = 0; z < n; z++){
+						printf("%d. ", z+1);
+						CetakBangunanIndeks((*tab),moveArr[z]);
+						endline;
+					}
 					printf("%s", "Bangunan yang akan menerima pasukan baru: ");
 					s = BacaInputUser();
 					j = pengubahAngka();
@@ -695,11 +695,9 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g){
 					s = BacaInputUser();
 					k = pengubahAngka();
 					MoveB(a,moveArr[j - 1], k, (*p1),tab);	
-					clrscr();
 			}
 		} else {
-			printf("%s\n\n", "Tidak ada bangunan yang bisa menampung pasukan!");
-			clrscr();
+			printf("%s\n\n", "Tidak ada bangunan yang bisa menampung migrasi pasukan!");
 		}
 	}
 }
