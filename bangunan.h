@@ -21,7 +21,8 @@ typedef struct {
 	Point letak;
 	boolean serang; // apakah suatu bangunan telah menyerang di turn tersebut atau tidak
 					// true -> uda serang, false -> belum serang
-	boolean move;
+	boolean move; 	// apakah suatu bangunan telah melakukan migrasi pasukan di turn tersebut
+					// true -> uda move. false -> belum melakukan move
 } Bangunan;
 
 /* Notasi Akses : Selektor Bangunan*/
