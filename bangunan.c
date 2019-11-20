@@ -47,6 +47,7 @@ void MakeBangunan(Bangunan * bangunan, char type, Point letak) {
 		Pertahanan(*bangunan) = false;
 	}
 	Serang(*bangunan) = false;
+	Move(*bangunan) = false;
 }
 
 /* Fungsi - fungsi Primitif */
@@ -189,6 +190,10 @@ boolean IsPindahPemilik(Bangunan bBertahan, int jumlahPenyerang) {
 
 boolean IsSudahSerang(Bangunan bangunan){
 	return Serang(bangunan);
+}
+
+boolean IsSudahMove(Bangunan bangunan) {
+	return Move(bangunan);
 }
 
 Point letakBangunan(Bangunan bangunan){
