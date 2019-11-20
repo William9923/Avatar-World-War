@@ -113,10 +113,10 @@ int main() {
 			}
 			else if(IsLevelUp(s)){
 				if (IsEQPemain(Pnow, P1)) {
-					ProsedurLevelUp(&AllBangunan,P1);
+					ProsedurLevelUp(&AllBangunan,P1,P1,P2,Netral,AllBangunan,&SU);
 				} else {
 					// pemain p2
-					ProsedurLevelUp(&AllBangunan,P2);
+					ProsedurLevelUp(&AllBangunan,P2,P1,P2,Netral,AllBangunan,&SU);
 				}
 			}
 			else if(IsMove(s)){

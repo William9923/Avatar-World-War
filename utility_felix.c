@@ -18,30 +18,31 @@
 #include<math.h>
 #include"boolean.h"
 
-void ProsedurLevelUp (TabBangunan *tab, Pemain p1) {
- 	char * s;
+void ProsedurLevelUp (TabBangunan *tab, Pemain P1,Pemain P3,Pemain P2,List Netral,TabBangunan Tab,StackUndo *SU) {
+     char * s;
  	int * levelArr;
  	IdxTypeArray a,b;
  	int c,j;
     int count_n;
 
  	printf("%s\n", "Daftar Bangunan :");
- 	PrintInfoLBangunan((*tab), (p1));
+ 	PrintInfoLBangunan((*tab), (P1));
 
-    count_n = NbElmtList(p1.b);
+    count_n = NbElmtList(P1.b);
 
  	printf("%s", "Bangunan yang akan di level up: ");
  	s = BacaInputUser();
     c = pengubahAngka();
 
     if (c <= count_n){
-        address last=FirstL(p1.b);
+        address last=FirstL(P1.b);
         for (int i = 1; i < c; i++){
             last = NextL(last);
         }
         a = InfoL(last);
 
         if(IsAbleNaikLevel(ElmtArray(*tab,a))) {
+            SaveState(SU,P3,P2,Netral,Tab);
             if (Type(ElmtArray(*tab,a)) == 'C') {
                 ElmtArray(*tab,a) = NaikLevelCastle(ElmtArray(*tab,a));
                 printf("Level Castle-mu meningkat menjadi %d!\n",Level(ElmtArray(*tab,a)));
@@ -55,6 +56,7 @@ void ProsedurLevelUp (TabBangunan *tab, Pemain p1) {
                 ElmtArray(*tab,a) = NaikLevelTower(ElmtArray(*tab,a));
                 printf("Level Tower-mu meningkat menjadi %d!\n",Level(ElmtArray(*tab,a)));
             }
+            
         } else {
             if (Type(ElmtArray(*tab,a)) == 'C') {
                 printf("Jumlah pasukan %s kurang untuk level up\n", "Castle");
@@ -71,18 +73,19 @@ void ProsedurLevelUp (TabBangunan *tab, Pemain p1) {
             printf("\n%s\n", "Bangunan tidak tersedia");
             printf("%s\n\n", "Silahkan ulangi masukan");
             printf("%s\n", "Daftar Bangunan :");
-            PrintInfoLBangunan((*tab), (p1));
+            PrintInfoLBangunan((*tab), (P1));
             printf("%s", "Bangunan yang akan di level up: ");
             s = BacaInputUser();
             c = pengubahAngka();       
         } while (c > count_n);
-        address last=FirstL(p1.b);
+        address last=FirstL(P1.b);
         for (int i = 1; i < c; i++){
             last = NextL(last);
         }
         a = InfoL(last);
 
         if(IsAbleNaikLevel(ElmtArray(*tab,a))) {
+            SaveState(SU,P3,P2,Netral,Tab);
             if (Type(ElmtArray(*tab,a)) == 'C') {
                 ElmtArray(*tab,a) = NaikLevelCastle(ElmtArray(*tab,a));
                 printf("Level Castle-mu meningkat menjadi %d!\n",Level(ElmtArray(*tab,a)));
