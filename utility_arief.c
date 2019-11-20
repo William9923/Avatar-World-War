@@ -141,7 +141,15 @@ int main() {
 				
 			}
 			else if(IsEndTurn(s)){
-				if (turn > 1){
+				if(jatah>1){
+					if (IsEQPemain(Pnow, P1)){
+						NextTurnLBangunan(P1.b, &AllBangunan);
+					} else {
+						// P1 sekarang
+						NextTurnLBangunan(P2.b, &AllBangunan);
+					}
+				}
+				else{
 					if (IsEQPemain(Pnow, P2)){
 						NextTurnLBangunan(P1.b, &AllBangunan);
 					} else {
