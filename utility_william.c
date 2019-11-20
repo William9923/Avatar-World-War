@@ -50,9 +50,7 @@ void MoveB(IdxTypeArray i,IdxTypeArray j, int n, Pemain P,TabBangunan * tab){
 			printf("%s\n", "Jumlah pasukan anda kurang !");
 		} else if(!(haveBuildingB(P,ElmtArray((*tab),i),(*tab))) || !(haveBuildingB(P,ElmtArray((*tab),j),(*tab)))) {
 			printf("%s\n", "Bangunan tidak tersambung satu sama lain!");
-		} else {
-			printf("%s\n", "Bangunan telah melakukan migrasi pasukan di turn ini.");
-		}
+		} 
 	}
 }
 
@@ -611,42 +609,45 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g){
 			last = NextL(last);
 		}
 		a = InfoL(last);
-		int n;
-		SemuaBangunanMove((*tab), (*p1), a,g, &n);
-		moveArr = getSemuaBangunanMove((*tab), (*p1), a,g, n);
-		if (n > 0){
-			printf("%s\n", "Daftar Bangunan terdekat");
-			for (int z = 0; z < n; z++){
-				printf("%d. ", z+1);
-				CetakBangunanIndeks((*tab),moveArr[z]);
-				endline;
-			}
-			printf("%s", "Bangunan yang akan menerima pasukan baru: ");
-			s = BacaInputUser();
-			j = pengubahAngka();
-
-			if (j <= n) {
-				printf("%s", "Jumlah pasukan: ");
+		if (!IsSudahMove(ElmtArray((*tab),a))) {
+			int n;
+			SemuaBangunanMove((*tab), (*p1), a,g, &n);
+			moveArr = getSemuaBangunanMove((*tab), (*p1), a,g, n);
+			if (n > 0){
+				printf("%s\n", "Daftar Bangunan terdekat");
+				for (int z = 0; z < n; z++){
+					printf("%d. ", z+1);
+					CetakBangunanIndeks((*tab),moveArr[z]);
+					endline;
+				}
+				printf("%s", "Bangunan yang akan menerima pasukan baru: ");
 				s = BacaInputUser();
-				k = pengubahAngka();
-				MoveB(a,moveArr[j - 1], k, (*p1),tab);		
-			} else {
-				do {
-					printf("\n%s\n", "Masukan Bangunan tidak valid");
-					printf("%s\n", "Silahkan diulangi");
-					printf("%s", "Bangunan yang akan menerima pasukan baru: ");
-					s = BacaInputUser();
-					j = pengubahAngka();
-				} while(j > n);
+				j = pengubahAngka();
+
+				if (j <= n) {
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
-					MoveB(a,moveArr[j - 1], k, (*p1),tab);	
+					MoveB(a,moveArr[j - 1], k, (*p1),tab);		
+				} else {
+					do {
+						printf("\n%s\n", "Masukan Bangunan tidak valid");
+						printf("%s\n", "Silahkan diulangi");
+						printf("%s", "Bangunan yang akan menerima pasukan baru: ");
+						s = BacaInputUser();
+						j = pengubahAngka();
+					} while(j > n);
+						printf("%s", "Jumlah pasukan: ");
+						s = BacaInputUser();
+						k = pengubahAngka();
+						MoveB(a,moveArr[j - 1], k, (*p1),tab);	
+				}
+			} else {
+				printf("%s\n\n", "Tidak ada bangunan yang bisa menampung migrasi pasukan!");
 			}
 		} else {
-			printf("%s\n\n", "Tidak ada bangunan yang bisa menampung migrasi pasukan!");
+			printf("%s\n", "Bangunan telah melakukan migrasi pasukan di turn ini.");
 		}
-
 	} else {
 		do {
 			printf("\n%s\n", "Masukan Bangunan tidak valid");
