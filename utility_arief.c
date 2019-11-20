@@ -102,6 +102,7 @@ int main() {
 			s = BacaInputUser();
 			printf("\n");
 			if(IsAttack(s)){
+				
 				if (IsEQPemain(Pnow, P1)) {
 					ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity);
 				} else {
