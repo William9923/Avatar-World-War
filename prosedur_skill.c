@@ -45,3 +45,7 @@ void Barrage(TabBangunan * tab, Pemain p1, Pemain p2){
 		last = NextL(last);
 	}
 }
+
+void ExtraTurn (int * n){
+	(*n) += 1;
+}
