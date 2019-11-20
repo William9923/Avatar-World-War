@@ -47,7 +47,6 @@ boolean haveBuildingKoordinat(Pemain P,int i,int j,TabBangunan Tab){
 }
 
 void CopyPemain(Pemain P,Pemain *Destination){
-	CreateEmptyList(&((*Destination).b));
 	CopyList(P.b,&((*Destination).b));
 }
 

@@ -90,6 +90,13 @@ int main() {
 			//Baca Command taruh disini...
 			//...
 			printf("Player %d\n",Pnow.nomor);
+			//Ngerefresh isi Pnow setelah Undo
+			if(Pnow.nomor==1){
+				Pnow = P1;
+			}
+			else{
+				Pnow = P2;
+			}
 			PrintInfoLBangunan(AllBangunan,Pnow);
 			//printskill
 			printf("ENTER COMMAND: ");
