@@ -37,6 +37,7 @@ void LoadState(StackUndo *S,Pemain *P1,Pemain *P2,List *Netral,TabBangunan *Bang
     Pop(S,&q);
     CopyPemain(StateP1(q),P1);
     CopyPemain(StateP2(q),P2);
+    CreateEmptyList(Netral);
     CopyList(StateNetral(q),Netral);
     CopyArray(StateBangunan(q),Bangunan);
 }

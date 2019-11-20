@@ -87,9 +87,10 @@ int main() {
 	while(!stop){
 		//Validasi Command
 		//Print Map
+		CreateEmptyStackUndo(&SU);
 		int jatah=1;
+		
 		while(!stop && jatah!=0){
-			SaveState(&SU,P1,P2,Netral,AllBangunan);
 			printf("%s%d%s\n", "**************TURN ", turn , "**************");
 			CetakPeta(P,P1,P2,AllBangunan);
 			//Baca Command taruh disini...
@@ -101,12 +102,11 @@ int main() {
 			s = BacaInputUser();
 			printf("\n");
 			if(IsAttack(s)){
-				
 				if (IsEQPemain(Pnow, P1)) {
-					ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity);
+					ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity,&SU);
 				} else {
 					// pemain p2
-					ProsedurAttack(&AllBangunan, &P2, &P1,&Netral ,connectivity);
+					ProsedurAttack(&AllBangunan, &P2, &P1,&Netral ,connectivity,&SU);
 				}
 				endgame(P1,P2,&stop);
 			}
