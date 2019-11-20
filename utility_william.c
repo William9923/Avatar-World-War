@@ -456,7 +456,7 @@ boolean IsExit(char s[]){
 }
 
 
-void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,Graph g){
+void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,Graph g,StackUndo *SU){
 	char * s;
 	int * attackArr;
 	IdxTypeArray a;
@@ -499,8 +499,9 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
-
+					SaveState(SU,*p1,*p2,*Netral,*tab);
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab);
+					
 				} else {
 					do {
 						printf("\n%s\n", "Masukan bangunan salah. Silahkan ulangi!");
@@ -511,8 +512,9 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
-
+					SaveState(SU,*p1,*p2,*Netral,*tab);
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab);
+					
 				}
 			} else {
 				printf("%s\n", "Tidak ada bangunan yang dapat diserang.");	
@@ -557,8 +559,9 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
-
+					SaveState(SU,*p1,*p2,*Netral,*tab);
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab);
+					
 				} else {
 					do {
 						printf("\n%s\n", "Masukan bangunan salah. Silahkan ulangi!");
@@ -576,8 +579,9 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
-
+					SaveState(SU,*p1,*p2,*Netral,*tab);
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab);
+					
 				}
 			} else {
 				printf("%s\n", "Tidak ada bangunan yang dapat diserang.");

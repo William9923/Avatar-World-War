@@ -81,42 +81,42 @@ int main() {
 	while(!stop){
 		//Validasi Command
 		//Print Map
+		CreateEmptyStackUndo(&SU);
 		int jatah=1;
+		
 		while(!stop && jatah!=0){
-			/*
-			Validasi state untuk mendapatkan skill
-			*/
-
-
-
-
-			SaveState(&SU,P1,P2,Netral,AllBangunan);
 			printf("%s%d%s\n", "**************TURN ", turn , "**************");
 			CetakPeta(P,P1,P2,AllBangunan);
 			//Baca Command taruh disini...
 			//...
 			printf("Player %d\n",Pnow.nomor);
+			//Ngerefresh isi Pnow setelah Undo
+			if(Pnow.nomor==1){
+				Pnow = P1;
+			}
+			else{
+				Pnow = P2;
+			}
 			PrintInfoLBangunan(AllBangunan,Pnow);
 			//printskill
 			printf("ENTER COMMAND: ");
 			s = BacaInputUser();
 			printf("\n");
 			if(IsAttack(s)){
-				
 				if (IsEQPemain(Pnow, P1)) {
-					ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity);
+					ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity,&SU);
 				} else {
 					// pemain p2
-					ProsedurAttack(&AllBangunan, &P2, &P1,&Netral ,connectivity);
+					ProsedurAttack(&AllBangunan, &P2, &P1,&Netral ,connectivity,&SU);
 				}
 				endgame(P1,P2,&stop);
 			}
 			else if(IsLevelUp(s)){
 				if (IsEQPemain(Pnow, P1)) {
-					ProsedurLevelUp(&AllBangunan,P1);
+					ProsedurLevelUp(&AllBangunan,P1,P1,P2,Netral,AllBangunan,&SU);
 				} else {
 					// pemain p2
-					ProsedurLevelUp(&AllBangunan,P2);
+					ProsedurLevelUp(&AllBangunan,P2,P1,P2,Netral,AllBangunan,&SU);
 				}
 			}
 			else if(IsMove(s)){
