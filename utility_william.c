@@ -44,6 +44,7 @@ void MoveB(IdxTypeArray i,IdxTypeArray j, int n, Pemain P,TabBangunan * tab){
 	if (IsAbleMove(ElmtArray((*tab),i),(ElmtArray((*tab),j)),n, P,(*tab))) {
 		Pasukan(ElmtArray((*tab),i)) -= n;
 		Pasukan(ElmtArray((*tab),j)) += n;
+		Move(ElmtArray((*tab),i)) = true;
 	} else {
 		if (Pasukan(ElmtArray((*tab),i)) < n){
 			printf("%s\n", "Jumlah pasukan anda kurang !");
@@ -53,7 +54,6 @@ void MoveB(IdxTypeArray i,IdxTypeArray j, int n, Pemain P,TabBangunan * tab){
 			printf("%s\n", "Bangunan telah melakukan migrasi pasukan di turn ini.");
 		}
 	}
-
 }
 
 boolean IsAbleSerang(Bangunan bangunanPe, Bangunan bangunanDe, int n){
