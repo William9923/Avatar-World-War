@@ -139,7 +139,7 @@ int main() {
 				if (IsEQPemain(P1, Pnow)){
 					PakeSkill (&q1,&AllBangunan,P1, P2, &jatah,&SU);
 				} else {
-					PakeSkill (&q2,&AllBangunan,P1, P2, &jatah,&SU);
+					PakeSkill (&q2,&AllBangunan,P2, P1, &jatah,&SU);
 				}
 			}
 			else if(IsUndo(s)){
