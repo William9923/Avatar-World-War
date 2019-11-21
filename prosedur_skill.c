@@ -68,14 +68,12 @@ boolean IsObtainIR (TabBangunan tab, Pemain p1){
 boolean IsObtainBarrage(TabBangunan tab, Pemain p2){
 	/* Fungsi untuk melakukan pengecekan apakah seorang pemain mendapatkan skill Barrage atau tidak
 	Notes : yang dibutuhkan untuk pengecekan hanyalah List bangunan musuh */
-	if (NbElmtList(p2.b) == 10) return true;
-	else false;
+	return (NbElmtList(p2.b) == 10);
 }
 boolean IsObtainExtraTurn(TabBangunan tab, IdxTypeArray i, Pemain p2){
 	/* Fungsi untuk melakukan pengecekan apakah seorang pemain mendapatkan skill Extra Turn 
 	   Pengecekan dilakukan dengan mengecek apakah bangunan yang akan didapatkan berupa Fort atau tidak */
-	if (Type(ElmtArray(tab, i)) == 'F') return true;
-	else return false; 
+	return (Type(ElmtArray(tab, i)) == 'F');
 }
 
 void CheckAddExtraTurn(Queue * q1,TabBangunan tab, IdxTypeArray i, Pemain P1, Pemain P2){
