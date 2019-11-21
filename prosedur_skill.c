@@ -18,11 +18,13 @@ void TambahPasukanB(Bangunan * bangunan, int n){
 	Pasukan(*bangunan) += n;
 }
 
-void KurangPasukan(Bangunan * bangunan, int n){
+void KurangPasukan(Bangunan * bangunan, int n, boolean * ubah){
 	if ((Pasukan(*bangunan) - n) < 0){
 		Pasukan(*bangunan) = 0;
+		*ubah = true;
 	} else {
 		Pasukan(*bangunan) -= n;
+		*ubah = false;
 	}
 }
 
@@ -36,13 +38,20 @@ void InstantReinforcement(TabBangunan * tab, Pemain p1) {
 	}
 }
 
-void Barrage(TabBangunan * tab, Pemain p1, Pemain p2){
+void Barrage(TabBangunan * tab, Pemain * p1, Pemain * p2){
 	/* Implementasi dari Barrage */
-	address last = FirstL(p2.b);
+	address last = FirstL((*p2).b);
 	int kurangPasukan = 10;
-	for(int i = 1; i <= NbElmtList(p2.b); i++){
-		KurangPasukan(&(ElmtArray((*tab), InfoL(last))), kurangPasukan);
-		last = NextL(last);
+	boolean ubah = false;
+	for(int i = 1; i <= NbElmtList((*p2).b); i++){
+		KurangPasukan(&(ElmtArray((*tab), InfoL(last))), kurangPasukan, &ubah);
+		if (ubah){
+			MakeLevelOne(&(ElmtArray((*tab),InfoL(last))));
+			InsVLastList(&((*p1).b),InfoL(last));
+			DelPList(&((*p2).b), InfoL(last));
+		}
+		last = NextL(last); // next element
+		ubah = false; // kembaliin konfigurasi
 	}
 }
 

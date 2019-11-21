@@ -136,9 +136,9 @@ int main() {
 			}
 			else if(IsSkill(s)){
 				if (IsEQPemain(P1, Pnow)){
-					PakeSkill (&((P1).Skill),&AllBangunan,P1, P2, &jatah,&SU);
+					PakeSkill (&((P1).Skill),&AllBangunan,&P1, &P2, &jatah,&SU);
 				} else {
-					PakeSkill (&((P2).Skill),&AllBangunan,P2, P1, &jatah,&SU);
+					PakeSkill (&((P2).Skill),&AllBangunan,&P2, &P1, &jatah,&SU);
 				}
 			}
 			else if(IsUndo(s)){

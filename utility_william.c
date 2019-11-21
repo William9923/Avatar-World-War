@@ -25,7 +25,7 @@ boolean IsAbleMove(Bangunan bangunanAwal, Bangunan bangunanTujuan, int n, Pemain
 	if (!(haveBuildingB(P,bangunanAwal,Tab)) || !(haveBuildingB(P,bangunanTujuan,Tab))){
 		return false;
 	} 
-	if (Pasukan(bangunanAwal) < n){
+	if (Pasukan(bangunanAwal) < n && n < 0){
 		return false;
 	}
 	if (IsSudahMove(bangunanAwal)){
@@ -50,7 +50,9 @@ void MoveB(IdxTypeArray i,IdxTypeArray j, int n, Pemain P,TabBangunan * tab){
 			printf("%s\n", "Jumlah pasukan anda kurang !");
 		} else if(!(haveBuildingB(P,ElmtArray((*tab),i),(*tab))) || !(haveBuildingB(P,ElmtArray((*tab),j),(*tab)))) {
 			printf("%s\n", "Bangunan tidak tersambung satu sama lain!");
-		} 
+		} else {
+			printf("%s\n", "Jumlah pasukan tidak valid!");
+		}
 	}
 }
 
@@ -104,6 +106,7 @@ void SerangB(IdxTypeArray i, IdxTypeArray j, int n, Pemain * P1, Pemain * P2, Li
 			if (IsBangunanNetral(ElmtArray((*tab),j), (*P1), (*P2), *tab)){
 				InsVLastList(&((*P1).b),j);
 				DelPList(Netral, j);
+				CheckAddBarrage(q2 ,(*tab), (*P2), (*P1));
 			} else{
 				// kalo dia ternata punya orang
 				MakeLevelOne(&(ElmtArray((*tab),j)));
@@ -474,14 +477,13 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 	s = BacaInputUser();
 	c = pengubahAngka();
 
-	if (c <= count_n) {
+	if (c <= count_n && c > 0) {
 		address last;
 		last = FirstL((*p1).b);
 		for (int i = 1; i < c; i++){
 			last = NextL(last);
 		}
 		a = InfoL(last);
-
 		if (!IsSudahSerang(ElmtArray((*tab),a))) {
 			int n;
 			SemuaBangunanAttack((*tab), (*p1), a,g, &n);
@@ -497,26 +499,24 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 				s = BacaInputUser();
 				j = pengubahAngka();
 
-				if (j <= n) {
+				if (j <= n && j > 0) {
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
 					SaveState(SU,*p1,*p2,*Netral,*tab);
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab, q1,q2);
-					
 				} else {
 					do {
 						printf("\n%s\n", "Masukan bangunan salah. Silahkan ulangi!");
 						printf("%s", "Bangunan yang diserang: ");
 						s = BacaInputUser();
 						j = pengubahAngka();
-					} while (j > n);
+					} while (j > n && j <= 0);
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
 					SaveState(SU,*p1,*p2,*Netral,*tab);
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab, q1,q2);
-					
 				}
 			} else {
 				printf("%s\n", "Tidak ada bangunan yang dapat diserang.");	
@@ -530,11 +530,10 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 			printf("%s\n\n", "Silahkan diulangi");
 			printf("%s\n", "Daftar Bangunan :");
 			PrintInfoLBangunan((*tab), (*p1));
-
 			printf("%s", "Bangunan yang digunakan untuk menyerang: ");
 			s = BacaInputUser();
 			c = pengubahAngka();			
-		} while (c > count_n);
+		} while (c > count_n && c <= 0);
 		address last;
 		last = FirstL((*p1).b);
 		for (int i = 1; i < c; i++){
@@ -557,7 +556,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 				s = BacaInputUser();
 				j = pengubahAngka();
 
-				if (j <= n) {
+				if (j <= n && j > 0) {
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
@@ -577,7 +576,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 						printf("%s", "Bangunan yang diserang: ");
 						s = BacaInputUser();
 						j = pengubahAngka();
-					} while (j > n);
+					} while (j > n && j <= 0);
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
@@ -608,7 +607,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g,Pemain P1,Pemain P2,Li
 	s = BacaInputUser();
 	c = pengubahAngka();
 	
-	if (c <= count_n){
+	if (c <= count_n && c > 0){
 		address last;
 		last = FirstL((*p1).b);
 		for (int i = 1; i < c; i++){
@@ -630,7 +629,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g,Pemain P1,Pemain P2,Li
 				s = BacaInputUser();
 				j = pengubahAngka();
 
-				if (j <= n) {
+				if (j <= n && j > 0) {
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
@@ -643,7 +642,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g,Pemain P1,Pemain P2,Li
 						printf("%s", "Bangunan yang akan menerima pasukan baru: ");
 						s = BacaInputUser();
 						j = pengubahAngka();
-					} while(j > n);
+					} while(j > n && j <= 0);
 						printf("%s", "Jumlah pasukan: ");
 						s = BacaInputUser();
 						k = pengubahAngka();
@@ -665,8 +664,8 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g,Pemain P1,Pemain P2,Li
 			printf("%s", "Pilih Bangunan: ");
 			s = BacaInputUser();
 			c = pengubahAngka();
-		} while(c > count_n);
-				address last;
+		} while(c > count_n && c <= 0);
+		address last;
 		last = FirstL((*p1).b);
 		for (int i = 1; i < c; i++){
 			last = NextL(last);
@@ -686,7 +685,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g,Pemain P1,Pemain P2,Li
 			s = BacaInputUser();
 			j = pengubahAngka();
 
-			if (j <= n) {
+			if (j <= n && j > 0) {
 				printf("%s", "Jumlah pasukan: ");
 				s = BacaInputUser();
 				k = pengubahAngka();
@@ -705,7 +704,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g,Pemain P1,Pemain P2,Li
 					printf("%s", "Bangunan yang akan menerima pasukan baru: ");
 					s = BacaInputUser();
 					j = pengubahAngka();
-				} while(j > n);
+				} while(j > n && j <= 0);
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
@@ -719,7 +718,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g,Pemain P1,Pemain P2,Li
 }
 
 /* Fungsi buat make skill */
-void PakeSkill (Queue *Q,TabBangunan * tab,Pemain p1, Pemain p2, int * x,StackUndo *SU)
+void PakeSkill (Queue *Q,TabBangunan * tab,Pemain * p1, Pemain * p2, int * x,StackUndo *SU)
 {
     char X;
     
@@ -728,7 +727,7 @@ void PakeSkill (Queue *Q,TabBangunan * tab,Pemain p1, Pemain p2, int * x,StackUn
         DelSkillQueue(Q,&X);
         if (X == 'A')
         {
-            InstantUpgrade(tab, p1);
+            InstantUpgrade(tab, (*p1));
         }
         else if (X == 'B')
         {
@@ -748,7 +747,7 @@ void PakeSkill (Queue *Q,TabBangunan * tab,Pemain p1, Pemain p2, int * x,StackUn
         }
         else if (X == 'F')
         {
-            InstantReinforcement(tab,p1);
+            InstantReinforcement(tab,(*p1));
         }
         else if (X == 'G')
         {
