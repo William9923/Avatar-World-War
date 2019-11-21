@@ -13,6 +13,7 @@ void CreateNewPlayer(Pemain *P,int nomor){
 Warna(*P) = R atau B,ListBangunan kosong */
     CreateEmptyList(&((*P).b)); 
     (*P).nomor = nomor;
+	CreateEmptyQueue(&(*P).Skill);
 }
 
 void ChangeOwner(Pemain *P,Bangunan b,Pemain *NewOwner, TabBangunan tab){
@@ -48,6 +49,7 @@ boolean haveBuildingKoordinat(Pemain P,int i,int j,TabBangunan Tab){
 
 void CopyPemain(Pemain P,Pemain *Destination){
 	CopyList(P.b,&((*Destination).b));
+	(*Destination).Skill = P.Skill;
 }
 
 /*
