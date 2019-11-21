@@ -18,7 +18,7 @@
 // #include<math.h>
 // #include"boolean.h"
 
-void ProsedurLevelUp (TabBangunan *tab, Pemain P1,Pemain P3,Pemain P2,List Netral,TabBangunan Tab,StackUndo *SU) {
+void ProsedurLevelUp (TabBangunan *tab, Pemain P1,Pemain P3,Pemain P2,List Netral,StackUndo *SU) {
      char * s;
  	int * levelArr;
  	IdxTypeArray a,b;
@@ -42,7 +42,7 @@ void ProsedurLevelUp (TabBangunan *tab, Pemain P1,Pemain P3,Pemain P2,List Netra
         a = InfoL(last);
 
         if(IsAbleNaikLevel(ElmtArray(*tab,a))) {
-            SaveState(SU,P3,P2,Netral,Tab);
+            SaveState(SU,P3,P2,Netral,*tab);
             if (Type(ElmtArray(*tab,a)) == 'C') {
                 ElmtArray(*tab,a) = NaikLevelCastle(ElmtArray(*tab,a));
                 printf("Level Castle-mu meningkat menjadi %d!\n",Level(ElmtArray(*tab,a)));
@@ -58,15 +58,28 @@ void ProsedurLevelUp (TabBangunan *tab, Pemain P1,Pemain P3,Pemain P2,List Netra
             }
             
         } else {
-            if (Type(ElmtArray(*tab,a)) == 'C') {
-                printf("Jumlah pasukan %s kurang untuk level up\n", "Castle");
-            } else if (Type(ElmtArray(*tab,a)) == 'F') {
-                printf("Jumlah pasukan %s kurang untuk level up\n", "Fort");
-            } else if (Type(ElmtArray(*tab,a)) == 'V') {
-                printf("Jumlah pasukan %s kurang untuk level up\n", "Village");
-            } else {
-                printf("Jumlah pasukan %s kurang untuk level up\n", "Tower");
-            }
+            printf("Level: %d\n", Level(ElmtArray(*tab,a)));
+            if (IsMaxLevel(ElmtArray(*tab,a))) {
+				if (Type(ElmtArray(*tab,a)) == 'C') {
+					printf("%s sudah berada pada level maksimum.\n", "Castle");
+				} else if (Type(ElmtArray(*tab,a)) == 'F') {
+					printf("%s sudah berada pada level maksimum.\n", "Fort");
+				} else if (Type(ElmtArray(*tab,a)) == 'V') {
+					printf("%s sudah berada pada level maksimum.\n", "Village");
+				} else {
+					printf("%s sudah berada pada level maksimum.\n", "Tower");
+				}
+			} else {
+				if (Type(ElmtArray(*tab,a)) == 'C') {
+					printf("Jumlah pasukan %s kurang untuk level up\n", "Castle");
+				} else if (Type(ElmtArray(*tab,a)) == 'F') {
+					printf("Jumlah pasukan %s kurang untuk level up\n", "Fort");
+				} else if (Type(ElmtArray(*tab,a)) == 'V') {
+					printf("Jumlah pasukan %s kurang untuk level up\n", "Village");
+				} else {
+					printf("Jumlah pasukan %s kurang untuk level up\n", "Tower");
+				}
+			}
         }
     } else {
         do {
@@ -85,7 +98,7 @@ void ProsedurLevelUp (TabBangunan *tab, Pemain P1,Pemain P3,Pemain P2,List Netra
         a = InfoL(last);
 
         if(IsAbleNaikLevel(ElmtArray(*tab,a))) {
-            SaveState(SU,P3,P2,Netral,Tab);
+            SaveState(SU,P3,P2,Netral,*tab);
             if (Type(ElmtArray(*tab,a)) == 'C') {
                 ElmtArray(*tab,a) = NaikLevelCastle(ElmtArray(*tab,a));
                 printf("Level Castle-mu meningkat menjadi %d!\n",Level(ElmtArray(*tab,a)));

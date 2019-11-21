@@ -117,25 +117,25 @@ int main() {
 			}
 			else if(IsLevelUp(s)){
 				if (IsEQPemain(Pnow, P1)) {
-					ProsedurLevelUp(&AllBangunan,P1,P1,P2,Netral,AllBangunan,&SU);
+					ProsedurLevelUp(&AllBangunan,P1,P1,P2,Netral,&SU);	
 				} else {
 					// pemain p2
-					ProsedurLevelUp(&AllBangunan,P2,P1,P2,Netral,AllBangunan,&SU);
+					ProsedurLevelUp(&AllBangunan,P2,P1,P2,Netral,&SU);
 				}
 			}
 			else if(IsMove(s)){
 				if (IsEQPemain(Pnow, P1)){
-					ProsedurMove(&AllBangunan, &P1, connectivity);
+					ProsedurMove(&AllBangunan, &P1, connectivity,P1,P2,Netral,&SU);
 				} else {
 					// pemain p2
-					ProsedurMove(&AllBangunan, &P2, connectivity);
+					ProsedurMove(&AllBangunan, &P2, connectivity,P1,P2,Netral,&SU);
 				}
 			}
 			else if(IsSkill(s)){
 				if (IsEQPemain(P1, Pnow)){
-					PakeSkill (&q1,&AllBangunan,P1, P2, &jatah);
+					PakeSkill (&q1,&AllBangunan,P1, P2, &jatah,&SU);
 				} else {
-					PakeSkill (&q2,&AllBangunan,P1, P2, &jatah);
+					PakeSkill (&q2,&AllBangunan,P1, P2, &jatah,&SU);
 				}
 			}
 			else if(IsUndo(s)){

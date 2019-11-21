@@ -591,8 +591,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 		}
 	}
 }
-
-void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g){
+void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g,Pemain P1,Pemain P2,List Netral,StackUndo *SU){
 	char * s;
 	int * moveArr;
 	IdxTypeArray a;
@@ -633,6 +632,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g){
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
+					SaveState(SU,P1,P2,Netral,*tab);
 					MoveB(a,moveArr[j - 1], k, (*p1),tab);		
 				} else {
 					do {
@@ -645,6 +645,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g){
 						printf("%s", "Jumlah pasukan: ");
 						s = BacaInputUser();
 						k = pengubahAngka();
+						SaveState(SU,P1,P2,Netral,*tab);
 						MoveB(a,moveArr[j - 1], k, (*p1),tab);	
 				}
 			} else {
@@ -687,6 +688,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g){
 				printf("%s", "Jumlah pasukan: ");
 				s = BacaInputUser();
 				k = pengubahAngka();
+				SaveState(SU,P1,P2,Netral,*tab);
 				MoveB(a,moveArr[j - 1], k, (*p1),tab);		
 			} else {
 				do {
@@ -705,6 +707,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g){
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
+					SaveState(SU,P1,P2,Netral,*tab);
 					MoveB(a,moveArr[j - 1], k, (*p1),tab);	
 			}
 		} else {
