@@ -98,7 +98,11 @@ int main() {
 				Pnow = P2;
 			}
 			PrintInfoLBangunan(AllBangunan,Pnow);
+
 			//printskill
+
+			printf("%s", "Skill Available: ");
+			printf("\n");
 			printf("ENTER COMMAND: ");
 			s = BacaInputUser();
 			printf("\n");
