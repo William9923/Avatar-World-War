@@ -45,6 +45,7 @@ void MoveB(IdxTypeArray i,IdxTypeArray j, int n, Pemain P,TabBangunan * tab){
 		Pasukan(ElmtArray((*tab),i)) -= n;
 		Pasukan(ElmtArray((*tab),j)) += n;
 		Move(ElmtArray((*tab),i)) = true;
+		printf("%s\n", "Pasukan telah bermigrasi");
 	} else {
 		if (Pasukan(ElmtArray((*tab),i)) < n){
 			printf("%s\n", "Jumlah pasukan anda kurang !");
@@ -73,6 +74,10 @@ boolean IsAbleSerang(Bangunan bangunanPe, Bangunan bangunanDe, int n){
 	if (Pasukan(bangunanPe) < n){
 		// cek apakah jumlah pasukan yang diinput valid atau tidak
 		printf("%s\n\n", "Jumlah pasukan tidak mencukupi!");
+		return false;
+	}
+	if (n < 0){
+		printf("%s\n", "Jumlah pasukan tidak valid");
 		return false;
 	}
 	return true;
@@ -511,7 +516,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 						printf("%s", "Bangunan yang diserang: ");
 						s = BacaInputUser();
 						j = pengubahAngka();
-					} while (j > n && j <= 0);
+					} while (j > n || j <= 0);
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
@@ -533,7 +538,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 			printf("%s", "Bangunan yang digunakan untuk menyerang: ");
 			s = BacaInputUser();
 			c = pengubahAngka();			
-		} while (c > count_n && c <= 0);
+		} while (c > count_n || c <= 0);
 		address last;
 		last = FirstL((*p1).b);
 		for (int i = 1; i < c; i++){
@@ -576,7 +581,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 						printf("%s", "Bangunan yang diserang: ");
 						s = BacaInputUser();
 						j = pengubahAngka();
-					} while (j > n && j <= 0);
+					} while (j > n || j <= 0);
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
@@ -642,7 +647,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g,Pemain P1,Pemain P2,Li
 						printf("%s", "Bangunan yang akan menerima pasukan baru: ");
 						s = BacaInputUser();
 						j = pengubahAngka();
-					} while(j > n && j <= 0);
+					} while(j > n || j <= 0);
 						printf("%s", "Jumlah pasukan: ");
 						s = BacaInputUser();
 						k = pengubahAngka();
@@ -664,7 +669,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g,Pemain P1,Pemain P2,Li
 			printf("%s", "Pilih Bangunan: ");
 			s = BacaInputUser();
 			c = pengubahAngka();
-		} while(c > count_n && c <= 0);
+		} while(c > count_n || c <= 0);
 		address last;
 		last = FirstL((*p1).b);
 		for (int i = 1; i < c; i++){
@@ -704,7 +709,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g,Pemain P1,Pemain P2,Li
 					printf("%s", "Bangunan yang akan menerima pasukan baru: ");
 					s = BacaInputUser();
 					j = pengubahAngka();
-				} while(j > n && j <= 0);
+				} while(j > n || j <= 0);
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();

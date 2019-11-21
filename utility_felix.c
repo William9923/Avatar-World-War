@@ -70,7 +70,7 @@ void ProsedurLevelUp (TabBangunan *tab, Pemain P1,Pemain P3,Pemain P2,List Netra
             printf("%s", "Bangunan yang akan di level up: ");
             s = BacaInputUser();
             c = pengubahAngka();       
-        } while (c > count_n && c <= 0);
+        } while (c > count_n || c <= 0);
         address last=FirstL(P1.b);
         for (int i = 1; i < c; i++){
             last = NextL(last);
