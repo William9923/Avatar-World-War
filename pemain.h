@@ -13,9 +13,11 @@ States dari seorang pemain terdiri dari:
 #include"bangunan.h"
 #include"listlinier.h"
 #include "array.h"
+#include"skill.h"
 
 typedef struct{
     /*QueueSkill Skill*/
+    Queue Skill;
    List b;
    int nomor;
 } Pemain;

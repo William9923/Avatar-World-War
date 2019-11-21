@@ -15,7 +15,7 @@ void Barrage(TabBangunan * tab, Pemain p1, Pemain p2);
 void ExtraTurn (int * n);
 // buat Instant Upgrade, dilakukan hardcoding saat inisiasi game
 boolean IsObtainIR (TabBangunan tab, Pemain p1);
-boolean IsObtainBarrage(TabBangunan tab, Pemain p2);
+boolean IsObtainBarrage(Pemain p2);
 boolean IsObtainExtraTurn(TabBangunan tab, IdxTypeArray i, Pemain p2);
 
 void CheckAddExtraTurn(Queue * q1,TabBangunan tab, IdxTypeArray i, Pemain P1, Pemain P2);

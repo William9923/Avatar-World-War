@@ -57,8 +57,6 @@ void NextPemain(Pemain P1,Pemain P2,Pemain *P){
 
 int main() {
 	//KAMUS
-	Queue q1,q2;
-	StartSkill(&q1);StartSkill(&q2);
 	Pemain P1,P2,Pnow;
 	StackUndo SU;
     PETA P;
@@ -76,6 +74,7 @@ int main() {
 	boolean stop = false;
 	P1.nomor = 1;
 	P2.nomor = 2;
+	StartSkill(&((P1).Skill));StartSkill(&((P2).Skill));
 	Pnow = P1;
 	char * s;
 	while(!stop){
@@ -102,9 +101,9 @@ int main() {
 
 			printf("%s", "Skill Available: ");
 			if (IsEQPemain(P1,Pnow)){
-				ShowSkill(q1);
+				ShowSkill((P1.Skill));
 			} else {
-				ShowSkill(q2);
+				ShowSkill((P2.Skill));
 			}
 			printf("\n");
 			printf("ENTER COMMAND: ");
@@ -112,10 +111,10 @@ int main() {
 			printf("\n");
 			if(IsAttack(s)){
 				if (IsEQPemain(Pnow, P1)) {
-					ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity,&SU, &q1, &q2);
+					ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity,&SU, &((P1).Skill), &((P2).Skill));
 				} else {
 					// pemain p2
-					ProsedurAttack(&AllBangunan, &P2, &P1,&Netral ,connectivity,&SU, &q2, &q1);
+					ProsedurAttack(&AllBangunan, &P2, &P1,&Netral ,connectivity,&SU, &((P2).Skill), &((P1).Skill));
 				}
 				endgame(P1,P2,&stop);
 			}
@@ -137,9 +136,9 @@ int main() {
 			}
 			else if(IsSkill(s)){
 				if (IsEQPemain(P1, Pnow)){
-					PakeSkill (&q1,&AllBangunan,P1, P2, &jatah,&SU);
+					PakeSkill (&((P1).Skill),&AllBangunan,P1, P2, &jatah,&SU);
 				} else {
-					PakeSkill (&q2,&AllBangunan,P2, P1, &jatah,&SU);
+					PakeSkill (&((P2).Skill),&AllBangunan,P2, P1, &jatah,&SU);
 				}
 			}
 			else if(IsUndo(s)){
@@ -154,21 +153,21 @@ int main() {
 				if(jatah>1){
 					if (IsEQPemain(Pnow, P1)){
 						NextTurnLBangunan(P1.b, &AllBangunan);
-						CheckAddIR(&q1,&q2,AllBangunan,P1,P2);
+						CheckAddIR(&((P1).Skill),&((P2).Skill),AllBangunan,P1,P2);
 					} else {
 						// P1 sekarang
 						NextTurnLBangunan(P2.b, &AllBangunan);
-						CheckAddIR(&q2,&q1,AllBangunan,P2,P1);
+						CheckAddIR(&((P2).Skill),&((P1).Skill),AllBangunan,P2,P1);
 					}
 				}
 				else{
 					if (IsEQPemain(Pnow, P2)){
 						NextTurnLBangunan(P1.b, &AllBangunan);
-						CheckAddIR(&q2,&q1,AllBangunan,P2,P1);
+						CheckAddIR(&((P2).Skill),&((P1).Skill),AllBangunan,P2,P1);
 					} else {
 						// P1 sekarang
 						NextTurnLBangunan(P2.b, &AllBangunan);
-						CheckAddIR(&q1,&q2,AllBangunan,P1,P2);
+						CheckAddIR(&((P1).Skill),&((P2).Skill),AllBangunan,P1,P2);
 					}
 				}
 				turn++;
@@ -177,7 +176,7 @@ int main() {
 				system("clear");
 			}
 			else if(IsSave(s)){
-
+				
 			}
 			else if(IsExit(s)) {
 				stop = true;
