@@ -107,6 +107,8 @@ void SerangB(IdxTypeArray i, IdxTypeArray j, int n, Pemain * P1, Pemain * P2, Li
 				InsVLastList(&((*P1).b),j);
 				DelPList(Netral, j);
 			} else{
+				// kalo dia ternata punya orang
+				MakeLevelOne(&(ElmtArray((*tab),j)));
 				InsVLastList(&((*P1).b),j);
 				DelPList(&((*P2).b), j);
 			} 
@@ -716,6 +718,7 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g,Pemain P1,Pemain P2,Li
 	}
 }
 
+/* Fungsi buat make skill */
 void PakeSkill (Queue *Q,TabBangunan * tab,Pemain p1, Pemain p2, int * x,StackUndo *SU)
 {
     char X;

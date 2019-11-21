@@ -226,6 +226,9 @@ void NextTurnBangunan(Bangunan * bangunan){
 
 	// Kedua perbolehkan menyerang
 	Serang(*bangunan) = false;
+
+	// Bangunan blh bergerak
+	Move(*bangunan) = false;
 }
 
 
@@ -272,6 +275,32 @@ void CopyBangunan(Bangunan B,Bangunan *T){
 	(*T).pasukan=B.pasukan; // pasukan awal
 	(*T).letak=B.letak;
 	(*T).serang=B.serang;
+}
+
+void MakeLevelOne(Bangunan * bangunan){
+	Level(*bangunan) = 1;
+	Serang(*bangunan) = false;
+	Move(*bangunan) = false;
+	if (Type(*bangunan) == 'C') {
+		A(*bangunan) = 10;
+		M(*bangunan) = 40;
+		Pertahanan(*bangunan) = false;
+	}
+	else if (Type(*bangunan) == 'T') {
+		A(*bangunan) = 5;
+		M(*bangunan) = 20;
+		Pertahanan(*bangunan) = true;
+	}
+	else if (Type(*bangunan) == 'F') {
+		A(*bangunan) = 10;
+		M(*bangunan) = 20;
+		Pertahanan(*bangunan) = false;
+	}
+	else if (Type(*bangunan) == 'V') {
+		A(*bangunan) = 5;
+		M(*bangunan) = 20;
+		Pertahanan(*bangunan) = false;
+	}
 }
 
 

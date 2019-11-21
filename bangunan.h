@@ -141,6 +141,12 @@ void PrintInfoBangunan(Bangunan bangunan);
 boolean EQBangunan(Bangunan b1, Bangunan b2);
 /* Cek apakah kedua bangunan sama atau tidak */
 
+void CopyBangunan(Bangunan B,Bangunan *T);
+/* Melakukan copy bangunan */
+
+void MakeLevelOne(Bangunan * bangunan);
+/* Membuat suatu bangunan kembali ke level 1 setelah direbut */
+
 #endif
 
 
