@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "prosedur_skill.h": "c"
+        "prosedur_skill.h": "c",
+        "graph_.h": "c"
     }
 }
