@@ -715,3 +715,48 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g,Pemain P1,Pemain P2,Li
 		}
 	}
 }
+
+void PakeSkill (Queue *Q,TabBangunan * tab,Pemain p1, Pemain p2, int * x,StackUndo *SU)
+{
+    char X;
+    
+    if (!IsEmptyQueue(*Q))
+    {
+        DelSkillQueue(Q,&X);
+        if (X == 'A')
+        {
+            InstantUpgrade(tab, p1);
+        }
+        else if (X == 'B')
+        {
+            printf("Shield");
+        }
+        else if (X == 'C')
+        {
+            ExtraTurn(x);
+        }
+        else if (X == 'D')
+        {
+            printf("Attack Up");
+        }
+        else if (X == 'E')
+        {
+            printf("Critical Hit");
+        }
+        else if (X == 'F')
+        {
+            InstantReinforcement(tab,p1);
+        }
+        else if (X == 'G')
+        {
+            Barrage(tab,p1,p2);
+        }
+        CreateEmptyStackUndo(SU);
+    }
+    
+    else 
+    {
+        printf("Anda tidak memiliki skill\n");
+    }
+
+}
