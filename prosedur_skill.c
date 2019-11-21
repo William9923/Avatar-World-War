@@ -49,3 +49,31 @@ void Barrage(TabBangunan * tab, Pemain p1, Pemain p2){
 void ExtraTurn (int * n){
 	(*n) += 1;
 }
+
+boolean IsObtainIR (TabBangunan tab, Pemain p1){
+	/* Fungsi untuk melakukan pengecekan apakah pemain 
+	   mendapatkan skill Instant Reinforcement atau tidak */
+	address last = FirstL(p1.b);
+	boolean checker = true;
+	int i = 1;
+	while (i <= NbElmtList(p1.b) && checker){
+		if (Level(ElmtArray(tab, InfoL(last))) < 4){
+			checker = false;
+		}
+		i++;
+		last = NextL(last);
+	}
+	return checker;
+}
+boolean IsObtainBarrage(TabBangunan tab, Pemain p2){
+	/* Fungsi untuk melakukan pengecekan apakah seorang pemain mendapatkan skill Barrage atau tidak
+	Notes : yang dibutuhkan untuk pengecekan hanyalah List bangunan musuh */
+	if (NbElmtList(p2.b) == 10) return true;
+	else false;
+}
+boolean IsObtainExtraTurn(TabBangunan tab, IdxTypeArray i, Pemain p2){
+	/* Fungsi untuk melakukan pengecekan apakah seorang pemain mendapatkan skill Extra Turn 
+	   Pengecekan dilakukan dengan mengecek apakah bangunan yang akan didapatkan berupa Fort atau tidak */
+	if (Type(ElmtArray(tab, i)) == 'F') return true;
+	else return false; 
+}

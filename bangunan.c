@@ -58,6 +58,11 @@ boolean IsAbleNaikLevel(Bangunan bangunan) {
 	else return false;
 }
 
+boolean IsMaxLevel(Bangunan bangunan) {
+//memberikan informasi apakah suatu bangunan sudah berada di level maksimum atau belum
+	return (Level(bangunan) == 4);
+}
+
 /* Fungsi - fungsi primitif terhadap naik level bangunan*/
 Bangunan NaikLevelFort(Bangunan bangunan) {
 	Bangunan newBangunan;

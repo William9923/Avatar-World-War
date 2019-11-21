@@ -21,7 +21,8 @@ typedef struct {
 	Point letak;
 	boolean serang; // apakah suatu bangunan telah menyerang di turn tersebut atau tidak
 					// true -> uda serang, false -> belum serang
-	boolean move;
+	boolean move; 	// apakah suatu bangunan telah melakukan migrasi pasukan di turn tersebut
+					// true -> uda move. false -> belum melakukan move
 } Bangunan;
 
 /* Notasi Akses : Selektor Bangunan*/
@@ -53,6 +54,8 @@ void MakeBangunan(Bangunan * bangunan, char type, int pemilik, Point Point)
 boolean IsAbleNaikLevel(Bangunan bangunan);
 // memberikan informasi apakah suatu bangunan dapat naik level atau tidak
 
+boolean IsMaxLevel(Bangunan bangunan);
+//memberikan informasi apakah suatu bangunan sudah berada di level maksimum atau belum
 
 /* Fungsi - fungsi primitif terhadap naik level bangunan*/
 /*
