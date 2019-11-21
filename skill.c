@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include"prosedur_skill.h"
 
-
 /* ********* Prototype ********* */
 boolean IsEmptyQueue (Queue Q)
 /* Mengirim true jika Q kosong: lihat definisi di atas */
@@ -170,7 +169,7 @@ void KodeToSkill (char S)
 
 }
 
-void PakeSkill (Queue *Q,TabBangunan * tab,Pemain p1, Pemain p2, int * x)
+void PakeSkill (Queue *Q,TabBangunan * tab,Pemain p1, Pemain p2, int * x,StackUndo *SU)
 {
     char X;
     
@@ -205,6 +204,7 @@ void PakeSkill (Queue *Q,TabBangunan * tab,Pemain p1, Pemain p2, int * x)
         {
             Barrage(tab,p1,p2);
         }
+        CreateEmptyStackUndo(SU);
     }
     
     else 

@@ -75,6 +75,6 @@ void StartSkill(Queue *Q);
 
 void KodeToSkill(char S);
 
-void PakeSkill (Queue *Q,TabBangunan * tab,Pemain p1, Pemain p2, int * x);
+void PakeSkill (Queue *Q,TabBangunan * tab,Pemain p1, Pemain p2, int * x,StackUndo *SU);
 
 #endif
