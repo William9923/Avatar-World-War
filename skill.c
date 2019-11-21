@@ -91,8 +91,7 @@ void AddSkillQueue (Queue * Q, char X)
 				InfoTail(*Q) = X;
 			}
 		}
-	}
- 
+	}  
 }
 
 void DelSkillQueue (Queue * Q, infotype * X)
@@ -167,4 +166,24 @@ void KodeToSkill (char S)
         printf("B");
     }
 
+}
+
+char Peek (Queue Q){
+    /* Mengecek nilai pertama dari Queue skill */
+    if (!IsEmptyQueue(Q))
+    {
+        return InfoHead(Q);
+    } else {
+        // kosong
+        return 'X';
+    }
+}
+
+void ShowSkill(Queue Q){
+    char place = Peek(Q);
+    if (!IsEmptyQueue(Q)){
+        KodeToSkill(place);
+    }else {
+        printf("-");
+    }
 }

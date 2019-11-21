@@ -99,19 +99,23 @@ int main() {
 			}
 			PrintInfoLBangunan(AllBangunan,Pnow);
 
-			//printskill
 
 			printf("%s", "Skill Available: ");
+			if (IsEQPemain(P1,Pnow)){
+				ShowSkill(q1);
+			} else {
+				ShowSkill(q2);
+			}
 			printf("\n");
 			printf("ENTER COMMAND: ");
 			s = BacaInputUser();
 			printf("\n");
 			if(IsAttack(s)){
 				if (IsEQPemain(Pnow, P1)) {
-					ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity,&SU);
+					ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity,&SU, &q1, &q2);
 				} else {
 					// pemain p2
-					ProsedurAttack(&AllBangunan, &P2, &P1,&Netral ,connectivity,&SU);
+					ProsedurAttack(&AllBangunan, &P2, &P1,&Netral ,connectivity,&SU, &q2, &q1);
 				}
 				endgame(P1,P2,&stop);
 			}
@@ -145,23 +149,26 @@ int main() {
 				else{
 					printf("Tidak ada yang bisa di undo!.\n");
 				}
-				
 			}
 			else if(IsEndTurn(s)){
 				if(jatah>1){
 					if (IsEQPemain(Pnow, P1)){
 						NextTurnLBangunan(P1.b, &AllBangunan);
+						CheckAddIR(&q1,&q2,AllBangunan,P1,P2);
 					} else {
 						// P1 sekarang
 						NextTurnLBangunan(P2.b, &AllBangunan);
+						CheckAddIR(&q2,&q1,AllBangunan,P2,P1);
 					}
 				}
 				else{
 					if (IsEQPemain(Pnow, P2)){
 						NextTurnLBangunan(P1.b, &AllBangunan);
+						CheckAddIR(&q2,&q1,AllBangunan,P2,P1);
 					} else {
 						// P1 sekarang
 						NextTurnLBangunan(P2.b, &AllBangunan);
+						CheckAddIR(&q1,&q2,AllBangunan,P1,P2);
 					}
 				}
 				turn++;
@@ -170,8 +177,7 @@ int main() {
 				system("clear");
 			}
 			else if(IsSave(s)){
-				//DISINI COBA CODING EXTRA TURN
-				//jatah++;
+
 			}
 			else if(IsExit(s)) {
 				stop = true;

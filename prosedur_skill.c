@@ -77,3 +77,36 @@ boolean IsObtainExtraTurn(TabBangunan tab, IdxTypeArray i, Pemain p2){
 	if (Type(ElmtArray(tab, i)) == 'F') return true;
 	else return false; 
 }
+
+void CheckAddExtraTurn(Queue * q1,TabBangunan tab, IdxTypeArray i, Pemain P1, Pemain P2){
+	if (IsObtainExtraTurn(tab,i,P2)){
+		if (!IsFullQueue(*q1)){
+			AddSkillQueue(q1, 'C');
+			printf("Player %d mendapatkan skill Extra Turn\n", P1.nomor);
+		} else {
+			printf("Player %d mendapatkan skill Extra Turn! Namun skill pouch sudah penuh\n", P1.nomor);
+		}
+	}
+}
+
+void CheckAddBarrage(Queue * q1,TabBangunan tab, Pemain p1, Pemain p2){
+	if (IsObtainBarrage(tab,p2)){
+		if (!IsFullQueue(*q1)){
+			AddSkillQueue(q1, 'G');
+			printf("Player %d mendapatkan skill Barrage\n", p1.nomor);
+		} else {
+			printf("Player %d mendapatkan skill Barrage! Namun skill pouch sudah penuh\n", p1.nomor);
+		}
+	}
+}
+
+void CheckAddIR(Queue * q1, Queue * q2, TabBangunan tab, Pemain P1, Pemain P2){
+	if (IsObtainIR (tab,P1)){
+		if (!IsFullQueue(*q1)){
+			AddSkillQueue(q1, 'F');
+			printf("Player %d mendapatkan skill Instant Reinforcement\n", P1.nomor);
+		} else {
+			printf("Player %d mendapatkan skill Instant Reinforcement! Namun skill pouch sudah penuh\n", P1.nomor);
+		}
+	}
+}

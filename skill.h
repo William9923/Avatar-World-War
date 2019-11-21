@@ -75,4 +75,8 @@ void StartSkill(Queue *Q);
 
 void KodeToSkill(char S);
 
+char Peek (Queue Q);
+
+void ShowSkill(Queue Q);
+
 #endif

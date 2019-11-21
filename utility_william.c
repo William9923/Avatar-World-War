@@ -84,12 +84,10 @@ boolean IsBangunanNetral(Bangunan b, Pemain p1, Pemain p2, TabBangunan tab){
 	else return false;
 }
 
-void SerangB(IdxTypeArray i, IdxTypeArray j, int n, Pemain * P1, Pemain * P2, List * Netral, TabBangunan * tab){
+void SerangB(IdxTypeArray i, IdxTypeArray j, int n, Pemain * P1, Pemain * P2, List * Netral, TabBangunan * tab, Queue * q1, Queue * q2){
 	/*
 	I.S. 2 Bangunan Terdefinisi
 	F.S. bangunan 1 menyerang bangunan 2
-
-	Inget, masukin bangunanPe ama bangunanDe nya tuh make pointer dari Elmt Array, sip
 	*/
 	int x;
 	if (IsAbleSerang(ElmtArray((*tab),i), ElmtArray((*tab),j), n)){
@@ -111,6 +109,8 @@ void SerangB(IdxTypeArray i, IdxTypeArray j, int n, Pemain * P1, Pemain * P2, Li
 				MakeLevelOne(&(ElmtArray((*tab),j)));
 				InsVLastList(&((*P1).b),j);
 				DelPList(&((*P2).b), j);
+				CheckAddBarrage(q2 ,(*tab), (*P2), (*P1));
+				CheckAddExtraTurn(q2,(*tab), j, (*P2), (*P1));
 			} 
 			printf("%s\n", "Bangunan menjadi milikmu");
 		} else {
@@ -458,7 +458,7 @@ boolean IsExit(char s[]){
 }
 
 
-void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,Graph g,StackUndo *SU){
+void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,Graph g,StackUndo *SU, Queue * q1, Queue * q2){
 	char * s;
 	int * attackArr;
 	IdxTypeArray a;
@@ -502,7 +502,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					s = BacaInputUser();
 					k = pengubahAngka();
 					SaveState(SU,*p1,*p2,*Netral,*tab);
-					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab);
+					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab, q1,q2);
 					
 				} else {
 					do {
@@ -515,7 +515,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					s = BacaInputUser();
 					k = pengubahAngka();
 					SaveState(SU,*p1,*p2,*Netral,*tab);
-					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab);
+					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab, q1,q2);
 					
 				}
 			} else {
@@ -562,7 +562,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					s = BacaInputUser();
 					k = pengubahAngka();
 					SaveState(SU,*p1,*p2,*Netral,*tab);
-					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab);
+					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab, q1,q2);
 					
 				} else {
 					do {
@@ -582,7 +582,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					s = BacaInputUser();
 					k = pengubahAngka();
 					SaveState(SU,*p1,*p2,*Netral,*tab);
-					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab);
+					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab, q1,q2);
 					
 				}
 			} else {
@@ -754,9 +754,9 @@ void PakeSkill (Queue *Q,TabBangunan * tab,Pemain p1, Pemain p2, int * x,StackUn
         {
             Barrage(tab,p1,p2);
         }
+        // buat ngosongin
         CreateEmptyStackUndo(SU);
     }
-    
     else 
     {
         printf("Anda tidak memiliki skill\n");

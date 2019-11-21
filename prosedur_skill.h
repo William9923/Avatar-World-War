@@ -18,4 +18,8 @@ boolean IsObtainIR (TabBangunan tab, Pemain p1);
 boolean IsObtainBarrage(TabBangunan tab, Pemain p2);
 boolean IsObtainExtraTurn(TabBangunan tab, IdxTypeArray i, Pemain p2);
 
+void CheckAddExtraTurn(Queue * q1,TabBangunan tab, IdxTypeArray i, Pemain P1, Pemain P2);
+void CheckAddBarrage(Queue * q1,TabBangunan tab, Pemain p1, Pemain p2);
+void CheckAddIR(Queue * q1, Queue * q2, TabBangunan tab, Pemain P1, Pemain P2);
+
 #endif
