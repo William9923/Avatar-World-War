@@ -54,6 +54,8 @@ void MakeBangunan(Bangunan * bangunan, char type, int pemilik, Point Point)
 boolean IsAbleNaikLevel(Bangunan bangunan);
 // memberikan informasi apakah suatu bangunan dapat naik level atau tidak
 
+boolean IsMaxLevel(Bangunan bangunan);
+//memberikan informasi apakah suatu bangunan sudah berada di level maksimum atau belum
 
 /* Fungsi - fungsi primitif terhadap naik level bangunan*/
 /*
