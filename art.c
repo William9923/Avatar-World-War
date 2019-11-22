@@ -1,21 +1,11 @@
+
+#include "pemain.h"
 #include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
-#include<string.h>
 
 
-void StartGame();
-void P1WinArt (int turn);
-void P2WinArt (int turn);
-
-int main () 
-{
-    StartGame();
-    P1WinArt (51);
-    P2WinArt (51);
-    return 0;
-}
 void StartGame ()
+/* I.S. sembarang
+/* F.S. tercetak tampilan sebelum game dimulai */
 {
 
 char anykey;
@@ -46,25 +36,16 @@ scanf("%c", &anykey);
 
 }
 
-void P1WinArt (int turn)
+void PWinArt (Pemain Pnow, int turn)
+/* I.S. Pnow dan turn terdefinisi, Pnow merupakan pemain yang menang game */
+/* F.S. tercetak tampilan player yang menang beserta turn di layar */
 {
   
         printf("\n");
         printf("========Permainan telah selesai di turn %d!========\n",turn);
         printf("       ____________________________________ \n");
         printf("       |                                   | \n");
-        printf("       |        **** P1 WIN !!! ****       | \n");
-        printf("       |___________________________________| \n");
-        printf("\n");
-}
-
-void P2WinArt (int turn)
-{
-       printf("\n");
-        printf("========Permainan telah selesai di turn %d!========\n",turn);
-        printf("       ____________________________________ \n");
-        printf("       |                                   | \n");
-        printf("       |        **** P2 WIN !!! ****       | \n");
+        printf("       |        **** P%d WIN !!! ****       | \n",Pnow.nomor);
         printf("       |___________________________________| \n");
         printf("\n");
 }
