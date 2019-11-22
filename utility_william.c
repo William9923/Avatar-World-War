@@ -25,7 +25,7 @@ boolean IsAbleMove(Bangunan bangunanAwal, Bangunan bangunanTujuan, int n, Pemain
 	if (!(haveBuildingB(P,bangunanAwal,Tab)) || !(haveBuildingB(P,bangunanTujuan,Tab))){
 		return false;
 	} 
-	if (Pasukan(bangunanAwal) < n && n < 0){
+	if (Pasukan(bangunanAwal) < n || n < 0){
 		return false;
 	}
 	if (IsSudahMove(bangunanAwal)){
