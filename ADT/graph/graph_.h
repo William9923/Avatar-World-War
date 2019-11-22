@@ -2,6 +2,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/************************************
+*Graph                              *
+*Author : William                   *
+*Created at : 19 November 2019      *
+*File definisi header dari ADT Graph*
+************************************/
+
 #ifndef GRAPH_H
 #define GRAPH_H
 
@@ -9,6 +16,7 @@
 
 typedef int infotypeGraph;
 
+/* Definisi ADT Graph */
 typedef struct tNodeGraph* addrNode;
 typedef struct tSuccNode* addrSuccNode;
 typedef struct tNodeGraph {

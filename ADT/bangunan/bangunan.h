@@ -1,14 +1,17 @@
-/*
-File : bangunan.h
-Author : William
-Topik : Tugas Besar Alstrukdat 1
-*/
-
 #ifndef BANGUNAN_H
 #define BANGUNAN_H
 
 #include "../boolean.h"
 #include "../point/point.h"
+
+/**********************************************************************
+*Bangunan                                                             *
+*Author : William                                                     *
+*Created at : 24 Oktober 2019                                         *
+*File Header dari ADT Bangunan                                        *
+*Digunakan untuk pendefinisian properti - properti                    *
+*serta fungsi - fungsi primitif yang terdapat pada bangunan dalam game*
+**********************************************************************/
 
 typedef struct {
 	char type; // T : Tower, C : Castle, F : Fort, V : Village

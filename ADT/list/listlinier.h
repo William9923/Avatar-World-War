@@ -1,16 +1,20 @@
-/* File : listlinier.h */
-/* contoh ADT list berkait dengan representasi fisik pointer  */
-/* Representasi address dengan pointer */
-/* infotypeList adalah integer */
-
 #ifndef listlinier_H
 #define listlinier_H
 
 #include "../boolean.h"
 #include"../array/array.h"
 
-#define Kosong NULL
+/*************************************************************************************
+*ListLinier                                                                          *
+*Author : William                                                                    *
+*Created at : 01 November 2019                                                       *
+*Merupakan file header dari ADT List                                                 *
+*ADT List digunakan untuk menyimpan indeks bangunan yang terdapat pada Array bangunan*
+*Indeks yang disimpan kemudian dapat digunakan untuk merujuk pada                    *
+*bangunan milik pemain / bangunan netral                                             *
+*************************************************************************************/
 
+#define Kosong NULL
 typedef int infotypeList;
 typedef struct tElmtlist *address;
 typedef struct tElmtlist {

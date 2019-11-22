@@ -1,15 +1,18 @@
-/* File: Point.h */
-/* NIM : 13518138 */
-/* Nama : William*/
-/* Tanggal: 28 Agustus 2016 */
-/* Topik : Modularitas Program */
-/* *** Definisi ABSTRACT DATA TYPE Point *** */
 
+/* *** Definisi ABSTRACT DATA TYPE Point *** */
 #ifndef Point_H
 #define Point_H
 
 #include "../boolean.h"
 #include <math.h>
+
+/*******************************************************************
+* Point                                                            *
+* Author : William                                                 *
+* Created at : 04 November 2019                                    *
+* Merupakan header file dari ADT Point                             *
+* ADT Point digunakan untuk menandakan letak bangunan di peta game *
+*******************************************************************/
 
 typedef struct {
 	int X; /* absis   */

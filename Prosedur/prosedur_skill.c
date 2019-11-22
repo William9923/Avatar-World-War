@@ -1,5 +1,23 @@
 #include "./prosedur_skill.h"
 
+/***************************************************************************************************************************************************
+* Prosedur Skill                                                                                                                                   *
+* Author : Kelompok Alstrukdat                                                                                                                     *
+* Created at : 14 November 2019                                                                                                                    *
+* Merupakan File Implementasi Skill pada Game ini                                                                                                  *
+* Digunakan untuk pemenuhan kebutuhan fungsi - fungsi dalam game yang                                                                              *
+* membutuhkan lebih dari 1 (satu) jenis ADT dan berhubungan dengan                                                                                 *
+* penggunaan skill.                                                                                                                                *
+*                                                                                                                                                  *
+* SKILL yang terdapat pada FILE ini :                                                                                                              *
+* 1. Instant Upgrade                                                                                                                               *
+* 2. Extra Turn                                                                                                                                    *
+* 3. Instant Reinforcement                                                                                                                         *
+* 4. Barrage                                                                                                                                       *
+*                                                                                                                                                  *
+* Selain itu, di file ini juga banyak didefinisikan dan diimplementasikan fungsi - fungsi validator yang akan memvalidasi inputan user / pengguna  *
+***************************************************************************************************************************************************/
+
 void InstantUpgrade(TabBangunan * tab, Pemain p1){
 	/* Implementasi Dari Instant Upgrade */
 	address last=FirstL(p1.b);

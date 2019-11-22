@@ -1,16 +1,15 @@
-/* File : listlinier.h */
-/* contoh ADT list berkait dengan representasi fisik pointer  */
-/* Representasi address dengan pointer */
-/* infotypeList adalah integer */
-/*
-Nama			: William
-NIM 			: 13518138
-Topik 			: Linear List
-*/
-
 #include"./listlinier.h"
 #include<stdlib.h>
 #include<stdio.h>
+
+/***************************************************************************
+* ListLinier                                                               *
+* Author : William                                                         *
+* Created at : 01 November 2019                                            *
+* Merupakan file implementasi dari ADT List                                *
+* Menyimpan fungsi - fungsi primitif yang dapat digunakan dalam manipulasi *
+* ataupun perubahan dalam list indeks bangunan pemain / netral             *
+***************************************************************************/
 
 #define printInt(x) printf("%d", x)
 #define printlnInt(x) printf("%d\n", x)

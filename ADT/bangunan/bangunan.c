@@ -1,13 +1,16 @@
-/*
-File : bangunan.c
-Author : William
-Topik : Tugas Besar Alstrukdat 1
-*/
-
 #include "./bangunan.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+/***********************************************************
+*Bangunan                                                  *
+*Author : William                                          *
+*Created at : 26 Oktober 2019                              *
+*File Implementasi dari Header File Bangunan               *
+*Digunakan sebagai implementasi dari fungsi - fungsi utama *
+*yang terdapat pada objek bangunan dalam game              *
+***********************************************************/
 
 /* *** DEFINISI PROTOTIPE PRIMITIF *** */
 /* *** Konstruktor membentuk Bangunan *** */

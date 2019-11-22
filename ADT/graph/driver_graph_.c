@@ -3,6 +3,14 @@
 #include<stdlib.h>
 #include<stdio.h>
 
+/**************************************************************
+*Graph                                                        *
+*Author : William                                             *
+*Created at : 19 November 2019                                *
+*Driver dari ADT Graph                                        *
+*Digunakan untuk menguji fungsi - fungsi utama dalam ADT GRAPH*
+**************************************************************/
+
 int main() {
 	Graph g;
 

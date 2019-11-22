@@ -6,6 +6,23 @@
 #define bacaChar(x) scanf("%c", &c)
 #define endline printf("\n")
 
+/***************************************************************************************************************************************************
+* Utility                                                                                                                                          *
+* Author : Kelompok Alstrukdat                                                                                                                     *
+* Created at : 13 November 2019                                                                                                                    *
+* Merupakan File Utility dari Game ini                                                                                                             *
+* Digunakan untuk pemenuhan kebutuhan fungsi - fungsi dalam game yang                                                                              *
+* membutuhkan lebih dari 1 (satu) jenis ADT                                                                                                        *
+* Selain itu, file ini juga berisi implementasi terhadap hampir seluruh jenis Prosedur yang dibutuhkan dalam game                                  *
+*                                                                                                                                                  *
+* Prosedur COMMAND yang terdapat di File ini :                                                                                                     *
+* 1. ATTACK                                                                                                                                        *
+* 2. MOVE                                                                                                                                          *
+* 3. LEVEL_UP                                                                                                                                      *
+*                                                                                                                                                  *
+* Selain itu, di file ini juga banyak didefinisikan dan diimplementasikan fungsi - fungsi validator yang akan memvalidasi inputan user / pengguna  *
+***************************************************************************************************************************************************/
+
 void clrscr(){
 	system("clear");
 }

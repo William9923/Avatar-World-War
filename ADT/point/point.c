@@ -9,6 +9,14 @@
 #include "../boolean.h"
 #include "./point.h"
 
+/***************************************************************************************
+* Point                                                                                *
+* Author : William                                                                     *
+* Created at : 04 November 2019                                                        *
+* Merupakan file implementasi dari ADT Point                                           *
+* Digunakan untuk mengimplementasikan fungsi - fungsi primitif yang ada pada ADT POINT *
+***************************************************************************************/
+
 /* *** DEFINISI PROTOTIPE PRIMITIF *** */
 /* *** Konstruktor membentuk Point *** */
 Point MakePoint (int X, int Y){

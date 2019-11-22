@@ -1,5 +1,14 @@
 #include"./graph_.h"
 
+/*****************************************
+*Graph                                   *
+*Author : William                        *
+*Created at : 19 November 2019           *
+*File implementasi dari ADT Graph        *
+*Digunakan sebagai penunjuk keterhubungan*
+*semua bangunan                          *
+*****************************************/
+
 /* Konstruktor */
 void CreateGraph(infotypeGraph X, Graph* G)
 /* membuat graph baru */
