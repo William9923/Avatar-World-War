@@ -35,8 +35,8 @@
 #include<math.h>
 #include"boolean.h"
 #include"prosedur_skill.c"
-#include "art.h"
-#include "art.c"
+#include "prosedur_art.h"
+#include "prosedur_art.c"
 
 boolean IsEQPemain(Pemain P1, Pemain P2){
 	boolean same = true;

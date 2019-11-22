@@ -907,10 +907,10 @@ void ProsedurLevelUp (TabBangunan *tab, Pemain P1,Pemain P3,Pemain P2,List Netra
 
 void endgame(Pemain P1, Pemain P2, boolean *selesai) {
     if (IsEmptyList(P1.b)) {
-        printf("P2 menang.\n");
+        PWinArt (P2, turn);
         *selesai = true;
     } else if (IsEmptyList(P2.b)) {
-        printf("P1 menang.\n");
+        PWinArt (P1, turn);
         *selesai = true;
     }
 }
