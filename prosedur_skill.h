@@ -9,7 +9,7 @@
 
 void InstantUpgrade(TabBangunan * tab, Pemain p1);
 void TambahPasukanB(Bangunan * bangunan, int n);
-void KurangPasukan(Bangunan * bangunan, int n, boolean * ubah);
+void KurangPasukan(Bangunan * bangunan, int n);
 void InstantReinforcement(TabBangunan * tab, Pemain p1);
 void Barrage(TabBangunan * tab, Pemain * p1, Pemain * p2);
 void ExtraTurn (int * n);
