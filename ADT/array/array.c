@@ -58,7 +58,6 @@ IdxTypeArray GetLastIdx(TabBangunan T)
 	return (IdxMinArray + NeffArray(T) - 1);
 }
 
-// GATAU INI PERLU GA???????
 /* ********** TEST KOSONG/PENUH ********** */ 
 /* *** Test tabel kosong *** */
 boolean IsEmpty(TabBangunan T)
@@ -170,11 +169,19 @@ void CetakBangunanDimiliki (TabBangunan T)
 	}
 }
 
-void CetakBangunanIndeks(TabBangunan tab, IdxTypeArray i){
+void CetakBangunanIndeks(TabBangunan tab, IdxTypeArray i)
+/* Proses: Mencetak ke layar bangunan dengan indeks i */
+/* I.S. Tabel T boleh kosong, tetapi tidak penuh */
+/* F.S. Bangunan dengan indeks i tercetak ke layar */
+{
 	PrintInfoBangunan(ElmtArray(tab,i));
 }
 
-void CopyArray(TabBangunan tab1, TabBangunan * tab2){
+void CopyArray(TabBangunan tab1, TabBangunan * tab2)
+/* Proses: Menyalin tab1 ke tab2 */
+/* I.S. Tabel T boleh kosong, tetapi tidak penuh */
+/* F.S. tab2 berisi elemen-elemen tab1 */
+{
 	int x = NbElmt(tab1);
 	CreateEmptyArray(tab2, x);
 

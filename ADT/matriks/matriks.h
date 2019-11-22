@@ -32,9 +32,9 @@ void MakePeta (int NB, int NK, PETA * P);
 /* F.S. Peta P sesuai dengan definisi di atas terbentuk */
 
 void MakePetaJadi(PETA *P, TabBangunan B);
-/* Mengisi PETA dengan char */
+/* Mengisi PETA dengan char menggunakan transversal */
 /* I.S. PETA terdefinisi, bisa kosong */
-/* F.S PETA terisi */
+/* F.S PETA terisi *//
 
 /* *** Selektor: Untuk sebuah peta P yang terdefinisi: *** */
 IdxTypeMatriks GetFirstIdxBrs (PETA P);
@@ -46,7 +46,7 @@ IdxTypeMatriks GetLastIdxBrs (PETA P);
 IdxTypeMatriks GetLastIdxKol (PETA P);
 /* Mengirimkan indeks kolom terbesar P */
 
-// PAKE MODUL WARNA 
+
 /* ********** BACA/TULIS ********** */
 void CetakPeta (PETA P,Pemain P1,Pemain P2,TabBangunan Tab);
 /* I.S. P terdefinisi */

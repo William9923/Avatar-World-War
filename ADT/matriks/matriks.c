@@ -17,7 +17,7 @@ void MakePeta (int NB, int NK, PETA * P)
 }
 
 void MakePetaJadi(PETA *P, TabBangunan T)
-/* Mengisi PETA dengan char */
+/* Mengisi PETA dengan char menggunakan transversal */
 /* I.S. PETA terdefinisi, bisa kosong */
 /* F.S PETA terisi */
 {
@@ -56,7 +56,7 @@ IdxTypeMatriks GetLastIdxKol (PETA P)
 	return NKolEff(P);
 }
 
-// PAKE MODUL WARNA 
+
 /* ********** BACA/TULIS ********** */
 void CetakPeta (PETA P,Pemain P1,Pemain P2,TabBangunan Tab)
 /* I.S. P terdefinisi */

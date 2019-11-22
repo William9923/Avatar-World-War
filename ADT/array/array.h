@@ -109,7 +109,13 @@ void CetakBangunanDimiliki (TabBangunan T);
 /* F.S. Bangunan-bangunan milik pemain P tercetak ke layar */
 
 void CetakBangunanIndeks(TabBangunan tab, IdxTypeArray i);
+/* Proses: Mencetak ke layar bangunan dengan indeks i */
+/* I.S. Tabel T boleh kosong, tetapi tidak penuh */
+/* F.S. Bangunan dengan indeks i tercetak ke layar */
 
 void CopyArray(TabBangunan tab1, TabBangunan * tab2);
+/* Proses: Menyalin tab1 ke tab2 */
+/* I.S. Tabel T boleh kosong, tetapi tidak penuh */
+/* F.S. tab2 berisi elemen-elemen tab1 */
 
 #endif

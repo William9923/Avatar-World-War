@@ -57,9 +57,9 @@ void DeAlokasiQueue(Queue * Q);
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxElQueue(Q) diset 0 */
 
 void AddSkillQueue (Queue * Q, char Y);
-/* Proses: Menambahkan X pada Q dengan aturan FIFO */
+/* Proses: Menambahkan Y pada Q dengan aturan FIFO */
 /* I.S. Q tidak kosong, tabel penampung elemen Q TIDAK penuh */
-/* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
+/* F.S. Y menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
 /* Skill yang tidak bisa ditambah adalah Instant Upgrade */
 
 void DelSkillQueue (Queue * Q, infotype * X);
@@ -69,14 +69,20 @@ void DelSkillQueue (Queue * Q, infotype * X);
         Q mungkin kosong */
 
 void StartSkill(Queue *Q);
-/* Proses : Memasukkan skill pertama ke dalam Queue yang sudah disiapkan*/
+/* Proses : Memasukkan skill pertama IU ke dalam Queue yang sudah disiapkan*/
 /* I.S. Q kosong*/
 /* F.S Info(First(*Q)) = "Instant_Upgrade" dan NBElmtQueue = 1*/
 
 void KodeToSkill(char S);
+/* I.S. Q terisi */
+/* F.S Tercetak nama akronim skill dari kode yang diinput  */
 
 char Peek (Queue Q);
+ /* Mengecek nilai head dari Queue skill */
 
 void ShowSkill(Queue Q);
+/* Proses : Menampilkan akronim skill yang ada di head queue pada layar */
+/* I.S. Q terisi, boleh kosong*/
+/* F.S Menampilkan akronim skill ke layar, jika queue kosong menampilkan - */
 
 #endif
