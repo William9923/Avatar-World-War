@@ -40,7 +40,8 @@ printf("_-_|_______|-----------|_____||     ||_____|-----------|_______|_-_\n");
 printf("  |_________|         |______||     ||______|         |_________|    \n");
 printf(" |___________|-------|_______||_____||_______|-------|___________|   \n");
 printf("\n");
-printf("     *                 PRESS ANY KEY TO START                *    \n");
+printf("     *                 PRESS ANY KEY TO START                *    \n"); 
+/* inspired from https://www.asciiart.eu/buildings-and-places/castles */
 scanf("%c", &anykey);
 
 }
