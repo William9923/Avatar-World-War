@@ -5,10 +5,14 @@
 
 
 void StartGame();
+void P1WinArt (int turn);
+void P2WinArt (int turn);
 
 int main () 
 {
     StartGame();
+    P1WinArt (51);
+    P2WinArt (51);
     return 0;
 }
 void StartGame ()
@@ -39,4 +43,27 @@ printf("\n");
 printf("     *                 PRESS ANY KEY TO START                *    \n");
 scanf("%c", &anykey);
 
+}
+
+void P1WinArt (int turn)
+{
+  
+        printf("\n");
+        printf("========Permainan telah selesai di turn %d!========\n",turn);
+        printf("       ____________________________________ \n");
+        printf("       |                                   | \n");
+        printf("       |        **** P1 WIN !!! ****       | \n");
+        printf("       |___________________________________| \n");
+        printf("\n");
+}
+
+void P2WinArt (int turn)
+{
+       printf("\n");
+        printf("========Permainan telah selesai di turn %d!========\n",turn);
+        printf("       ____________________________________ \n");
+        printf("       |                                   | \n");
+        printf("       |        **** P2 WIN !!! ****       | \n");
+        printf("       |___________________________________| \n");
+        printf("\n");
 }
