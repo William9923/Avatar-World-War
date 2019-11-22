@@ -53,7 +53,23 @@ void PrintInfoBangunankeFile(FILE *fp,Bangunan bangunan) {
 
 	fprintf(fp," ");
 
-	fprintf(fp,"%d\n", Level(bangunan)); 
+	fprintf(fp,"%d", Level(bangunan)); 
+
+    fprintf(fp, " ");
+
+    if(Serang(bangunan)) {
+        fprintf(fp,"t");
+    } else {
+        fprintf(fp, "f");
+    }
+
+    fprintf(fp, " ");
+
+    if(Move(bangunan)) {
+        fprintf(fp,"t\n");
+    } else {
+        fprintf(fp, "f\n");
+    }
 }
 
 void CetakBangunanDimilikikeFile (FILE *fp,TabBangunan T)
