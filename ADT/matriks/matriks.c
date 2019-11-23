@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include "../boolean.h"
 #include "../bangunan/bangunan.h"
-#include "../matriks/matriks.h"
-#include"../pcolor/pcolor.c"
-#include"../pemain/pemain.h"
+#include "./matriks.h"
+#include "../pcolor/pcolor.c"
+#include "../pemain/pemain.h"
+#include "../array/array.h"
 
 /* ********** DEFINISI PROTOTIPE PRIMITIF ********** */
 /* *** Konstruktor membentuk PETA *** */
