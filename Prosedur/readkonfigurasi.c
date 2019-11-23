@@ -17,15 +17,18 @@ void readkonfig(PETA *P, TabBangunan *ArrayBangunan, Graph *G, Pemain *P1, Pemai
     Bangunan bangunan;
 
     /** menyimpan panjang peta (vertikal) ke dalam variabel PPeta **/
+     printf("%s\n", "tes2");
     STARTKATA();
+     printf("%s\n", "tes2");
     PPeta = (CKata.TabKata[1] - '0') * 10 + (CKata.TabKata[2] - '0');
     //printf("%d\n", *PPeta);
+    printf("%s\n", "tes1");
 
     /** menyimpan lebar peta (horizontal) ke dalam variabel LPeta **/
     ADVKATA();
     LPeta = (CKata.TabKata[1] - '0') * 10 + (CKata.TabKata[2] - '0');
     //printf("LPeta : %d\n", *LPeta);
-
+    printf("%s\n", "tes1");
     /* membuat peta kosong seukuran PPeta x LPeta */
     MakePeta(PPeta,LPeta, P);
 
@@ -36,7 +39,7 @@ void readkonfig(PETA *P, TabBangunan *ArrayBangunan, Graph *G, Pemain *P1, Pemai
     for (i=1; i <= CKata.Length; i++) {
         NBangunan = NBangunan * 10 + (CKata.TabKata[i] - '0');
     }
-    //printf("Nbangunan : %d\n", NBangunan);
+    printf("Nbangunan : %d\n", NBangunan);
 
     /** membuat array kosong dengan ukuran NBangunan **/
     

@@ -18,8 +18,9 @@ void START() {
           Jika CC = MARK maka EOP akan menyala (true) */
 
     /* Algoritma */
-    pita = fopen("../../file konfig.txt","r");
+    pita = fopen("file konfig.txt","r");
     ADV();
+    printf("%s\n", "Next testing");
 }
 
 void STARTLoad() {
@@ -42,7 +43,9 @@ void ADV() {
           Jika  CC = MARK maka EOP akan menyala (true) */
 
     /* Algoritma */
+
     retval = fscanf(pita,"%c",&CC);
+
     EOP = (CC == MARK);
     if (EOP) {
        fclose(pita);
