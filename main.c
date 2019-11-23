@@ -30,13 +30,13 @@ int main() {
 	int turn=1;
 	//Baca Konfigurasi Permainan
 	printf("Reading Configuration File...\n");
+	CreateNewPlayer(&P1,1);	
+	CreateNewPlayer(&P2,2);
     CreateEmptyList(&Netral);
     readkonfig(&P,&AllBangunan,&connectivity,&P1,&P2,&Netral);
 	StartGame();
 	clrscr();
 	boolean stop = false;
-	CreateNewPlayer(&P1,1);	
-	CreateNewPlayer(&P2,2);
 	StartSkill(&((P1).Skill));StartSkill(&((P2).Skill));
 	Pnow = P1;
 	char * s;
@@ -104,7 +104,6 @@ int main() {
 					PakeSkill (&((P2).Skill),&AllBangunan,&P2, &P1, &jatah,&SU);
 				}
 			}
-			//CheckAddCriticalHit(Pnow,jatah,&P1,&P2);
 			else if(IsUndo(s)){
 				if(!IsEmptyStack(SU)){
 					LoadState(&SU,&P1,&P2,&Netral,&AllBangunan);
@@ -118,20 +117,24 @@ int main() {
 					if (IsEQPemain(Pnow, P1)){
 						NextTurnLBangunan(P1.b, &AllBangunan);
 						CheckAddIR(&((P1).Skill),&((P2).Skill),AllBangunan,P1,P2);
+						P1.AttackUp=false;
 					} else {
 						// P1 sekarang
 						NextTurnLBangunan(P2.b, &AllBangunan);
 						CheckAddIR(&((P2).Skill),&((P1).Skill),AllBangunan,P2,P1);
+						P2.AttackUp=false;
 					}
 				}
 				else{
 					if (IsEQPemain(Pnow, P2)){
 						NextTurnLBangunan(P1.b, &AllBangunan);
 						CheckAddIR(&((P2).Skill),&((P1).Skill),AllBangunan,P2,P1);
+						P2.AttackUp=false;
 					} else {
 						// P1 sekarang
 						NextTurnLBangunan(P2.b, &AllBangunan);
 						CheckAddIR(&((P1).Skill),&((P2).Skill),AllBangunan,P1,P2);
+						P1.AttackUp=false;
 					}
 				}
 				turn++;
