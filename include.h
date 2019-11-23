@@ -26,3 +26,4 @@
 #include"./ADT/graph/graph_.c"
 #include"./ADT/boolean.h"
 #include"./Prosedur/prosedur_skill.c"
+#include"./Prosedur/prosedur_art.c"

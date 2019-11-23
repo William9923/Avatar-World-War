@@ -69,8 +69,7 @@ int main() {
 	printf("Reading Configuration File...\n");
     CreateEmptyList(&Netral);
     readkonfig(&P,&AllBangunan,&connectivity,&P1,&P2,&Netral);
-	printf("Game Ready...\n");
-	printf("Press Any Key To Continue..\n");
+	StartGame();
 	clrscr();
 	boolean stop = false;
 	P1.nomor = 1;
