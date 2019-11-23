@@ -1,9 +1,9 @@
 
 #include <stdio.h>
-#include "boolean.h"
-#include "bangunan.h"
-#include "array.h"
-#include "point.h"
+#include "../boolean.h"
+#include "../bangunan/bangunan.h"
+#include "./array.h"
+#include "../point/point.h"
 #include <stdlib.h>
 
 /* ********** KONSTRUKTOR ********** */
