@@ -117,6 +117,7 @@ void SerangB(IdxTypeArray i, IdxTypeArray j, int n, Pemain * P1, Pemain * P2, Li
 	*/
 	int x;
 	boolean Temp = Pertahanan(ElmtArray((*tab),j));
+	int TempPasukan = n;
 	if (IsAbleSerang(ElmtArray((*tab),i), ElmtArray((*tab),j), n)){
 		if((*P1).AttackUp==true){
 			Pertahanan(ElmtArray((*tab),j))=false;
@@ -135,7 +136,7 @@ void SerangB(IdxTypeArray i, IdxTypeArray j, int n, Pemain * P1, Pemain * P2, Li
 				// tidak ada pertahanan
 				Pasukan(ElmtArray((*tab),j)) = n - Pasukan(ElmtArray((*tab),j));
 			}
-			Pasukan(ElmtArray((*tab),i)) -= n;
+			Pasukan(ElmtArray((*tab),i)) -= TempPasukan;
 			// kalo dia bersifat netral
 			if (IsBangunanNetral(ElmtArray((*tab),j), (*P1), (*P2), *tab)){
 				InsVLastList(&((*P1).b),j);
@@ -160,13 +161,14 @@ void SerangB(IdxTypeArray i, IdxTypeArray j, int n, Pemain * P1, Pemain * P2, Li
 			} else {
 				Pasukan(ElmtArray((*tab),j)) = Pasukan(ElmtArray((*tab),j)) - n;
 			}
-			Pasukan(ElmtArray((*tab),i)) -= n;
+			Pasukan(ElmtArray((*tab),i)) -= TempPasukan;
 			printf("%s\n", "Bangunan gagal direbut");
 		}
 	Serang(ElmtArray((*tab),i)) = true;
 	Pertahanan(ElmtArray((*tab),j)) = Temp;
 	if((*P2).Shield>0){
 		(*P2).Shield--;
+		printf("\nShield musuh tinggal %d turn lagi.\n",(*P2).Shield);
 	}
 	(*P1).CriticalHit=false;
 	}
@@ -773,7 +775,7 @@ void PakeSkill (Queue *Q,TabBangunan * tab,Pemain * p1, Pemain * p2, int * x,Sta
         }
         else if (X == 'B')
         {
-            printf("Shield aktif");
+            printf("Shield aktif\n");
 			Shield(p1);
         }
         else if (X == 'C')
@@ -783,12 +785,12 @@ void PakeSkill (Queue *Q,TabBangunan * tab,Pemain * p1, Pemain * p2, int * x,Sta
         }
         else if (X == 'D')
         {
-            printf("Attack Up aktif");
+            printf("Attack Up aktif\n");
 			AttackUp(p1);
         }
         else if (X == 'E')
         {
-            printf("Critical Hit aktif");
+            printf("Critical Hit aktif\n");
 			CriticalHit(p1);
         }
         else if (X == 'F')
