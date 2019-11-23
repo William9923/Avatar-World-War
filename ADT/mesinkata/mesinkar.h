@@ -19,6 +19,8 @@ void START();
    F.S. : CC adalah karakter pertama pada pita
           Jika CC != MARK maka EOP akan padam (false)
           Jika CC = MARK maka EOP akan menyala (true) */
+          
+void STARTLoad();
 
 void STARTIn();
 /* START versi inputan via command line */
