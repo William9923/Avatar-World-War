@@ -6,7 +6,7 @@
 
 #include "../boolean.h"
 
-#define MARK '.'
+#define MARK '`'
 #define EoL '\n'
 /* State Mesin */
 extern char CC;
@@ -20,7 +20,7 @@ void START();
           Jika CC != MARK maka EOP akan padam (false)
           Jika CC = MARK maka EOP akan menyala (true) */
           
-void STARTLoad();
+void STARTLoad(char s[]);
 
 void STARTIn();
 /* START versi inputan via command line */
