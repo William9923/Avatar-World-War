@@ -155,7 +155,7 @@ void KodeToSkill (char S)
     }
     else if (S == 'E')
     {
-        printf("C");
+        printf("CH");
     }
     else if (S == 'F')
     {

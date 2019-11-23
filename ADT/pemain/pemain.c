@@ -14,6 +14,9 @@ Warna(*P) = R atau B,ListBangunan kosong */
     CreateEmptyList(&((*P).b)); 
     (*P).nomor = nomor;
 	CreateEmptyQueue(&(*P).Skill);
+	(*P).AttackUp = false;
+	(*P).CriticalHit = false;
+	(*P).Shield = 0;
 }
 
 void ChangeOwner(Pemain *P,Bangunan b,Pemain *NewOwner, TabBangunan tab){

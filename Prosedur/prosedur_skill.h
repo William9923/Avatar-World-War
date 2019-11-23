@@ -31,13 +31,21 @@ void KurangPasukan(Bangunan * bangunan, int n);
 void InstantReinforcement(TabBangunan * tab, Pemain p1);
 void Barrage(TabBangunan * tab, Pemain * p1, Pemain * p2);
 void ExtraTurn (int * n);
+void CriticalHit(Pemain *P);
 // buat Instant Upgrade, dilakukan hardcoding saat inisiasi game
 boolean IsObtainIR (TabBangunan tab, Pemain p1);
 boolean IsObtainBarrage(Pemain p2);
 boolean IsObtainExtraTurn(TabBangunan tab, IdxTypeArray i, Pemain p2);
 
+boolean IsObtainCriticalHit(int jatah);
+boolean IsObtainShield(Pemain P);
+boolean IsObtainAttackUp(Bangunan B,Pemain *P1,TabBangunan Tab);
+
 void CheckAddExtraTurn(Queue * q1,TabBangunan tab, IdxTypeArray i, Pemain P1, Pemain P2);
 void CheckAddBarrage(Queue * q1,TabBangunan tab, Pemain p1, Pemain p2);
 void CheckAddIR(Queue * q1, Queue * q2, TabBangunan tab, Pemain P1, Pemain P2);
+void CheckAddCriticalHit(Pemain P,int jatah,Pemain *P1,Pemain *P2);
+void CheckAddShield(Pemain *P2);
+void CheckAddAttackUp(Bangunan B,Pemain *P1,TabBangunan Tab);
 
 #endif
