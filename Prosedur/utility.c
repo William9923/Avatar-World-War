@@ -6,6 +6,8 @@
 #define bacaChar(x) scanf("%c", &c)
 #define endline printf("\n")
 
+#include "../Prosedur/prosedur_art.h"
+
 /***************************************************************************************************************************************************
 * Utility                                                                                                                                          *
 * Author : Kelompok Alstrukdat                                                                                                                     *
@@ -905,7 +907,7 @@ void ProsedurLevelUp (TabBangunan *tab, Pemain P1,Pemain P3,Pemain P2,List Netra
     }
 }
 
-void endgame(Pemain P1, Pemain P2, boolean *selesai) {
+void endgame(Pemain P1, Pemain P2, boolean *selesai, int turn) {
     if (IsEmptyList(P1.b)) {
         PWinArt (P2, turn);
         *selesai = true;

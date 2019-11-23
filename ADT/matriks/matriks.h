@@ -34,7 +34,7 @@ void MakePeta (int NB, int NK, PETA * P);
 void MakePetaJadi(PETA *P, TabBangunan B);
 /* Mengisi PETA dengan char menggunakan transversal */
 /* I.S. PETA terdefinisi, bisa kosong */
-/* F.S PETA terisi *//
+/* F.S PETA terisi */
 
 /* *** Selektor: Untuk sebuah peta P yang terdefinisi: *** */
 IdxTypeMatriks GetFirstIdxBrs (PETA P);

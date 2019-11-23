@@ -1,7 +1,7 @@
 
-#include "pemain.h"
+#include"../ADT/pemain/pemain.h"
 #include<stdio.h>
-
+#include "../Prosedur/prosedur_art.h"
 
 void StartGame ()
 /* I.S. sembarang

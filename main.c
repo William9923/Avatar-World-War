@@ -116,7 +116,7 @@ int main() {
 					// pemain p2
 					ProsedurAttack(&AllBangunan, &P2, &P1,&Netral ,connectivity,&SU, &((P2).Skill), &((P1).Skill));
 				}
-				endgame(P1,P2,&stop);
+				endgame(P1,P2,&stop,turn);
 			}
 			else if(IsLevelUp(s)){
 				if (IsEQPemain(Pnow, P1)) {
