@@ -168,7 +168,12 @@ void SerangB(IdxTypeArray i, IdxTypeArray j, int n, Pemain * P1, Pemain * P2, Li
 	Pertahanan(ElmtArray((*tab),j)) = Temp;
 	if((*P2).Shield>0){
 		(*P2).Shield--;
-		printf("\nShield musuh tinggal %d turn lagi.\n",(*P2).Shield);
+		if((*P2).Shield == 0 ){
+			printf("\nShield musuh habis.\n");
+		}
+		else{
+			printf("\nShield musuh tinggal %d turn lagi.\n",(*P2).Shield);
+		}
 	}
 	(*P1).CriticalHit=false;
 	}
@@ -805,7 +810,7 @@ void PakeSkill (Queue *Q,TabBangunan * tab,Pemain * p1, Pemain * p2, int * x,Sta
         CreateEmptyStackUndo(SU);
     }
     else 
-    {
+    {	
         printf("Anda tidak memiliki skill\n");
     }
 
