@@ -25,7 +25,7 @@ void IgnoreBlank();
    I.S. : CC sembarang
    F.S. : CC ≠ BLANK atau CC = MARK */
 
-void STARTKATA();
+void STARTKATA(char s[]);
 /* I.S. : CC sembarang
    F.S. : EndKata = true, dan CC = MARK;
           atau EndKata = false, CKata adalah kata yang sudah diakuisisi,

@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "prosedur_skill.h": "c",
-        "graph_.h": "c"
+        "graph_.h": "c",
+        "mesinkar.c": "cpp"
     }
 }

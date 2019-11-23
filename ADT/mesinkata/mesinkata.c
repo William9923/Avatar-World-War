@@ -1,8 +1,3 @@
-/*nama felix setiawan
-nim 13518078
-tanggal 25 september 2019
-deskripsi program: body mesinkata*/
-
 #include "./mesinkata.h"
 #include <stdio.h>
 
@@ -28,13 +23,13 @@ void IgnoreBlankIn()
     }
 }
 
-void STARTKATA()
+void STARTKATA(char s[])
 /* I.S. : CC sembarang
    F.S. : EndKata = true, dan CC = MARK;
           atau EndKata = false, CKata adalah kata yang sudah diakuisisi,
           CC karakter pertama sesudah karakter terakhir kata */
 {
-    START();
+    START(s);
     IgnoreBlank();
     if (CC == MARK) {
         EndKata = true;

@@ -1,14 +1,4 @@
-#include <stdio.h>
-#include "readkonfigurasi.c"
-#include "mesinkar.c"
-#include "mesinkata.c"
-#include "array.c"
-#include "graph_.c"
-#include "pemain.c"
-#include "listlinier.c"
-#include "bangunan.c"
-#include "point.c"
-#include "matriks.c"
+#include "../../include.h"
 
 int main() {
     PETA P;
@@ -20,8 +10,10 @@ int main() {
     Pemain P1;
     Pemain P2;
     List Netral;
+    char *path;
 
-    readkonfig(&P,&B,&G,&P1,&P2,&Netral);
+    path = "../../file konfig.txt";
+    readkonfig(path,&P,&B,&G,&P1,&P2,&Netral);
 
     CetakBangunanDimiliki(B);
 

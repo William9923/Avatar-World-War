@@ -65,15 +65,17 @@ int main() {
     Graph connectivity;
 	List Netral;
 	int turn=1;
+	char *path_file_konfig;
 	//Baca Konfigurasi Permainan
 	printf("Reading Configuration File...\n");
     CreateEmptyList(&Netral);
-    readkonfig(&P,&AllBangunan,&connectivity,&P1,&P2,&Netral);
+	CreateNewPlayer(&P1,1);	
+	CreateNewPlayer(&P2,2);
+	path_file_konfig = "file konfig.txt";
+    readkonfig(path_file_konfig,&P,&AllBangunan,&connectivity,&P1,&P2,&Netral);
 	StartGame();
 	clrscr();
 	boolean stop = false;
-	CreateNewPlayer(&P1,1);	
-	CreateNewPlayer(&P2,2);
 	StartSkill(&((P1).Skill));StartSkill(&((P2).Skill));
 	Pnow = P1;
 	char * s;
@@ -177,7 +179,7 @@ int main() {
 				system("clear");
 			}
 			else if(IsSave(s)){
-				
+				ProsedurSave(P1, P2, Pnow, P, AllBangunan, connectivity, Netral, jatah);
 			}
 			else if(IsExit(s)) {
 				stop = true;

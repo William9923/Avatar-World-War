@@ -6,7 +6,7 @@
 #include "../ADT/list/listlinier.h"
 #include "../ADT/matriks/matriks.h"
 
-void readkonfig(PETA *P, TabBangunan *ArrayBangunan, Graph *G, Pemain *P1, Pemain *P2, List *Netral) {
+void readkonfig(char s[],PETA *P, TabBangunan *ArrayBangunan, Graph *G, Pemain *P1, Pemain *P2, List *Netral) {
     int PPeta, LPeta;
     int i,n;
     infotypeGraph bmatriks,kmatriks;
@@ -17,7 +17,7 @@ void readkonfig(PETA *P, TabBangunan *ArrayBangunan, Graph *G, Pemain *P1, Pemai
     Bangunan bangunan;
 
     /** menyimpan panjang peta (vertikal) ke dalam variabel PPeta **/
-    STARTKATA();
+    STARTKATA(s);
     PPeta = (CKata.TabKata[1] - '0') * 10 + (CKata.TabKata[2] - '0');
     //printf("%d\n", *PPeta);
 
@@ -35,7 +35,6 @@ void readkonfig(PETA *P, TabBangunan *ArrayBangunan, Graph *G, Pemain *P1, Pemai
     for (i=1; i <= CKata.Length; i++) {
         NBangunan = NBangunan * 10 + (CKata.TabKata[i] - '0');
     }
-    printf("Nbangunan : %d\n", NBangunan);
 
     /** membuat array kosong dengan ukuran NBangunan **/
     
@@ -77,8 +76,8 @@ void readkonfig(PETA *P, TabBangunan *ArrayBangunan, Graph *G, Pemain *P1, Pemai
     }
     
     /* mengisi graf yang merepresentasikan keterhubungan antar bangunan */
-    bmatriks  =1;
-    kmatriks  =1;
+    bmatriks=1;
+    kmatriks=1;
     CreateGraph(bmatriks,G);
     for (n=1; n <= NBangunan * NBangunan; n++) {
         IgnoreBlank();

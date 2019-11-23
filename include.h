@@ -1,6 +1,10 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/ioctl.h>
+#include <termios.h>
 #include"./ADT/bangunan/bangunan.h"
 #include"./ADT/point/point.h"
 #include"./ADT/array/array.h"

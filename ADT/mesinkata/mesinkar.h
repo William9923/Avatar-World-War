@@ -12,7 +12,7 @@
 extern char CC;
 extern boolean EOP;
 
-void START();
+void START(char s[]);
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.
    I.S. : sembarang
@@ -20,7 +20,6 @@ void START();
           Jika CC != MARK maka EOP akan padam (false)
           Jika CC = MARK maka EOP akan menyala (true) */
           
-void STARTLoad(char s[]);
 
 void STARTIn();
 /* START versi inputan via command line */
