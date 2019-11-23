@@ -15,6 +15,17 @@ States dari seorang pemain terdiri dari:
 #include "../array/array.h"
 #include"../queue/skill.h"
 
+/************************************************************************************************************************************
+* Prosedur Skill                                                                                                                    *
+* Author : Kelompok Alstrukdat                                                                                                      *
+* Created at : 06 November 2019                                                                                                     *
+* Merupakan File Implementasi Pemain pada Game ini                                                                                  *
+* Digunakan untuk pemenuhan kebutuhan fungsi - fungsi dalam game yang                                                               *
+* membutuhkan lebih dari 1 (satu) jenis ADT dan berhubungan dengan                                                                  *
+* penggunaan pemain.                                                                                                                *
+* Selain itu, di file ini juga banyak didefinisikan dan diimplementasikan fungsi yang berkaitan dengan manipulasi properti pemain.  *
+************************************************************************************************************************************/
+
 typedef struct{
     /*QueueSkill Skill*/
     Queue Skill;
