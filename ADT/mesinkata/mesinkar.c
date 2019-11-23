@@ -22,8 +22,8 @@ void START() {
     ADV();
 }
 
-void STARTLoad() {
-    pita = fopen("save.txt","r");
+void STARTLoad(char s[]) {
+    pita = fopen(s,"r");
     ADV();
 }
 
