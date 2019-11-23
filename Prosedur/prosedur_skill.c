@@ -68,6 +68,10 @@ void ExtraTurn (int * n){
 	(*n) += 1;
 }
 
+void CriticalHit(Pemain *P){
+	(*P).CriticalHit = true;
+}
+
 boolean IsObtainIR (TabBangunan tab, Pemain p1){
 	/* Fungsi untuk melakukan pengecekan apakah pemain 
 	   mendapatkan skill Instant Reinforcement atau tidak */
@@ -83,6 +87,7 @@ boolean IsObtainIR (TabBangunan tab, Pemain p1){
 	}
 	return checker;
 }
+
 boolean IsObtainBarrage(Pemain p2){
 	/* Fungsi untuk melakukan pengecekan apakah seorang pemain mendapatkan skill Barrage atau tidak
 	Notes : yang dibutuhkan untuk pengecekan hanyalah List bangunan musuh */
@@ -92,6 +97,69 @@ boolean IsObtainExtraTurn(TabBangunan tab, IdxTypeArray i, Pemain p2){
 	/* Fungsi untuk melakukan pengecekan apakah seorang pemain mendapatkan skill Extra Turn 
 	   Pengecekan dilakukan dengan mengecek apakah bangunan yang akan didapatkan berupa Fort atau tidak */
 	return (Type(ElmtArray(tab, i)) == 'F');
+}
+
+boolean IsObtainCriticalHit(int jatah){
+	return jatah;
+}
+
+boolean IsObtainShield(Pemain P){
+	return NbElmtList(P.b)==2;	
+}
+
+boolean IsObtainAttackUp(Bangunan B,Pemain *P1,TabBangunan Tab){
+	int counterTower=0;
+	address Last= FirstL((*P1).b);
+	for(int i=1;i<=NbElmtList((*P1).b);i++){
+		if((ElmtArray(Tab,InfoL(Last)).type)=='T'){
+			counterTower++;
+		}
+		Last = NextL(Last);
+	}
+	return (B.type=='T' && counterTower==3);
+}
+
+void CheckAddAttackUp(Bangunan B,Pemain *P1,TabBangunan Tab){
+	if (IsObtainAttackUp(B,P1,Tab)){
+		if (!IsFullQueue((*P1).Skill)){
+			AddSkillQueue(&(*P1).Skill, 'D');
+			printf("Player %d mendapatkan skill Attack Up\n", (*P1).nomor);
+		} else {
+			printf("Player %d mendapatkan skill Attack Up! Namun skill pouch sudah penuh\n", (*P1).nomor);
+		}
+	}
+}
+
+void CheckAddShield(Pemain *P2){
+	if(IsObtainShield(*P2)){
+		if (!IsFullQueue((*P2).Skill)){
+			AddSkillQueue(&(*P2).Skill, 'B');
+			printf("Player %d mendapatkan skill Shield\n", (*P2).nomor);
+		} else {
+			printf("Player %d mendapatkan skill Shield! Namun skill pouch sudah penuh\n",(*P2).nomor);
+		}
+	}
+}
+
+void CheckAddCriticalHit(Pemain P,int jatah,Pemain *P1,Pemain *P2){
+	if(IsObtainCriticalHit(jatah)){
+		if(P.nomor ==1){
+			if (!IsFullQueue((*P2).Skill)){
+				AddSkillQueue(&(*P2).Skill, 'E');
+				printf("Player %d mendapatkan skill Critical Hit\n", (*P2).nomor);
+			} else {
+				printf("Player %d mendapatkan skill Critical Hit! Namun skill pouch sudah penuh\n",(*P2).nomor);
+			}
+		}
+		else{
+			if (!IsFullQueue((*P1).Skill)){
+				AddSkillQueue(&(*P1).Skill, 'E');
+				printf("Player %d mendapatkan skill Critical Hit\n", (*P1).nomor);
+			} else {
+				printf("Player %d mendapatkan skill Critical Hit! Namun skill pouch sudah penuh\n",(*P1).nomor);
+			}
+		}
+	}
 }
 
 void CheckAddExtraTurn(Queue * q1,TabBangunan tab, IdxTypeArray i, Pemain P1, Pemain P2){

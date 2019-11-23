@@ -20,6 +20,9 @@ typedef struct{
     Queue Skill;
    List b;
    int nomor;
+   boolean AttackUp;
+   boolean CriticalHit;
+   int Shield;
 } Pemain;
 
 

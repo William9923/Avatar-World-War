@@ -136,6 +136,9 @@ void SerangB(IdxTypeArray i, IdxTypeArray j, int n, Pemain * P1, Pemain * P2, Li
 				MakeLevelOne(&(ElmtArray((*tab),j)));
 				InsVLastList(&((*P1).b),j);
 				DelPList(&((*P2).b), j);
+				DelPList(&((*P2).b), j);
+				CheckAddShield(P2);		
+				CheckAddAttackUp((ElmtArray((*tab),j)),P1,*tab);
 				CheckAddBarrage(q2 ,(*tab), (*P2), (*P1));
 				CheckAddExtraTurn(q2,(*tab), j, (*P2), (*P1));
 			} 
@@ -763,11 +766,12 @@ void PakeSkill (Queue *Q,TabBangunan * tab,Pemain * p1, Pemain * p2, int * x,Sta
         }
         else if (X == 'D')
         {
-            printf("Attack Up");
+            printf("Attack Up aktif");
         }
         else if (X == 'E')
         {
-            printf("Critical Hit");
+            printf("Critical Hit aktif");		            printf("Critical Hit");
+				CriticalHit(p1);
         }
         else if (X == 'F')
         {

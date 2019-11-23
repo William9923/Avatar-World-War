@@ -1,4 +1,4 @@
-#include <stdio.h>
+  #include <stdio.h>
 #include "readkonfigurasi.c"
 #include "mesinkar.c"
 #include "mesinkata.c"

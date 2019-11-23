@@ -72,8 +72,8 @@ int main() {
 	StartGame();
 	clrscr();
 	boolean stop = false;
-	P1.nomor = 1;
-	P2.nomor = 2;
+	CreateNewPlayer(&P1,1);	
+	CreateNewPlayer(&P2,2);
 	StartSkill(&((P1).Skill));StartSkill(&((P2).Skill));
 	Pnow = P1;
 	char * s;
@@ -141,6 +141,7 @@ int main() {
 					PakeSkill (&((P2).Skill),&AllBangunan,&P2, &P1, &jatah,&SU);
 				}
 			}
+			//CheckAddCriticalHit(Pnow,jatah,&P1,&P2);
 			else if(IsUndo(s)){
 				if(!IsEmptyStack(SU)){
 					LoadState(&SU,&P1,&P2,&Netral,&AllBangunan);
