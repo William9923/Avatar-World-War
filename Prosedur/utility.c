@@ -116,7 +116,17 @@ void SerangB(IdxTypeArray i, IdxTypeArray j, int n, Pemain * P1, Pemain * P2, Li
 	F.S. bangunan 1 menyerang bangunan 2
 	*/
 	int x;
+	boolean Temp = Pertahanan(ElmtArray((*tab),j));
 	if (IsAbleSerang(ElmtArray((*tab),i), ElmtArray((*tab),j), n)){
+		if((*P1).AttackUp==true){
+			Pertahanan(ElmtArray((*tab),j))=false;
+		}
+		else if((*P1).CriticalHit==true){
+			n*=2;
+		}
+		else if((*P2).Shield!=0){
+			Pertahanan(ElmtArray((*tab),j))=true;
+		}
 		if (IsPindahPemilik(ElmtArray((*tab),j),n)){
 			if (Pertahanan(ElmtArray((*tab),j))){
 				x = ceil((4.0/3) * Pasukan(ElmtArray((*tab),j)));
@@ -154,6 +164,11 @@ void SerangB(IdxTypeArray i, IdxTypeArray j, int n, Pemain * P1, Pemain * P2, Li
 			printf("%s\n", "Bangunan gagal direbut");
 		}
 	Serang(ElmtArray((*tab),i)) = true;
+	Pertahanan(ElmtArray((*tab),j)) = Temp;
+	if((*P2).Shield>0){
+		(*P2).Shield--;
+	}
+	(*P1).CriticalHit=false;
 	}
 }
 
@@ -758,20 +773,23 @@ void PakeSkill (Queue *Q,TabBangunan * tab,Pemain * p1, Pemain * p2, int * x,Sta
         }
         else if (X == 'B')
         {
-            printf("Shield");
+            printf("Shield aktif");
+			Shield(p1);
         }
         else if (X == 'C')
         {
             ExtraTurn(x);
+			CheckAddCriticalHit(p2);
         }
         else if (X == 'D')
         {
             printf("Attack Up aktif");
+			AttackUp(p1);
         }
         else if (X == 'E')
         {
-            printf("Critical Hit aktif");		            printf("Critical Hit");
-				CriticalHit(p1);
+            printf("Critical Hit aktif");
+			CriticalHit(p1);
         }
         else if (X == 'F')
         {
