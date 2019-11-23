@@ -20,7 +20,6 @@ void START() {
     /* Algoritma */
     pita = fopen("file konfig.txt","r");
     ADV();
-    printf("%s\n", "Next testing");
 }
 
 void STARTLoad() {
