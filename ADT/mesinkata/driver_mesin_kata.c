@@ -1,11 +1,23 @@
+#include "../../include.h"
 int main() {
 	char * si;
+	int i;
 	si = BacaInputUser();
 	if (IsSave(si)){
 		printf("%s\n", "Success");
 	} else {
 		printf("%s\n", "Unsuccessfull");
 	}
+
+	char *path;
+	path = "../../file konfig.txt";
+	STARTKATA(path);
+
+	for (i=1; i<=CKata.Length;i++) {
+		printf("%c", CKata.TabKata[i]);
+	}
+	printf("\n");
+
 	// printf("%s\n", si);
 	// // kalo baca teks
 	// STARTKATAIn();
