@@ -70,34 +70,65 @@ int main() {
     Graph connectivity;
 	List Netral;
 	int turn=1;
+	boolean newgame;
 	char *path_file_konfig;
+	char * s;
+	int jatah;
+	boolean menu =true;
+
 	//Baca Konfigurasi Permainan
+	printf("New Game or Load a saved game?\nType LOAD if you want to load a saved game.\nOtherwise type NEW.\n");
 	green();
-	printf("Reading Configuration File...\n");
+	
 	normal();
 	CreateNewPlayer(&P1,1);	
 	CreateNewPlayer(&P2,2);
     CreateEmptyList(&Netral);
 	CreateNewPlayer(&P1,1);	
 	CreateNewPlayer(&P2,2);
-	path_file_konfig = "file konfig.txt";
-    readkonfig(path_file_konfig,&P,&AllBangunan,&connectivity,&P1,&P2,&Netral);
+
+	while(menu) {
+		s = BacaInputUser();
+		if (IsNew(s)) {
+			clrscr();
+			printf("Reading Configuration File...\n");
+			path_file_konfig = "file konfig.txt";
+			readkonfig(path_file_konfig,&P,&AllBangunan,&connectivity,&P1,&P2,&Netral);
+			clear_user_input();
+			newgame = true;
+			StartSkill(&((P1).Skill));StartSkill(&((P2).Skill));
+			Pnow = P1;
+			menu=false;
+		} else if(IsLoad(s)) {
+			ProsedurLoad(&P1,&P2,&Pnow,&P,&AllBangunan,&connectivity,&Netral,&jatah);
+			printf("Loading game from a saved file...\n");
+			newgame = false;
+			menu = false;
+		} else {
+			printf("Inputan tidak valid.\n");
+		}
+	}
+	
+	
 	StartGame();
 	clrscr();
 	clrscr();
 	boolean stop = false;
-	StartSkill(&((P1).Skill));StartSkill(&((P2).Skill));
-	Pnow = P1;
-	char * s;
+	
 
 	/* Desain game */
 	int space = GetLastIdxBrs(P) * 5;
 
 	while(!stop){
 		CreateEmptyStackUndo(&SU);
-		int jatah=1;
+		if (newgame) {
+			jatah=1;
+		} else {
+			newgame = true;
+		}
 		
 		while(!stop && jatah!=0){
+			clear_user_input();
 			changecolor(Pnow,P1,P2);
 			cetakTurn(turn,space);
 			normal();
@@ -126,6 +157,7 @@ int main() {
 			CommandList();
 			printf("ENTER COMMAND: ");
 			normal();
+			clear_user_input();
 			s = BacaInputUser();
 			printf("\n");
 			green();
@@ -203,15 +235,18 @@ int main() {
 			}
 			else if(IsSave(s)){
 				ProsedurSave(P1, P2, Pnow, P, AllBangunan, connectivity, Netral, jatah);
+				clear_user_input();
 			}
 			else if(IsExit(s)) {
 				stop = true;
 			}
 			else{
 				printf("Inputan tidak valid.\n");
+				printf("%s",s);
 			}
 		}
 		NextPemain(P1,P2,&Pnow);
+		clear_user_input();
 	}
 }
 

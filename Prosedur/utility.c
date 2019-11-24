@@ -339,6 +339,27 @@ char * BacaInputUser(){
 	}
 	return s;
 }
+
+boolean IsNew(char s[]){
+	char new[3];
+	new[0] = 'N';
+	new[1] = 'E';
+	new[2] = 'W';
+
+	int sizeof_new = sizeof(new) / sizeof(char);
+	int sizeof_s;
+	for(sizeof_s = 0; s[sizeof_s] != '\0'; ++sizeof_s);
+	if (sizeof_s != sizeof_new) return false;
+	else {
+		for (int i = 0; i < sizeof_new; i++){
+			if (s[i] != new[i]){
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
 boolean IsAttack (char s[]){
 	char attack[6];
 	attack[0] = 'A';
@@ -1260,14 +1281,15 @@ void ProsedurLevelUp (TabBangunan *tab, Pemain P1,Pemain P3,Pemain P2,List Netra
 }
 
 void ProsedurSave(Pemain P1, Pemain P2, Pemain Pnow, PETA P, TabBangunan TB, Graph connectivity, List Netral, int jatah) {
-	char *s;
+	char *t;
 
 	printf("Lokasi save file: ");
-	s = BacaInputUser();
+	t = BacaInputUser();
 	printf("\n");
-	savefile(s, P1, P2, Pnow, P, TB, connectivity, Netral, jatah);
+	savefile(t, P1, P2, Pnow, P, TB, connectivity, Netral, jatah);
+	clear_user_input();
 	printf("Game berhasil disave!\n");
-
+	clear_user_input();
 }
 
 void ProsedurLoad(Pemain *P1, Pemain *P2, Pemain *Pnow, PETA *P, TabBangunan *TB, Graph *connectivity, List *Netral, int *jatah) {
