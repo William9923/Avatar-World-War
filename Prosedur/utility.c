@@ -539,7 +539,7 @@ boolean IsExit(char s[]){
 	}
 	return true;
 }
-
+//coba push
 /*******************UNTUK SAVE DAN LOAD***************************/
 void TulisPointkeFile (FILE *fp,Point P){
 /* Nilai P ditulis ke layar dengan format "(X,Y)"
