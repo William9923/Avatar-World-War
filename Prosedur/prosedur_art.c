@@ -72,9 +72,6 @@ void CommandList()
         printf("║7. SAVE           ║\n");
         printf("║8. QUIT           ║\n");
         printf("╚══════════════════╝\n");
-        printf("Press Any Key To Continue...");
-
-        scanf("%c", &anykey);
         normal();
 
 }

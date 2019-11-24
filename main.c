@@ -19,6 +19,16 @@ void NextPemain(Pemain P1,Pemain P2,Pemain *P){
 	}
 }
 
+void changecolor(Pemain Pnow, Pemain P1, Pemain P2){
+	if (IsEQPemain(Pnow,P1)){
+		yellow();
+	} else if (IsEQPemain(Pnow,P2)) {
+		cyan();
+	} else {
+		green();
+	}
+}
+
 int main() {
 	//KAMUS
 	Pemain P1,P2,Pnow;
@@ -43,19 +53,19 @@ int main() {
 	StartSkill(&((P1).Skill));StartSkill(&((P2).Skill));
 	Pnow = P1;
 	char * s;
-	CommandList();
 	while(!stop){
-		//Validasi Command
-		//Print Map
+		CommandList();
 		CreateEmptyStackUndo(&SU);
 		int jatah=1;
 		
 		while(!stop && jatah!=0){
+			changecolor(Pnow,P1,P2);
 			printf("%s%d%s\n", "**************TURN ", turn , "**************");
+			normal();
 			CetakPeta(P,P1,P2,AllBangunan);
-			//Baca Command taruh disini...
-			//...
+			changecolor(Pnow,P1,P2);
 			printf("Player %d\n",Pnow.nomor);
+			normal();
 			//Ngerefresh isi Pnow setelah Undo
 			if(Pnow.nomor==1){
 				Pnow = P1;
@@ -63,9 +73,10 @@ int main() {
 			else{
 				Pnow = P2;
 			}
+			changecolor(Pnow,P1,P2);
 			PrintInfoLBangunan(AllBangunan,Pnow);
-
-
+			normal();
+			changecolor(Pnow,P1,P2);
 			printf("%s", "Skill Available: ");
 			if (IsEQPemain(P1,Pnow)){
 				ShowSkill((P1.Skill));
@@ -73,9 +84,12 @@ int main() {
 				ShowSkill((P2.Skill));
 			}
 			printf("\n");
+			CommandList();
 			printf("ENTER COMMAND: ");
+			normal();
 			s = BacaInputUser();
 			printf("\n");
+			changecolor(Pnow,P1,P2);
 			if(IsAttack(s)){
 				if (IsEQPemain(Pnow, P1)) {
 					ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity,&SU, &((P1).Skill), &((P2).Skill));
@@ -85,6 +99,7 @@ int main() {
 				}
 				endgame(P1,P2,&stop,turn);
 			}
+
 			else if(IsLevelUp(s)){
 				if (IsEQPemain(Pnow, P1)) {
 					ProsedurLevelUp(&AllBangunan,P1,P1,P2,Netral,&SU);	
@@ -141,6 +156,7 @@ int main() {
 						P1.AttackUp=false;
 					}
 				}
+				normal();
 				turn++;
 				jatah--;
 				CreateEmptyStackUndo(&SU);
