@@ -1,4 +1,4 @@
-#include"include.h"
+#include"./include.h"
 
 boolean IsEQPemain(Pemain P1, Pemain P2){
 	boolean same = true;
@@ -76,7 +76,7 @@ int main() {
 	int jatah;
 	boolean menu =true;
 
-	//Baca Konfigurasi Permainan
+	clrscr();
 	printf("New Game or Load a saved game?\nType LOAD if you want to load a saved game.\nOtherwise type NEW.\n");
 	green();
 	
@@ -91,10 +91,10 @@ int main() {
 		s = BacaInputUser();
 		if (IsNew(s)) {
 			clrscr();
+			//Baca Konfigurasi Permainan
 			printf("Reading Configuration File...\n");
 			path_file_konfig = "file konfig.txt";
 			readkonfig(path_file_konfig,&P,&AllBangunan,&connectivity,&P1,&P2,&Netral);
-			clear_user_input();
 			newgame = true;
 			StartSkill(&((P1).Skill));StartSkill(&((P2).Skill));
 			Pnow = P1;
@@ -128,7 +128,7 @@ int main() {
 		}
 		
 		while(!stop && jatah!=0){
-			clear_user_input();
+			
 			changecolor(Pnow,P1,P2);
 			cetakTurn(turn,space);
 			normal();
@@ -157,7 +157,6 @@ int main() {
 			CommandList();
 			printf("ENTER COMMAND: ");
 			normal();
-			clear_user_input();
 			s = BacaInputUser();
 			printf("\n");
 			green();
@@ -235,7 +234,6 @@ int main() {
 			}
 			else if(IsSave(s)){
 				ProsedurSave(P1, P2, Pnow, P, AllBangunan, connectivity, Netral, jatah);
-				clear_user_input();
 			}
 			else if(IsExit(s)) {
 				stop = true;
@@ -246,9 +244,5 @@ int main() {
 			}
 		}
 		NextPemain(P1,P2,&Pnow);
-		clear_user_input();
 	}
 }
-
-
-
