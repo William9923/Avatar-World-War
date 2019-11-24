@@ -8,9 +8,11 @@ int main() {
     Graph connectivity;
 	List Netral;
 	int jatah=1;
+    char *h;
     char *save;
     char *load;
     char *path_filekonfig;
+    boolean lanjut=true;
 
     path_filekonfig = "../../file konfig.txt";
 	//Baca Konfigurasi Permainan
@@ -22,7 +24,20 @@ int main() {
 	StartSkill(&((P1).Skill));StartSkill(&((P2).Skill));
 	Pnow = P1;
 
-    ProsedurSave(P1,P2,Pnow,P,AllBangunan,connectivity,Netral,jatah);
+    while (lanjut) {
+        cyan();
+        printf("enter command:");
+        h = BacaInputUser();
+        printf("\n");
+        printf("%s\n",h);
+        if(IsExit(h)) {
+            lanjut =false;
+        } else if (IsSave(h)) {
+            ProsedurSave(P1,P2,Pnow,P,AllBangunan,connectivity,Netral,jatah);
+        }
+    }
+
+    
     /*
     printf("ENTER path save: ");
     save = BacaInputUser();
@@ -30,6 +45,7 @@ int main() {
 
     savefile(save,P1,P2,Pnow,P,AllBangunan,connectivity,Netral,jatah);
     */
+
     printf("ENTER path load: ");
     load = BacaInputUser();
     printf("\n");

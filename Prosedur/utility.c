@@ -673,7 +673,6 @@ void PrintPemainkeFile(FILE *fp, Pemain P) {
 }
 
 void savefile(char s[],Pemain P1, Pemain P2, Pemain Pnow, PETA P, TabBangunan TB, Graph connectivity, List Netral, int jatah) {
-    int i;
     FILE *fp;
     fp = fopen(s,"w");
 
@@ -1287,9 +1286,7 @@ void ProsedurSave(Pemain P1, Pemain P2, Pemain Pnow, PETA P, TabBangunan TB, Gra
 	t = BacaInputUser();
 	printf("\n");
 	savefile(t, P1, P2, Pnow, P, TB, connectivity, Netral, jatah);
-	clear_user_input();
 	printf("Game berhasil disave!\n");
-	clear_user_input();
 }
 
 void ProsedurLoad(Pemain *P1, Pemain *P2, Pemain *Pnow, PETA *P, TabBangunan *TB, Graph *connectivity, List *Netral, int *jatah) {
@@ -1300,7 +1297,6 @@ void ProsedurLoad(Pemain *P1, Pemain *P2, Pemain *Pnow, PETA *P, TabBangunan *TB
 	printf("\n");
 	loadfile(s, P1, P2, Pnow, P, TB, connectivity, Netral, jatah);
 	printf("Game berhasil diload!\n");
-	clear_user_input();
 }
 
 void endgame(Pemain P1, Pemain P2, boolean *selesai, int turn) {
