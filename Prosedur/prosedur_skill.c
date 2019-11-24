@@ -112,10 +112,12 @@ boolean IsObtainExtraTurn(TabBangunan tab, IdxTypeArray i, Pemain p2){
 }
 
 boolean IsObtainShield(Pemain P){
+	/* Fungsi untuk memvalidasi apakah pemain mendapatkan skill Shield */
 	return NbElmtList(P.b)==2;	
 }
 
 boolean IsObtainAttackUp(Bangunan B,Pemain *P1,TabBangunan Tab){
+	/* Fungsi untuk memvalidasi apakah pemain mendapatkan skill Attack Up */
 	int counterTower=0;
 	address Last= FirstL((*P1).b);
 	for(int i=1;i<=NbElmtList((*P1).b);i++){
@@ -128,6 +130,8 @@ boolean IsObtainAttackUp(Bangunan B,Pemain *P1,TabBangunan Tab){
 }
 
 void CheckAddAttackUp(Bangunan B,Pemain *P1,TabBangunan Tab){
+	/* I.S. 
+	   F.S. */
 	if (IsObtainAttackUp(B,P1,Tab)){
 		if (!IsFullQueue((*P1).Skill)){
 			AddSkillQueue(&(*P1).Skill, 'D');

@@ -189,7 +189,13 @@ void SerangB(IdxTypeArray i, IdxTypeArray j, int n, Pemain * P1, Pemain * P2, Li
 	}
 }
 
+/* Mengtraverse list bangunan, kemudian meningkatkan jumlah pasukannya setiap turn */
 void NextTurnLBangunan (List  L, TabBangunan * tab){
+	/*
+		I.S. Array bangunan terdefinisi
+			 List terdefinisi
+		F.S. Seluruh bangunan dalam array bangunan yang terdefinisi di L nilai propertinya berubah seiring dengan prosedur naik level
+	*/
 	address last;
 	last = FirstL(L);
 	infotypeList a;
@@ -199,7 +205,6 @@ void NextTurnLBangunan (List  L, TabBangunan * tab){
 		last = NextL(last);
 	}
 }
-
 
 void NextTurnPemain(Pemain * P, TabBangunan * tab){
 	/*
@@ -214,6 +219,10 @@ void NextTurnPemain(Pemain * P, TabBangunan * tab){
 }
 
 void PrintInfoLBangunan(TabBangunan tab, Pemain p){
+	/*
+		I.S. Pemain terdefinisi dan TabBangunan terdefinisi
+		F.S. Daftar Bangunan yang didefinisi di List Pemain tercetak ke layer
+	*/
 	address last = FirstL((p).b);
 	int count = 0;
 	while (last != Kosong){
@@ -226,6 +235,10 @@ void PrintInfoLBangunan(TabBangunan tab, Pemain p){
 }
 
 void PrintInfoLBangunanSemua(TabBangunan tab){
+	/*
+		I.S. Bangunan yang terdapat di peta terdefinisi di tab bangunan
+		F.S. Bangunan tercetak sebagai daftar bangunan di game
+	*/
 	for (int i = 1; i <= NbElmt(tab); i++){
 		CetakBangunanIndeks(tab, i);
 	}
@@ -233,6 +246,12 @@ void PrintInfoLBangunanSemua(TabBangunan tab){
 
 /* Print daftar bangunan bisa attack */
 void PrintInfoLBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j ,Graph g){
+	/*
+		I.S. TabBangunan dan Pemain penyerang terdefinisi
+		F.S. Seluruh bangunan yang dapat diserang oleh pemain tercetak dalam map
+		Proses :
+		 Mencocokkan bangunan bukan milik pemain serta keterhubungannya dengan graph
+	*/
 	int count = 0;
 	for (IdxTypeArray i = 1; i <= NbElmt(tab); i++){
 		if (i != j && IsConnected(g, j , i) && !haveBuildingB(p, ElmtArray(tab,i), tab)){
@@ -246,6 +265,13 @@ void PrintInfoLBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j ,Graph g
 
 /* Print daftar bangunan bisa move */
 void PrintInfoLBangunanMove(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g){
+	/*
+		I.S. TabBangunan dan Pemain yang ingin memindahkan pasukan terdefinisi
+		F.S. Seluruh bangunan yang terhubung dan milik pemain dicetak di layar game
+		Proses :
+		 Mencocokkan bangunan milik pemain serta keterhubungannya dengan graph
+	*/
+
 	int count = 0;
 	for (IdxTypeArray i = 1; i <= NbElmt(tab); i++){
 		if (i != j && IsConnected(g,j,i) && haveBuildingB(p, ElmtArray(tab, i), tab)){
@@ -257,8 +283,14 @@ void PrintInfoLBangunanMove(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g){
 	}
 }	
 
-/* Create an array containing the index of can be attacked bangunan */
 void SemuaBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int * n){
+	/*
+		I.S. Seluruh parameter prosedur telah terdefinisi di main program
+		F.s. n telah diisi dengan jumlah daftar bangunan yang dapat diserang oleh bangunan indeks ke j
+		Proses :
+			Melakukan pemrosesan dengan cara traversal (skema traversal 1) terhadap seluruh
+			bangunan di array bangunan, kemudian mencocokan hasilnya dengan keterhubungan dan bukan milik pemain
+	*/	
 	int b[NbElmt(tab)];
 	int count = 0;
 	for (IdxTypeArray i = 1; i <= NbElmt(tab); i++){
@@ -271,6 +303,9 @@ void SemuaBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int
 }
 
 int * getSemuaBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int n){
+	/*
+		Mengembalikan suatu array yang diisi dengan indeks indeks bangunan yang dapat diserang oleh suatu bangunan dengan indeks j
+	*/
 	static int a[600];
 	int count = 0;
 	for (IdxTypeArray i = 1; i <= NbElmt(tab); i++){
@@ -284,6 +319,13 @@ int * getSemuaBangunanAttack(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g,
 
 /* Create an array containing the index of can be moved bangunan */
 void SemuaBangunanMove(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int * n){
+	/*
+		I.S. Seluruh parameter prosedur telah terdefinisi di main program
+		F.s. n telah diisi dengan jumlah daftar bangunan yang dapat memindahkan pasukan oleh bangunan indeks ke j
+		Proses :
+			Melakukan pemrosesan dengan cara traversal (skema traversal 1) terhadap seluruh
+			bangunan di array bangunan, kemudian mencocokan hasilnya dengan keterhubungan dan milik pemain
+	*/	
 	int b[NbElmt(tab)];
 	int count = 0;
 	for (IdxTypeArray i  = 1; i<= NbElmt(tab); i++){
@@ -296,6 +338,9 @@ void SemuaBangunanMove(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int *
 }
 
 int * getSemuaBangunanMove(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, int n){
+	/*
+		Mengembalikan suatu array yang diisi dengan indeks indeks bangunan yang dapat dipindahkan pasukan oleh suatu bangunan dengan indeks j
+	*/
 	static int a[600];
 	int count = 0;
 	for (IdxTypeArray i = 1; i <= NbElmt(tab); i++){
@@ -310,6 +355,10 @@ int * getSemuaBangunanMove(TabBangunan tab, Pemain p, IdxTypeArray j, Graph g, i
 }
 
 
+/************************
+* PROSEDUR              *
+* VALIDASI MASUKAN USER *
+************************/
 /* Input User */
 char * outputString() {
 	char * s = malloc(sizeof (char) * CKata.Length);
@@ -320,7 +369,9 @@ char * outputString() {
 }
 
 
+
 int pengubahAngka() {
+	/* Fungsi yang digunakan untuk merubah inputan user dari stdin ke dalam bentuk angka */
 	int sum = 0;
 	for (int i = 1; i <= CKata.Length; i++){
 		sum = sum * 10 + (CKata.TabKata[i] - '0');
@@ -330,6 +381,7 @@ int pengubahAngka() {
 
 
 char * BacaInputUser(){
+	/* Suatu fungsi yang digunakan untuk membaca masukan dari user. Hasil pembacaan akan dikembalikan ke dalam bentuk array of char */
 	STARTKATAIn();
 	while(!EndKata){
 		ADVKATAIn();
@@ -343,6 +395,7 @@ char * BacaInputUser(){
 }
 
 boolean IsNew(char s[]){
+	/* Fungsi validasi masukan dengan input  : NEW */
 	char new[3];
 	new[0] = 'N';
 	new[1] = 'E';
@@ -363,6 +416,7 @@ boolean IsNew(char s[]){
 }
 
 boolean IsAttack (char s[]){
+	/* Fungsi validasi masukan dengan inputan : ATTACK */
 	char attack[6];
 	attack[0] = 'A';
 	attack[1] = 'T';
@@ -386,6 +440,7 @@ boolean IsAttack (char s[]){
 }
 
 boolean IsLevelUp(char s[]){
+	/* Fungsi validasi masukan dengan inputan : LEVEL_UP*/
 	char levelUp[8];
 	levelUp[0] = 'L';
 	levelUp[1] = 'E';
@@ -411,6 +466,8 @@ int sizeof_s;
 }
 
 boolean IsMove(char s[]){
+	/* Fungsi validasi masukan dengan inputan : MOVE*/
+
 	char move[4];
 	move[0] = 'M';
 	move[1] = 'O';
@@ -433,6 +490,7 @@ int sizeof_s;
 }
 
 boolean IsSkill(char s[]){
+	/* Fungsi validasi masukan dengan inputan : SKILL*/
 	char skill[5];
 	skill[0] = 'S';
 	skill[1] = 'K';
@@ -455,6 +513,7 @@ boolean IsSkill(char s[]){
 }
 
 boolean IsUndo(char s[]){
+	/* Fungsi validasi masukan dengan inputan : UNDO*/
 	char undo[4];
 	undo[0] = 'U';
 	undo[1] = 'N';
@@ -476,6 +535,7 @@ boolean IsUndo(char s[]){
 }
 
 boolean IsEndTurn (char s[]){
+	/* Fungsi validasi masukan dengan inputan : END_TURN*/
 	char endTurn[8];
 	endTurn[0] = 'E';
 	endTurn[1] = 'N';
@@ -501,6 +561,7 @@ boolean IsEndTurn (char s[]){
 }
 
 boolean IsSave (char s[]){
+	/* Fungsi validasi masukan dengan inputan : SAVE*/
 	char save[4];
 	save[0] = 'S';
 	save[1] = 'A';
@@ -522,6 +583,7 @@ boolean IsSave (char s[]){
 }
 
 boolean IsLoad (char s[]){
+	/* Fungsi validasi masukan dengan inputan : LOAD*/
 	char load[4];
 	load[0] = 'L';
 	load[1] = 'O';
@@ -543,6 +605,7 @@ boolean IsLoad (char s[]){
 }
 
 boolean IsExit(char s[]){
+	/* Fungsi validasi masukan dengan inputan : EXIT*/
 	char exit[4];
 	exit[0] = 'E';
 	exit[1] = 'X';
@@ -562,7 +625,8 @@ boolean IsExit(char s[]){
 	}
 	return true;
 }
-//coba push
+
+
 /*******************UNTUK SAVE DAN LOAD***************************/
 void TulisPointkeFile (FILE *fp,Point P){
 /* Nilai P ditulis ke layar dengan format "(X,Y)"
@@ -626,6 +690,9 @@ void CetakBangunanDimilikikeFile (FILE *fp,TabBangunan T, Pemain P1, Pemain P2)
 }
 
 void PrintGraphkeFile(FILE *fp, Graph G,TabBangunan TB) {
+    /*
+    Prosedur untuk melakukan pencetakan Graph ke dalam File eksternal untuk proses save
+    */
     int i,j;
 
     for (i=1; i<=GetLastIdx(TB); i++) {
@@ -648,12 +715,15 @@ void PrintGraphkeFile(FILE *fp, Graph G,TabBangunan TB) {
 }
 
 void PrintSkillAktifkeFile (FILE *fp, Pemain P) {
+	/* Prosedur untuk menuliksan skill aktif pemain ke dalam file eksternal dalam proses save*/
     fprintf(fp, "%d ", P.AttackUp);
     fprintf(fp, "%d ", P.CriticalHit);
     fprintf(fp, "%d\n", P.Shield);
 }
 
 void PrintQueuekeFile(FILE *fp, Queue Q) {
+	/* Prosedur untuk menuliksan queue aktif pemain ke dalam file eksternal dalam proses save*/
+
     infotype X;
     if (IsEmptyQueue(Q)) {
         fprintf(fp,"x\n");
@@ -670,11 +740,13 @@ void PrintQueuekeFile(FILE *fp, Queue Q) {
 }
 
 void PrintPemainkeFile(FILE *fp, Pemain P) {
+	/* Prosedur untuk menuliskan status pemain ke dalam file eksternal dalam proses save*/
     PrintQueuekeFile(fp, P.Skill);
     PrintSkillAktifkeFile(fp,P);
 }
 
 void savefile(char s[],Pemain P1, Pemain P2, Pemain Pnow, PETA P, TabBangunan TB, Graph connectivity, List Netral, int jatah) {
+    /* Prosedur untuk melakukan save file pada program*/
     FILE *fp;
     fp = fopen(s,"w");
 
@@ -858,6 +930,9 @@ void loadfile(char s[],Pemain *P1, Pemain *P2, Pemain *Pnow, PETA *P, TabBanguna
 /*************************************************************************************/
 
 void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,Graph g,StackUndo *SU, Queue * q1, Queue * q2){
+	/* Prosedur untuk menjalankan Command ATTACK pada program
+	Proses : Dengan memanfaatkan fungsi fungsi seperti getBangunanAttack, prosedur ini menyusun sistem
+	yang mengatur validasi serta pengaturan masukan dari pengguna untuk prosedur ATTACK dalam game*/
 	char * s;
 	int * attackArr;
 	IdxTypeArray a;
@@ -1010,6 +1085,9 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 
 }
 void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g,Pemain P1,Pemain P2,List Netral,StackUndo *SU){
+		/* Prosedur untuk menjalankan Command MOVE pada program
+	Proses : Dengan memanfaatkan fungsi fungsi seperti getBangunanMOVE, prosedur ini menyusun sistem
+	yang mengatur validasi serta pengaturan masukan dari pengguna untuk prosedur MOVE dalam game*/
 	char * s;
 	int * moveArr;
 	IdxTypeArray a;
@@ -1136,6 +1214,9 @@ void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g,Pemain P1,Pemain P2,Li
 
 /* Fungsi buat make skill */
 void PakeSkill (Queue *Q,TabBangunan * tab,Pemain * p1, Pemain * p2, int * x,StackUndo *SU)
+/* Prosedur untuk mengatur aturan dalam penggunaan skill saat COMMAND SKILL dipakai pemain
+Proses : Prosedur ini memanggil pengaturan - pengaturan skill yang telah didefinisikan di prosedur_skill.c untuk mengaktifkan efek dari
+skill yang dipakai pengguna */
 {
     char X;
     
@@ -1185,6 +1266,11 @@ void PakeSkill (Queue *Q,TabBangunan * tab,Pemain * p1, Pemain * p2, int * x,Sta
 }
 
 void ProsedurLevelUp (TabBangunan *tab, Pemain P1,Pemain P3,Pemain P2,List Netral,StackUndo *SU) {
+     /*
+     	Prosedur untuk melakukan level up pada suatu bangunan milik pemain tertentu
+     	Prosedur ini mengatur dari validasi inputan user, apakah suatu bangunan valid untuk mengalami level up
+     	serta melakukan proses level up nya sendiri.
+     */
      char * s;
  	int * levelArr;
  	IdxTypeArray a,b;
@@ -1305,6 +1391,11 @@ void ProsedurLevelUp (TabBangunan *tab, Pemain P1,Pemain P3,Pemain P2,List Netra
 }
 
 void ProsedurSave(Pemain P1, Pemain P2, Pemain Pnow, PETA P, TabBangunan TB, Graph connectivity, List Netral, int jatah) {
+	/*
+		Prosedur yang dijalankan saat pemain mengaktifkan COMMAND SAVE pada game.
+		Proses yang dilakukan oleh prosedur ini adalah menerima inputan berupa path file untuk save data dari user
+		kemudian dengan fungsi savefile, status status dalam game disimpan ke dalam file eksternal sesuai dengan path file yang telah disesuaikan oleh pengguna
+	*/
 	char *t;
 
 	printf("Lokasi save file: ");
@@ -1315,6 +1406,12 @@ void ProsedurSave(Pemain P1, Pemain P2, Pemain Pnow, PETA P, TabBangunan TB, Gra
 }
 
 void ProsedurLoad(Pemain *P1, Pemain *P2, Pemain *Pnow, PETA *P, TabBangunan *TB, Graph *connectivity, List *Netral, int *jatah) {
+	/*
+		Prosedur yang dijalankan saat pemain mengaktifkan COMMAND Load pada game.
+		Proses yang dilakukan oleh prosedur ini adalah menerima masukan dari user berupa
+		lokasi dimana file eksternal yang menyimpan path file berada.
+		Kemudian, melalui masukan tersebut, dengan fungsi loadfile, state dalam game dikembalikan kembali ke status semula
+	*/
 	char *s;
 
 	printf("Lokasi load file: ");
