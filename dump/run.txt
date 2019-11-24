@@ -1,1 +1,0 @@
-gcc -o main main.c bangunan.c point.c stack.c state.c tubes_array.c tubes_matriks.c
