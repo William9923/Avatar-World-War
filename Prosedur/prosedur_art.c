@@ -51,7 +51,7 @@ void PWinArt (Pemain Pnow, int turn)
         printf("════════Permainan telah selesai di turn %d!════════\n",turn);
         printf("       ╔═══════════════════════════════════╗\n");
         printf("       ║                                   ║ \n");
-        printf("       ║        **** P%d WIN !!! ****      ║ \n",Pnow.nomor);
+        printf("       ║        **** P%d WIN !!! ****       ║ \n",Pnow.nomor);
         printf("       ╚═══════════════════════════════════╝ \n");
         printf("\n");
         normal();

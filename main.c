@@ -29,6 +29,13 @@ void changecolor(Pemain Pnow, Pemain P1, Pemain P2){
 	}
 }
 
+void cetakTurn(int turn){
+
+	printf("════════════════════════════════════\n");
+	printf("                TURN %d       \n", turn );
+	printf("════════════════════════════════════\n");
+}
+
 int main() {
 	//KAMUS
 	Pemain P1,P2,Pnow;
@@ -60,7 +67,7 @@ int main() {
 		
 		while(!stop && jatah!=0){
 			changecolor(Pnow,P1,P2);
-			printf("%s%d%s\n", "**************TURN ", turn , "**************");
+			cetakTurn(turn);
 			normal();
 			CetakPeta(P,P1,P2,AllBangunan);
 			changecolor(Pnow,P1,P2);
