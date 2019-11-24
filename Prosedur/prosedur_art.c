@@ -50,7 +50,7 @@ void PWinArt (Pemain Pnow, int turn)
         printf("\n");
 }
 
-void CommandList ()
+void CommandList()
 {
         char anykey;
 

@@ -14,7 +14,7 @@ void PWinArt (Pemain Pnow,int turn);
 /* I.S. Pnow dan turn terdefinisi, Pnow merupakan pemain yang menang game */
 /* F.S. tercetak tampilan player yang menang beserta turn di layar */
 
-void CommandList ();
+void CommandList();
 /* I.S. Game telah di start oleh pemain */
 /* F.S. Tercetak command ke layar */
 

@@ -73,6 +73,8 @@ int main() {
     readkonfig(&P,&AllBangunan,&connectivity,&P1,&P2,&Netral);
 	StartGame();
 	clrscr();
+	CommandList();
+	clrscr();
 	boolean stop = false;
 	StartSkill(&((P1).Skill));StartSkill(&((P2).Skill));
 	Pnow = P1;
