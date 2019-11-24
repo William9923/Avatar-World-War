@@ -37,3 +37,25 @@ void print_cyan(char c) {
     printf("%s%c", MAGENTA, c);
     printf("%s", NORMAL);
 }
+
+void red(){
+    printf("%s", RED);
+}
+void green() {
+    printf("%s", GREEN);
+}
+void yellow(){
+    printf("%s", YELLOW);
+}
+void blue(){
+    printf("%s", BLUE);
+}
+void magenta(){
+    printf("%s", MAGENTA);
+}
+void cyan(){
+    printf("%s", CYAN);
+}
+void normal() {
+    printf("%s", NORMAL);
+}

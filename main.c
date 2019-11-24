@@ -29,19 +29,21 @@ int main() {
 	List Netral;
 	int turn=1;
 	//Baca Konfigurasi Permainan
+	green();
 	printf("Reading Configuration File...\n");
+	normal();
 	CreateNewPlayer(&P1,1);	
 	CreateNewPlayer(&P2,2);
     CreateEmptyList(&Netral);
     readkonfig(&P,&AllBangunan,&connectivity,&P1,&P2,&Netral);
 	StartGame();
 	clrscr();
-	CommandList();
 	clrscr();
 	boolean stop = false;
 	StartSkill(&((P1).Skill));StartSkill(&((P2).Skill));
 	Pnow = P1;
 	char * s;
+	CommandList();
 	while(!stop){
 		//Validasi Command
 		//Print Map

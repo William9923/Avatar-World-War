@@ -5,7 +5,6 @@
 #include"../ADT/pemain/pemain.h"
 #include<stdio.h>
 
-
 void StartGame();
 /* I.S. sembarang
 /* F.S. tercetak tampilan sebelum game dimulai */

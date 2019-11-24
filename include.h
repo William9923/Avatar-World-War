@@ -9,6 +9,7 @@
 #include "./ADT/mesinkata/mesinkata.h"
 #include "./ADT/queue/skill.h"
 #include"./ADT/pemain/pemain.h"
+#include "./ADT/pcolor/pcolor.h"
 #include"./ADT/bangunan/bangunan.c"
 #include"./ADT/point/point.c"
 #include"./ADT/array/array.c"

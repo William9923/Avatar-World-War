@@ -1,5 +1,6 @@
 
 #include"../ADT/pemain/pemain.h"
+#include"../ADT/pcolor/pcolor.h"
 #include<stdio.h>
 #include "../Prosedur/prosedur_art.h"
 
@@ -9,7 +10,7 @@ void StartGame ()
 {
 
 char anykey;
- 
+green();
 printf("\n");
 printf("    |>>>                                                      |>>> \n");
 printf("    |                                                         |    \n");
@@ -33,38 +34,47 @@ printf("\n");
 printf("     *                 PRESS ANY KEY TO START                *    "); 
 /* inspired from https://www.asciiart.eu/buildings-and-places/castles */
 scanf("%c", &anykey);
-
+normal();
 }
 
 void PWinArt (Pemain Pnow, int turn)
 /* I.S. Pnow dan turn terdefinisi, Pnow merupakan pemain yang menang game */
 /* F.S. tercetak tampilan player yang menang beserta turn di layar */
 {
+		if (Pnow.nomor == 1){
+			red();
+		} else {
+			blue();
+		}
   
         printf("\n");
-        printf("========Permainan telah selesai di turn %d!========\n",turn);
-        printf("       ____________________________________ \n");
-        printf("       |                                   | \n");
-        printf("       |        **** P%d WIN !!! ****       | \n",Pnow.nomor);
-        printf("       |___________________________________| \n");
+        printf("════════Permainan telah selesai di turn %d!════════\n",turn);
+        printf("       ╔═══════════════════════════════════╗\n");
+        printf("       ║                                   ║ \n");
+        printf("       ║        **** P%d WIN !!! ****      ║ \n",Pnow.nomor);
+        printf("       ╚═══════════════════════════════════╝ \n");
         printf("\n");
+        normal();
 }
 
 void CommandList()
 {
         char anykey;
-
-        printf("AVAILABLE COMMAND: \n");
-        printf("1. ATTACK\n");
-        printf("2. MOVE\n");
-        printf("3. SKILL\n");
-        printf("4. LEVEL_UP\n");
-        printf("5. UNDO\n");
-        printf("6. END_TURN\n");
-        printf("7. SAVE\n");
-        printf("8. QUIT\n");
+        green();
+        printf("╔══════════════════╗\n");
+        printf("║AVAILABLE COMMAND:║\n");
+        printf("║1. ATTACK         ║\n");
+        printf("║2. MOVE           ║\n");
+        printf("║3. SKILL          ║\n");
+        printf("║4. LEVEL_UP       ║\n");
+        printf("║5. UNDO           ║\n");
+        printf("║6. END_TURN       ║\n");
+        printf("║7. SAVE           ║\n");
+        printf("║8. QUIT           ║\n");
+        printf("╚══════════════════╝\n");
         printf("Press Any Key To Continue...");
 
         scanf("%c", &anykey);
+        normal();
 
 }
