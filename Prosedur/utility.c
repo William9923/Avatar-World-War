@@ -333,11 +333,13 @@ char * BacaInputUser(){
 	while(!EndKata){
 		ADVKATAIn();
 	}
-	char * s = malloc(sizeof (char) * CKata.Length);
+	char * e = malloc(sizeof (int) * CKata.Length);
+	free(e);
+	char *d = malloc(sizeof(char)*CKata.Length);
 	for (int i = 1; i <= CKata.Length;i++){
-		s[i-1] = CKata.TabKata[i];
+		d[i-1] = CKata.TabKata[i];
 	}
-	return s;
+	return d;
 }
 
 boolean IsNew(char s[]){
@@ -687,7 +689,6 @@ void savefile(char s[],Pemain P1, Pemain P2, Pemain Pnow, PETA P, TabBangunan TB
     fprintf(fp, "%d %d`", Pnow.nomor, jatah);
 
     fclose(fp);
-    
 	clear_user_input();
 }
 
@@ -705,6 +706,7 @@ void loadfile(char s[],Pemain *P1, Pemain *P2, Pemain *Pnow, PETA *P, TabBanguna
     int elist;
     
     //ALGORITMA
+
     STARTKATA(s);
     PPeta = pengubahAngka();
 
@@ -850,6 +852,8 @@ void loadfile(char s[],Pemain *P1, Pemain *P2, Pemain *Pnow, PETA *P, TabBanguna
     
     ADVKATA();
     *jatah = pengubahAngka();
+	IgnoreBlank();
+	clear_user_input();
 }
 /*************************************************************************************/
 
@@ -1003,6 +1007,7 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 			printf("%s\n\n", "Bangunan sudah menyerang di turn ini!");
 		}
 	}
+
 }
 void ProsedurMove (TabBangunan * tab, Pemain * p1,Graph g,Pemain P1,Pemain P2,List Netral,StackUndo *SU){
 	char * s;

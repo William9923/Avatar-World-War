@@ -234,6 +234,7 @@ int main() {
 			}
 			else if(IsSave(s)){
 				ProsedurSave(P1, P2, Pnow, P, AllBangunan, connectivity, Netral, jatah);
+				clear_user_input();
 			}
 			else if(IsExit(s)) {
 				stop = true;
