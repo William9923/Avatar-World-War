@@ -895,7 +895,12 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
-					SaveState(SU,*p1,*p2,*Netral,*tab);
+					if((*p1).nomor==1){
+						SaveState(SU,*p1,*p2,*Netral,*tab);
+					}
+					else{
+						SaveState(SU,*p2,*p1,*Netral,*tab);
+					}
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab, q1,q2);
 				} else {
 					do {
@@ -907,7 +912,12 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
-					SaveState(SU,*p1,*p2,*Netral,*tab);
+					if((*p1).nomor==1){
+						SaveState(SU,*p1,*p2,*Netral,*tab);
+					}
+					else{
+						SaveState(SU,*p2,*p1,*Netral,*tab);
+					}
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab, q1,q2);
 				}
 			} else {
@@ -952,7 +962,12 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
-					SaveState(SU,*p1,*p2,*Netral,*tab);
+					if((*p1).nomor==1){
+						SaveState(SU,*p1,*p2,*Netral,*tab);
+					}
+					else{
+						SaveState(SU,*p2,*p1,*Netral,*tab);
+					}
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab, q1,q2);
 					
 				} else {
@@ -972,7 +987,12 @@ void ProsedurAttack(TabBangunan * tab, Pemain * p1, Pemain * p2, List * Netral ,
 					printf("%s", "Jumlah pasukan: ");
 					s = BacaInputUser();
 					k = pengubahAngka();
-					SaveState(SU,*p1,*p2,*Netral,*tab);
+					if((*p1).nomor==1){
+						SaveState(SU,*p1,*p2,*Netral,*tab);
+					}
+					else{
+						SaveState(SU,*p2,*p1,*Netral,*tab);
+					}
 					SerangB(a, attackArr[j - 1], k, p1, p2, Netral, tab, q1,q2);
 					
 				}
