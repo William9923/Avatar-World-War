@@ -1,4 +1,14 @@
-#include "../../include.h"
+#include <stdio.h>
+#include "readkonfigurasi.c"
+#include "../../ADT/mesinkata/mesinkar.c"
+#include "../../ADT/mesinkata/mesinkata.c"
+#include "../../ADT/array/array.c"
+#include "../../ADT/graph/graph_.c"
+#include "../../ADT/pemain/pemain.c"
+#include "../../ADT/list/listlinier.c"
+#include "../../ADT/bangunan/bangunan.c"
+#include "../../ADT/point/point.c"
+#include "../../ADT/matriks/matriks.c"
 
 int main() {
     PETA P;

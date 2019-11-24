@@ -1,40 +1,3 @@
-// #include<stdio.h>
-// #include<stdlib.h>
-// #include<math.h>
-// #include"bangunan.h"
-// #include"point.h"
-// #include"state.h"
-// #include"array.h"
-// #include"matriks.h"
-// //#include "listbangunan.h"
-// #include "mesinkar.h"
-// #include "mesinkata.h"
-// #include "skill.h"
-// #include"pemain.h"
-// #include"bangunan.c"
-// #include"point.c"
-// #include"state.c"
-// #include"array.c"
-// #include"matriks.c"
-// #include"skill.c"
-// //#include "listbangunan.c"
-// #include "listlinier.c"
-// #include "mesinkar.c"
-// #include "mesinkata.c"
-// #include "readkonfigurasi.c"
-// //#include "skill.c"
-// #include"pemain.c"
-// #include<stdio.h>
-// #include<stdlib.h>
-// #include<string.h>
-// #include"stackundo.c"
-// #include"utility_william.c"
-// #include"utility_felix.c"
-// #include"graph_.h"
-// #include"graph_.c"
-// #include<math.h>
-// #include"boolean.h"
-// #include"prosedur_skill.c"
 #include"include.h"
 
 boolean IsEQPemain(Pemain P1, Pemain P2){
@@ -56,6 +19,48 @@ void NextPemain(Pemain P1,Pemain P2,Pemain *P){
 	}
 }
 
+void changecolor(Pemain Pnow, Pemain P1, Pemain P2){
+	if (IsEQPemain(Pnow,P1)){
+		red();
+	} else if (IsEQPemain(Pnow,P2)) {
+		cyan();
+	} else {
+		green();
+	}
+}
+
+void cetakTurn(int turn,int space){
+	int halfspace = (space - 6) / 2;
+	for (int i = 1; i <= 3; i++){
+		printf("   ");
+	}
+	for (int i = 1; i <= space; i++){
+		printf("═");
+	}
+	printf("\n");
+	for (int i = 1; i <= 3; i++){
+		printf("   ");
+	}
+	for (int i = 1; i <= halfspace; i++){
+		printf(" ");
+	}
+	printf("TURN %d",turn);
+	for (int i = 1; i <= halfspace; i++){
+		printf(" ");
+	}
+	for (int i = 1; i <= 3; i++){
+		printf("   ");
+	}
+	printf("\n");
+	for (int i = 1; i <= 3; i++){
+		printf("   ");
+	}
+	for (int i = 1; i <= space; i++){
+		printf("═");
+	}
+	printf("\n");
+}
+
 int main() {
 	//KAMUS
 	Pemain P1,P2,Pnow;
@@ -67,7 +72,9 @@ int main() {
 	int turn=1;
 	char *path_file_konfig;
 	//Baca Konfigurasi Permainan
+	green();
 	printf("Reading Configuration File...\n");
+	normal();
 	CreateNewPlayer(&P1,1);	
 	CreateNewPlayer(&P2,2);
     CreateEmptyList(&Netral);
@@ -77,22 +84,27 @@ int main() {
     readkonfig(path_file_konfig,&P,&AllBangunan,&connectivity,&P1,&P2,&Netral);
 	StartGame();
 	clrscr();
+	clrscr();
 	boolean stop = false;
 	StartSkill(&((P1).Skill));StartSkill(&((P2).Skill));
 	Pnow = P1;
 	char * s;
+
+	/* Desain game */
+	int space = GetLastIdxBrs(P) * 5;
+
 	while(!stop){
-		//Validasi Command
-		//Print Map
 		CreateEmptyStackUndo(&SU);
 		int jatah=1;
 		
 		while(!stop && jatah!=0){
-			printf("%s%d%s\n", "**************TURN ", turn , "**************");
+			changecolor(Pnow,P1,P2);
+			cetakTurn(turn,space);
+			normal();
 			CetakPeta(P,P1,P2,AllBangunan);
-			//Baca Command taruh disini...
-			//...
+			yellow();
 			printf("Player %d\n",Pnow.nomor);
+			normal();
 			//Ngerefresh isi Pnow setelah Undo
 			if(Pnow.nomor==1){
 				Pnow = P1;
@@ -100,9 +112,10 @@ int main() {
 			else{
 				Pnow = P2;
 			}
+			yellow();
 			PrintInfoLBangunan(AllBangunan,Pnow);
-
-
+			normal();
+			yellow();
 			printf("%s", "Skill Available: ");
 			if (IsEQPemain(P1,Pnow)){
 				ShowSkill((P1.Skill));
@@ -110,9 +123,12 @@ int main() {
 				ShowSkill((P2.Skill));
 			}
 			printf("\n");
+			CommandList();
 			printf("ENTER COMMAND: ");
+			normal();
 			s = BacaInputUser();
 			printf("\n");
+			green();
 			if(IsAttack(s)){
 				if (IsEQPemain(Pnow, P1)) {
 					ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity,&SU, &((P1).Skill), &((P2).Skill));
@@ -122,6 +138,7 @@ int main() {
 				}
 				endgame(P1,P2,&stop,turn);
 			}
+
 			else if(IsLevelUp(s)){
 				if (IsEQPemain(Pnow, P1)) {
 					ProsedurLevelUp(&AllBangunan,P1,P1,P2,Netral,&SU);	
@@ -178,6 +195,7 @@ int main() {
 						P1.AttackUp=false;
 					}
 				}
+				normal();
 				turn++;
 				jatah--;
 				CreateEmptyStackUndo(&SU);
