@@ -30,7 +30,7 @@ printf("_-_|_______|-----------|_____||     ||_____|-----------|_______|_-_\n");
 printf("  |_________|         |______||     ||______|         |_________|    \n");
 printf(" |___________|-------|_______||_____||_______|-------|___________|   \n");
 printf("\n");
-printf("     *                 PRESS ANY KEY TO START                *    \n"); 
+printf("     *                 PRESS ANY KEY TO START                *    "); 
 /* inspired from https://www.asciiart.eu/buildings-and-places/castles */
 scanf("%c", &anykey);
 
@@ -48,4 +48,23 @@ void PWinArt (Pemain Pnow, int turn)
         printf("       |        **** P%d WIN !!! ****       | \n",Pnow.nomor);
         printf("       |___________________________________| \n");
         printf("\n");
+}
+
+void CommandList()
+{
+        char anykey;
+
+        printf("AVAILABLE COMMAND: \n");
+        printf("1. ATTACK\n");
+        printf("2. MOVE\n");
+        printf("3. SKILL\n");
+        printf("4. LEVEL_UP\n");
+        printf("5. UNDO\n");
+        printf("6. END_TURN\n");
+        printf("7. SAVE\n");
+        printf("8. QUIT\n");
+        printf("Press Any Key To Continue...");
+
+        scanf("%c", &anykey);
+
 }
