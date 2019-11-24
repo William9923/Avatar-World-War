@@ -97,54 +97,60 @@ void CetakPeta (PETA P,Pemain P1,Pemain P2,TabBangunan Tab)
 /* Proses: Mencetak nilai setiap elemen P ke layar dengan traversal per baris dan per kolom */
 {
 	green();
-	printf("╔");
+	printf("   ╔");
 	for (int i = 1; i <= GetLastIdxKol(P); i++){
 		if (i == GetLastIdxKol(P)){
-			printf("══");
+			printf("═══");
 		} else {
-			printf("══╦");
+			printf("═══╦");
 		}
 	}
 	printf("╗");
 	printf("\n");
 
 	for(int i = 1; i <= GetLastIdxBrs(P); i++){
+		normal();
+		if ( i < 10){
+			printf(" %d ",i);
+		} else {
+			printf("%d ", i);
+		}
 		green();
 		for (int j = 1; j <= GetLastIdxKol(P); j++){
 			green();
 			printf("║");
 			if(ElmtMatriks(P,i,j) == 'C' || ElmtMatriks(P,i,j) == 'V' || ElmtMatriks(P,i,j) == 'T' || ElmtMatriks(P,i,j) == 'F') {
 				if(haveBuildingKoordinat(P1,i,j,Tab)){
-					printf("");
+					printf(" ");
 					print_red(ElmtMatriks(P,i,j));
 					printf(" ");
 				}
 				else if(haveBuildingKoordinat(P2,i,j,Tab)){
-					printf("");
+					printf(" ");
 					print_blue(ElmtMatriks(P,i,j));
 					printf(" ");
 				}
 				else{
-					printf("");
+					printf(" ");
 					normal();
 					printf("%c", ElmtMatriks(P,i,j));
 					printf(" ");
 				}
 			} else {
-				printf("  ");
+				printf("   ");
 			}
 		}
 		green();
 		printf("║");
 		printf("\n");
 		if (i != GetLastIdxBrs(P)){
-			printf("╠");
+			printf("   ╠");
 			for (int i = 1; i <= GetLastIdxKol(P); i++){
 				green();
 				if (i == GetLastIdxKol(P)){
-					printf("══");
+					printf("═══");
 				} else {
-					printf("══╬");
+					printf("═══╬");
 				}
 			}
 			green();
@@ -152,17 +158,27 @@ void CetakPeta (PETA P,Pemain P1,Pemain P2,TabBangunan Tab)
 			printf("\n");
 		}
 	}
-	printf("╚");
+	printf("   ╚");
 	for (int i = 1; i <= GetLastIdxKol(P); i++){
 		green();
 		if (i == GetLastIdxKol(P)){
-			printf("══");
+			printf("═══");
 		} else {
-			printf("══╩");
+			printf("═══╩");
 		}
 	}
 	green();
 	printf("╝");
+	printf("\n");
+	printf("   ");
+	for (int i = 1; i <= GetLastIdxKol(P); i++){
+		normal();
+		if ( i < 10){
+			printf("  %d ",i);
+		} else {
+			printf(" %d ", i);
+		}	
+	}
 	printf("\n");
 	normal();
 }

@@ -29,11 +29,36 @@ void changecolor(Pemain Pnow, Pemain P1, Pemain P2){
 	}
 }
 
-void cetakTurn(int turn){
-
-	printf("════════════════════════════════════\n");
-	printf("                TURN %d       \n", turn );
-	printf("════════════════════════════════════\n");
+void cetakTurn(int turn,int space){
+	int halfspace = (space - 6) / 2;
+	for (int i = 1; i <= 3; i++){
+		printf("   ");
+	}
+	for (int i = 1; i <= space; i++){
+		printf("═");
+	}
+	printf("\n");
+	for (int i = 1; i <= 3; i++){
+		printf("   ");
+	}
+	for (int i = 1; i <= halfspace; i++){
+		printf(" ");
+	}
+	printf("TURN %d",turn);
+	for (int i = 1; i <= halfspace; i++){
+		printf(" ");
+	}
+	for (int i = 1; i <= 3; i++){
+		printf("   ");
+	}
+	printf("\n");
+	for (int i = 1; i <= 3; i++){
+		printf("   ");
+	}
+	for (int i = 1; i <= space; i++){
+		printf("═");
+	}
+	printf("\n");
 }
 
 int main() {
@@ -60,17 +85,20 @@ int main() {
 	StartSkill(&((P1).Skill));StartSkill(&((P2).Skill));
 	Pnow = P1;
 	char * s;
+
+	/* Desain game */
+	int space = GetLastIdxBrs(P) * 5;
+
 	while(!stop){
-		CommandList();
 		CreateEmptyStackUndo(&SU);
 		int jatah=1;
 		
 		while(!stop && jatah!=0){
 			changecolor(Pnow,P1,P2);
-			cetakTurn(turn);
+			cetakTurn(turn,space);
 			normal();
 			CetakPeta(P,P1,P2,AllBangunan);
-			green();
+			yellow();
 			printf("Player %d\n",Pnow.nomor);
 			normal();
 			//Ngerefresh isi Pnow setelah Undo
@@ -80,10 +108,10 @@ int main() {
 			else{
 				Pnow = P2;
 			}
-			green();
+			yellow();
 			PrintInfoLBangunan(AllBangunan,Pnow);
 			normal();
-			green();
+			yellow();
 			printf("%s", "Skill Available: ");
 			if (IsEQPemain(P1,Pnow)){
 				ShowSkill((P1.Skill));
