@@ -2,6 +2,7 @@
 #include"../bangunan/bangunan.h"
 #include"../list/listlinier.h"
 #include "../array/array.h"
+#include<stdlib.h>
 
 boolean haveBuilding(Pemain P){
 /* Apakah player P punya bangunan */
@@ -53,6 +54,7 @@ boolean haveBuildingKoordinat(Pemain P,int i,int j,TabBangunan Tab){
 void CopyPemain(Pemain P,Pemain *Destination){
 	CopyList(P.b,&((*Destination).b));
 	(*Destination).Skill = P.Skill;
+	(*Destination).nomor = P.nomor;
 }
 
 /*
