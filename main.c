@@ -21,7 +21,7 @@ void NextPemain(Pemain P1,Pemain P2,Pemain *P){
 
 void changecolor(Pemain Pnow, Pemain P1, Pemain P2){
 	if (IsEQPemain(Pnow,P1)){
-		yellow();
+		red();
 	} else if (IsEQPemain(Pnow,P2)) {
 		cyan();
 	} else {
@@ -70,7 +70,7 @@ int main() {
 			cetakTurn(turn);
 			normal();
 			CetakPeta(P,P1,P2,AllBangunan);
-			changecolor(Pnow,P1,P2);
+			green();
 			printf("Player %d\n",Pnow.nomor);
 			normal();
 			//Ngerefresh isi Pnow setelah Undo
@@ -80,10 +80,10 @@ int main() {
 			else{
 				Pnow = P2;
 			}
-			changecolor(Pnow,P1,P2);
+			green();
 			PrintInfoLBangunan(AllBangunan,Pnow);
 			normal();
-			changecolor(Pnow,P1,P2);
+			green();
 			printf("%s", "Skill Available: ");
 			if (IsEQPemain(P1,Pnow)){
 				ShowSkill((P1.Skill));
@@ -96,7 +96,7 @@ int main() {
 			normal();
 			s = BacaInputUser();
 			printf("\n");
-			changecolor(Pnow,P1,P2);
+			green();
 			if(IsAttack(s)){
 				if (IsEQPemain(Pnow, P1)) {
 					ProsedurAttack(&AllBangunan, &P1, &P2,&Netral ,connectivity,&SU, &((P1).Skill), &((P2).Skill));

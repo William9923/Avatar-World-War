@@ -58,34 +58,111 @@ IdxTypeMatriks GetLastIdxKol (PETA P)
 }
 
 
+// /* ********** BACA/TULIS ********** */
+// void CetakPeta (PETA P,Pemain P1,Pemain P2,TabBangunan Tab)
+// /* I.S. P terdefinisi */
+// /* F.S. Elemen P dicetak ke layar per baris per kolom */
+// /* Proses: Mencetak nilai setiap elemen P ke layar dengan traversal per baris dan per kolom */
+// {
+// 	int i,j;
+
+// 	for (i=0; i<=GetLastIdxBrs(P)+1; i++) {
+// 		for (j=0; j<=GetLastIdxKol(P)+1; j++) {
+// 			if (i==0 || j == 0 || i == GetLastIdxBrs(P)+1 || j == GetLastIdxKol(P)+1) {
+// 				printf("*");
+// 			} else {
+// 				if(ElmtMatriks(P,i,j) == 'C' || ElmtMatriks(P,i,j) == 'V' || ElmtMatriks(P,i,j) == 'T' || ElmtMatriks(P,i,j) == 'F') {
+// 					if(haveBuildingKoordinat(P1,i,j,Tab)){
+// 						print_red(ElmtMatriks(P,i,j));
+// 					}
+// 					else if(haveBuildingKoordinat(P2,i,j,Tab)){
+// 						print_blue(ElmtMatriks(P,i,j));
+// 					}
+// 					else{
+// 						printf("%c", ElmtMatriks(P,i,j));
+// 					}
+// 				} else {
+// 					printf(" ");
+// 				}
+// 			}
+// 		}
+// 		printf("\n");
+// 	}
+// }
+
 /* ********** BACA/TULIS ********** */
 void CetakPeta (PETA P,Pemain P1,Pemain P2,TabBangunan Tab)
 /* I.S. P terdefinisi */
 /* F.S. Elemen P dicetak ke layar per baris per kolom */
 /* Proses: Mencetak nilai setiap elemen P ke layar dengan traversal per baris dan per kolom */
 {
-	int i,j;
+	green();
+	printf("╔");
+	for (int i = 1; i <= GetLastIdxKol(P); i++){
+		if (i == GetLastIdxKol(P)){
+			printf("══");
+		} else {
+			printf("══╦");
+		}
+	}
+	printf("╗");
+	printf("\n");
 
-	for (i=0; i<=GetLastIdxBrs(P)+1; i++) {
-		for (j=0; j<=GetLastIdxKol(P)+1; j++) {
-			if (i==0 || j == 0 || i == GetLastIdxBrs(P)+1 || j == GetLastIdxKol(P)+1) {
-				printf("*");
-			} else {
-				if(ElmtMatriks(P,i,j) == 'C' || ElmtMatriks(P,i,j) == 'V' || ElmtMatriks(P,i,j) == 'T' || ElmtMatriks(P,i,j) == 'F') {
-					if(haveBuildingKoordinat(P1,i,j,Tab)){
-						print_red(ElmtMatriks(P,i,j));
-					}
-					else if(haveBuildingKoordinat(P2,i,j,Tab)){
-						print_blue(ElmtMatriks(P,i,j));
-					}
-					else{
-						printf("%c", ElmtMatriks(P,i,j));
-					}
-				} else {
+	for(int i = 1; i <= GetLastIdxBrs(P); i++){
+		green();
+		for (int j = 1; j <= GetLastIdxKol(P); j++){
+			green();
+			printf("║");
+			if(ElmtMatriks(P,i,j) == 'C' || ElmtMatriks(P,i,j) == 'V' || ElmtMatriks(P,i,j) == 'T' || ElmtMatriks(P,i,j) == 'F') {
+				if(haveBuildingKoordinat(P1,i,j,Tab)){
+					printf("");
+					print_red(ElmtMatriks(P,i,j));
 					printf(" ");
 				}
+				else if(haveBuildingKoordinat(P2,i,j,Tab)){
+					printf("");
+					print_blue(ElmtMatriks(P,i,j));
+					printf(" ");
+				}
+				else{
+					printf("");
+					normal();
+					printf("%c", ElmtMatriks(P,i,j));
+					printf(" ");
+				}
+			} else {
+				printf("  ");
 			}
 		}
+		green();
+		printf("║");
 		printf("\n");
+		if (i != GetLastIdxBrs(P)){
+			printf("╠");
+			for (int i = 1; i <= GetLastIdxKol(P); i++){
+				green();
+				if (i == GetLastIdxKol(P)){
+					printf("══");
+				} else {
+					printf("══╬");
+				}
+			}
+			green();
+			printf("╣");
+			printf("\n");
+		}
 	}
+	printf("╚");
+	for (int i = 1; i <= GetLastIdxKol(P); i++){
+		green();
+		if (i == GetLastIdxKol(P)){
+			printf("══");
+		} else {
+			printf("══╩");
+		}
+	}
+	green();
+	printf("╝");
+	printf("\n");
+	normal();
 }

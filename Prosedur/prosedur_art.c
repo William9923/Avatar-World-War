@@ -61,17 +61,17 @@ void CommandList()
 {
         char anykey;
         green();
-        printf("╔══════════════════╗\n");
-        printf("║AVAILABLE COMMAND:║\n");
-        printf("║1. ATTACK         ║\n");
-        printf("║2. MOVE           ║\n");
-        printf("║3. SKILL          ║\n");
-        printf("║4. LEVEL_UP       ║\n");
-        printf("║5. UNDO           ║\n");
-        printf("║6. END_TURN       ║\n");
-        printf("║7. SAVE           ║\n");
-        printf("║8. QUIT           ║\n");
-        printf("╚══════════════════╝\n");
+        printf("╔═══════════════════════════════════════════════════════╗\n");
+        printf("║AVAILABLE COMMAND:                                     ║\n");
+        printf("║1. ATTACK    : menyerang bangunan lain                 ║\n");
+        printf("║2. MOVE      : memindahkan prajurit ke bangunan lain   ║\n");
+        printf("║3. SKILL     : menggunakan skill yang masih tersedia   ║\n");
+        printf("║4. LEVEL_UP  : meningkatkan level bangunan             ║\n");
+        printf("║5. UNDO      : kembali ke langkah sebelumnya           ║\n");
+        printf("║6. END_TURN  : mengakhiri turn                         ║\n");
+        printf("║7. SAVE      : save progress game saat ini             ║\n");
+        printf("║8. EXIT      : keluar dari game                        ║\n");
+        printf("╚═══════════════════════════════════════════════════════╝\n");
         normal();
 
 }
