@@ -234,13 +234,13 @@ int main() {
 			}
 			else if(IsSave(s)){
 				ProsedurSave(P1, P2, Pnow, P, AllBangunan, connectivity, Netral, jatah);
+				clear_user_input();
 			}
 			else if(IsExit(s)) {
 				stop = true;
 			}
 			else{
 				printf("Inputan tidak valid.\n");
-				printf("%s",s);
 			}
 		}
 		NextPemain(P1,P2,&Pnow);
