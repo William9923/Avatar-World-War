@@ -328,17 +328,17 @@ int pengubahAngka() {
 	return sum;
 }
 
+
 char * BacaInputUser(){
 	STARTKATAIn();
 	while(!EndKata){
 		ADVKATAIn();
 	}
-	char * e = malloc(sizeof (int) * CKata.Length);
-	free(e);
-	char *d = malloc(sizeof(char)*CKata.Length);
+	char *d = malloc(sizeof(char) *CKata.Length);
 	for (int i = 1; i <= CKata.Length;i++){
 		d[i-1] = CKata.TabKata[i];
 	}
+	d[CKata.Length] = '\0';
 	return d;
 }
 

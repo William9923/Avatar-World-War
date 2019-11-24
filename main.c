@@ -241,7 +241,6 @@ int main() {
 			}
 			else{
 				printf("Inputan tidak valid.\n");
-				printf("%s",s);
 			}
 		}
 		NextPemain(P1,P2,&Pnow);
