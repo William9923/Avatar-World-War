@@ -65,18 +65,22 @@ void Barrage(TabBangunan * tab, Pemain * p1, Pemain * p2){
 }
 
 void ExtraTurn (int * n){
+	/* Mengaktifkan skill ekstra turn */
 	(*n) += 1;
 }
 
 void CriticalHit(Pemain *P){
+	/* Mengaktifkan critical hit untuk satu orang pemain */
 	(*P).CriticalHit = true;
 }
 
 void AttackUp(Pemain *P){
+	/* Mengaktifkan skill attack up untuk pemain */
 	(*P).AttackUp = true;
 }
 
 void Shield(Pemain *P){
+	/* Mengaktifkan skill Shield untuk pemain tertentu */
 	(*P).Shield = 2;
 }
 
