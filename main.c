@@ -1,6 +1,7 @@
 #include"./include.h"
 
 boolean IsEQPemain(Pemain P1, Pemain P2){
+	/** Mengecek apakah P1 dan P2 adalah Pemain yang sama **/
 	boolean same = true;
 
 	if ((P1.nomor != P2.nomor)){
@@ -11,6 +12,7 @@ boolean IsEQPemain(Pemain P1, Pemain P2){
 
 
 void NextPemain(Pemain P1,Pemain P2,Pemain *P){
+	/** Berfungsi menentukan Pemain selanjutnya yang disimpan pada P **/
 	if(IsEQPemain(P1,*P)){
 		*P = P2;
 	}
@@ -20,6 +22,7 @@ void NextPemain(Pemain P1,Pemain P2,Pemain *P){
 }
 
 void changecolor(Pemain Pnow, Pemain P1, Pemain P2){
+	/** Berfungsi mengubah warna menyesuaikan siapa player sekarang, bila P1 maka merah dan P2 maka cyan selain itu green **/
 	if (IsEQPemain(Pnow,P1)){
 		red();
 	} else if (IsEQPemain(Pnow,P2)) {
@@ -30,6 +33,7 @@ void changecolor(Pemain Pnow, Pemain P1, Pemain P2){
 }
 
 void cetakTurn(int turn,int space){
+	/**berfungsi mencetak turn sekarang pada layar sebelum peta **/
 	int halfspace = (space - 6) / 2;
 	for (int i = 1; i <= 3; i++){
 		printf("   ");
@@ -76,20 +80,22 @@ int main() {
 	int jatah;
 	boolean menu =true;
 
-	clrscr();
+	clrscr();//Membersihkan layar console
 	printf("New Game or Load a saved game?\nType LOAD if you want to load a saved game.\nOtherwise type NEW.\n");
 	green();
 	
 	normal();
+	//Pengosongan variabel atau pengalokasian memory
 	CreateNewPlayer(&P1,1);	
 	CreateNewPlayer(&P2,2);
     CreateEmptyList(&Netral);
 	CreateNewPlayer(&P1,1);	
 	CreateNewPlayer(&P2,2);
 
+	//Looping selama inputan tidak benar
 	while(menu) {
 		s = BacaInputUser();
-		if (IsNew(s)) {
+		if (IsNew(s)) { //jika player memilih new
 			clrscr();
 			//Baca Konfigurasi Permainan
 			printf("Reading Configuration File...\n");
@@ -99,7 +105,7 @@ int main() {
 			StartSkill(&((P1).Skill));StartSkill(&((P2).Skill));
 			Pnow = P1;
 			menu=false;
-		} else if(IsLoad(s)) {
+		} else if(IsLoad(s)) { //jika player memilih load
 			ProsedurLoad(&P1,&P2,&Pnow,&P,&AllBangunan,&connectivity,&Netral,&jatah);
 			printf("Loading game from a saved file...\n");
 			newgame = false;
@@ -109,8 +115,7 @@ int main() {
 		}
 	}
 	
-	
-	StartGame();
+	StartGame();//memulai game
 	clrscr();
 	clrscr();
 	boolean stop = false;
@@ -119,14 +124,16 @@ int main() {
 	/* Desain game */
 	int space = GetLastIdxBrs(P) * 5;
 
+	//Looping selama game belum berakhir
 	while(!stop){
-		CreateEmptyStackUndo(&SU);
+		CreateEmptyStackUndo(&SU);//Pengosongan StackUndo setiap satu turn
 		if (newgame) {
 			jatah=1;
 		} else {
 			newgame = true;
 		}
 		
+		//selama player masih memiliki jatah untuk bermain (turn) dan game belum berakhir
 		while(!stop && jatah!=0){
 			
 			changecolor(Pnow,P1,P2);
@@ -237,7 +244,7 @@ int main() {
 				clear_user_input();
 			}
 			else if(IsExit(s)) {
-				stop = true;
+				stop = true;//game berakhir
 			}
 			else{
 				printf("Inputan tidak valid.\n");

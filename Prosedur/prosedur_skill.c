@@ -130,8 +130,7 @@ boolean IsObtainAttackUp(Bangunan B,Pemain *P1,TabBangunan Tab){
 }
 
 void CheckAddAttackUp(Bangunan B,Pemain *P1,TabBangunan Tab){
-	/* I.S. 
-	   F.S. */
+	/* Fungsi untuk mengecek apakah syarat mendapatkan skill dipenuhi dan mengecek apakah player memiliki ruang queue skill*/
 	if (IsObtainAttackUp(B,P1,Tab)){
 		if (!IsFullQueue((*P1).Skill)){
 			AddSkillQueue(&(*P1).Skill, 'D');
@@ -143,6 +142,7 @@ void CheckAddAttackUp(Bangunan B,Pemain *P1,TabBangunan Tab){
 }
 
 void CheckAddShield(Pemain *P2){
+	/* Fungsi untuk mengecek apakah syarat mendapatkan skill dipenuhi dan mengecek apakah player memiliki ruang queue skill*/
 	if(IsObtainShield(*P2)){
 		if (!IsFullQueue((*P2).Skill)){
 			AddSkillQueue(&(*P2).Skill, 'B');
@@ -154,6 +154,7 @@ void CheckAddShield(Pemain *P2){
 }
 
 void CheckAddCriticalHit(Pemain *P){
+	/* Fungsi untuk mengecek apakah syarat mendapatkan skill dipenuhi dan mengecek apakah player memiliki ruang queue skill*/
 	if (!IsFullQueue((*P).Skill)){
 		AddSkillQueue(&(*P).Skill, 'E');
 		printf("Player %d mendapatkan skill Critical Hit\n", (*P).nomor);
@@ -164,6 +165,7 @@ void CheckAddCriticalHit(Pemain *P){
 }
 
 void CheckAddExtraTurn(Queue * q1,TabBangunan tab, IdxTypeArray i, Pemain P1, Pemain P2){
+	/* Fungsi untuk mengecek apakah syarat mendapatkan skill dipenuhi dan mengecek apakah player memiliki ruang queue skill*/
 	if (IsObtainExtraTurn(tab,i,P2)){
 		if (!IsFullQueue(*q1)){
 			AddSkillQueue(q1, 'C');
@@ -175,6 +177,7 @@ void CheckAddExtraTurn(Queue * q1,TabBangunan tab, IdxTypeArray i, Pemain P1, Pe
 }
 
 void CheckAddBarrage(Queue * q1,TabBangunan tab, Pemain p1, Pemain p2){
+	/* Fungsi untuk mengecek apakah syarat mendapatkan skill dipenuhi dan mengecek apakah player memiliki ruang queue skill*/
 	if (IsObtainBarrage(p2)){
 		if (!IsFullQueue(*q1)){
 			AddSkillQueue(q1, 'G');
@@ -186,6 +189,7 @@ void CheckAddBarrage(Queue * q1,TabBangunan tab, Pemain p1, Pemain p2){
 }
 
 void CheckAddIR(Queue * q1, Queue * q2, TabBangunan tab, Pemain P1, Pemain P2){
+	/* Fungsi untuk mengecek apakah syarat mendapatkan skill dipenuhi dan mengecek apakah player memiliki ruang queue skill*/
 	if (IsObtainIR (tab,P1)){
 		if (!IsFullQueue(*q1)){
 			AddSkillQueue(q1, 'F');

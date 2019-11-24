@@ -29,11 +29,13 @@ void ChangeOwner(Pemain *P,Bangunan b,Pemain *NewOwner, TabBangunan tab){
 
 
 boolean haveBuildingB(Pemain P,Bangunan a, TabBangunan tab){
+	/** Mengecek apakah P mempunyai a sebagai bangunannya **/
  	IdxTypeArray i = SearchIdxBangunan(tab,a);
     return (SearchList(P.b,i) != NULL);
 }
 
 boolean haveBuildingKoordinat(Pemain P,int i,int j,TabBangunan Tab){
+	/** Mengecek apakah P mempunyai bangunan yang terletak pada koordinat (i,j) **/
 	List X = P.b;
 	address last = FirstL(X);
 	Bangunan b;
@@ -52,16 +54,8 @@ boolean haveBuildingKoordinat(Pemain P,int i,int j,TabBangunan Tab){
 }
 
 void CopyPemain(Pemain P,Pemain *Destination){
+	/** Mengcopy P ke Destination **/
 	CopyList(P.b,&((*Destination).b));
 	(*Destination).Skill = P.Skill;
 	(*Destination).nomor = P.nomor;
-}
-
-/*
-TODO :
-1. Ganti semua fungsi jadi fungsi yang ada di listlinier.c (sebenarnya ilangin aja si B nya dari fungsi wkwk)
-2. Sama dia tuh sekarang makenya list linier yang isinya integer,
-	namun mekanisme kek di ChangeOwner seharusnya sama
-	( cuman mindahinnya beda, yang lama mindahin bangunan, sekarang cuman mindahin index)
-3. Buat haveBuilding, nanti aku bikinin fungsi mapping, di utility, kalo ga kliatan chat aku aja yaa...
-*/
+}	
