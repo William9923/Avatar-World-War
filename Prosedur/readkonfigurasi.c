@@ -6,7 +6,17 @@
 #include "../ADT/list/listlinier.h"
 #include "../ADT/matriks/matriks.h"
 
+/**********************************************************************************
+* Prosedur Read Konfigurasi                                                       *
+* Author : Kelompok Alstrukdat                                                    *
+* Merupakan suatu prosedur untuk membaca file konfigurasi yang diberikan          *
+* untuk mengatur seluruh konfigurasi game di awal pemainan                        *
+* Prosedur ini memanfaatkan ADT ADT yang telah dibentuk sebelumnya untuk kemudian *
+* menaruh informasi dari file konfigurasi ke File baru                            *
+**********************************************************************************/
+
 void readkonfig(char s[],PETA *P, TabBangunan *ArrayBangunan, Graph *G, Pemain *P1, Pemain *P2, List *Netral) {
+    /* Inisialisasi nilai - nilai awal untuk data - data file konfigurasi */
     int PPeta, LPeta;
     int i,n;
     infotypeGraph bmatriks,kmatriks;
