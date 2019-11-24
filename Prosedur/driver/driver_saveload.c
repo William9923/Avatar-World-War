@@ -22,15 +22,18 @@ int main() {
 	StartSkill(&((P1).Skill));StartSkill(&((P2).Skill));
 	Pnow = P1;
 
+    ProsedurSave(P1,P2,Pnow,P,AllBangunan,connectivity,Netral,jatah);
+    /*
     printf("ENTER path save: ");
     save = BacaInputUser();
     printf("\n");
 
     savefile(save,P1,P2,Pnow,P,AllBangunan,connectivity,Netral,jatah);
-    
+    */
     printf("ENTER path load: ");
     load = BacaInputUser();
     printf("\n");
+    printf("%s\n", load);
 
     loadfile(load,&P1, &P2, &Pnow,&P, &AllBangunan, &connectivity, &Netral, &jatah);
     CetakBangunanDimiliki(AllBangunan);
