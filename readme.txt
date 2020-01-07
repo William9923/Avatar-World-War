@@ -3,7 +3,6 @@ Anggota Kelompok :
 2. Arief Darmawan / 13518015
 3. Felix Setiawan / 13518078
 4. Hengky Surya Angkasa / 13518048
-5. Vincent Hasiholan / 13518108
 ===============================================================================
 AVATAR WORLD WAR
 Avatar World War merupakan suatu game berbasis gcc yang dijalankan lewat terminal. Game ini bersifat turn-based strategy game dengan memanfaatkan gui yang terdapat pada command line interface linux.
