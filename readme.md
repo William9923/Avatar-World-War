@@ -1,6 +1,8 @@
 # War
 War is a turn-based game on CLI (Command Line Interface) based on C programming language.
-The GUI in CLI used in this game using Linux based kernel.
+The GUI in CLI used in this game were based on Linux based kernel.
+
+War is a game based only on **procedural programming paradigm** and mainly to showcase the capabilities of **data structure**.
 
 ## Getting Started
 First, you will need :
