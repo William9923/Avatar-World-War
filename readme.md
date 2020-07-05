@@ -1,10 +1,10 @@
-# Avatar World War
-Avatar World War is a turn-based game on CLI (Command Line Interface) based on C programming language.
+# War
+War is a turn-based game on CLI (Command Line Interface) based on C programming language.
 The GUI in CLI used in this game using Linux based kernel.
 
 ## Getting Started
 First, you will need :
-1. Terminal berbasis linux
+1. Linux-based terminal
 2. gcc (recommended version 5.4.0)
 3. git (optional, but it is easier to just clone this repo)<br>
 To clone this repo type ```git clone https://github.com/William9923/Alstrukdat.git``` in your terminal.
